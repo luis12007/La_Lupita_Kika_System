@@ -75,6 +75,7 @@
             Username_textBox.ReadOnly = false;
             Username_textBox.Size = new Size(312, 35);
             Username_textBox.TabIndex = 5;
+            Username_textBox.TextAlign = ContentAlignment.MiddleLeft;
             Username_textBox.Texts = "";
             Username_textBox.UnderlinedStyle = true;
             // 
@@ -98,6 +99,7 @@
             Pass_textBox.ReadOnly = false;
             Pass_textBox.Size = new Size(312, 35);
             Pass_textBox.TabIndex = 6;
+            Pass_textBox.TextAlign = ContentAlignment.MiddleLeft;
             Pass_textBox.Texts = "";
             Pass_textBox.UnderlinedStyle = true;
             Pass_textBox._TextChanged += Pass_textBox__TextChanged;

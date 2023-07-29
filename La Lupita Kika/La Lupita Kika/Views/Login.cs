@@ -126,7 +126,8 @@ namespace La_Lupita_Kika
 
                     // Abrir el nuevo formulario de facturación
 
-                    if (foundRegister != null) {
+                    if (foundRegister != null)
+                    {
                         Facturation formFacturation = new Facturation(connectionString, foundRegister.Register_id);
                         formFacturation.ShowDialog();
                     }
