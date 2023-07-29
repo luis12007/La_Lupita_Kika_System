@@ -1,0 +1,84 @@
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\La Lupita Kika.exe
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\La Lupita Kika.deps.json
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\La Lupita Kika.runtimeconfig.json
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\La Lupita Kika.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\La Lupita Kika.pdb
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Azure.Core.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Azure.Identity.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Google.Protobuf.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Data.SqlClient.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Identity.Client.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Logging.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Protocols.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.IdentityModel.Tokens.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\MySql.Data.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.Configuration.ConfigurationManager.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.Memory.Data.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.Runtime.Caching.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\System.Text.Json.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.csproj.AssemblyReference.cache
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Properties.Resources.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Admin.AddProduct.AddProducts.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Home.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.CreateUser.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Admin.User.UserList.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Components.RJComboBox.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Components.RJTextBox.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Gains.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Ingredients.AddIngredients.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Ingredients.Ingredients.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Login.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Products.OutIngredients.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Products.Palettes.AdPalettes.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Staff.CashOutdit.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Staff.change.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Facturation.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Staff.Mount.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Warning.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.csproj.GenerateResource.cache
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.AssemblyInfoInputs.cache
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.AssemblyInfo.cs
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.csproj.CoreCompileInputs.cache
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.csproj.CopyComplete
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\refint\La Lupita Kika.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.pdb
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La Lupita Kika.genruntimeconfig.cache
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\ref\La Lupita Kika.dll
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Products.Palettes.Inventario.resources
+C:\Users\luish\source\repos\La Lupita Kika\La Lupita Kika\obj\Debug\net6.0-windows\La_Lupita_Kika.Views.Admin.AddProduct.AddManual.resources

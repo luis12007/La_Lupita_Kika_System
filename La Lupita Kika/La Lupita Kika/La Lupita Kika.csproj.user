@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Views\Admin\AddProduct\AddManual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\AddProduct\AddProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\User\CreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\User\UserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Components\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Views\Components\RJComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Components\RJTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Views\Gains.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Ingredients\AddIngredients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Ingredients\Ingredients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Products\OutIngredients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Products\Inventario\AdPalettes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Products\Inventario\Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Staff\CashOutdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Staff\Change.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Staff\Facturation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Staff\Mount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Warning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
