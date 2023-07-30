@@ -270,11 +270,11 @@ namespace La_Lupita_Kika.Views.Staff
             //generando ticket
 
             ticket.Image = PictureBoxLogo.Image;
-            ticket.Title = "La lupita kika";
-            ticket.Address = "La lupita kika juayua, sonsonate";
+            ticket.Title = "La LupitaKika Sonsonate";
+            ticket.Address = "";
             ticket.DateTicket = currentDate.Date;
             ticket.TimeTicket = currentDate.TimeOfDay;
-            ticket.CashierName = CashierName;
+            ticket.CashierName = myuser.User_id.ToString();
             foreach (Models.Products producto in productosList)
             {
                 ticket.ProductsLists.Add(producto);
@@ -282,7 +282,7 @@ namespace La_Lupita_Kika.Views.Staff
             ticket.Subtotal = mounts;
             ticket.Cancelled = cancelled;
             ticket.Change = money;
-            ticket.FarewellMessage = "Gracias por tu compra";
+            ticket.FarewellMessage = "VIVA LA VIDA";
             ticket.Number = ticketNumber + 1;
             ticket.Items = productosList.Count;
 

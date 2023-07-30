@@ -92,49 +92,48 @@ namespace La_Lupita_Kika.Models
             string timecut = time.Substring(0, 5);
             try
             {
-                posX = 10;
+                posX = 0;
                 posY = 10;
-                e.Graphics.DrawImage(Image, 140, 15, 100, 100);
-                posY = posY + 110;
-                posX = 150;
+                e.Graphics.DrawImage(Image, 50, 15, 90, 90);
+                posY = posY + 100;
+                posX = 30;
                 e.Graphics.DrawString(Title, fuente, Brushes.Black, posX, posY);
-                posX = 10;
+                posX = 0;
                 posY = posY + 20;
-                e.Graphics.DrawString("-------------------------------------------------------------" +
-                    "---------------------", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("--------------------------------------------------------------------------------"
+                    , fuente, Brushes.Black, posX, posY);
                 posY =posY+ 20;
-                posX = 110;
-                e.Graphics.DrawString(Address, fuente, Brushes.Black, posX, posY);
+                posX = 30;
+                e.Graphics.DrawString("Grupo Avilés S.A. de C.V.", fuente, Brushes.Black, posX, posY);
                 posY = posY + 20;
-                posX = 10;
-                e.Graphics.DrawString("-------------------------------------------------------------" +
-                    "---------------------", fuente, Brushes.Black, posX, posY);
+                posX = 0;
+                e.Graphics.DrawString("----------------------------------------------------------------------------------"
+                    , fuente, Brushes.Black, posX, posY);
                 posY = posY + 20;
-
-                e.Graphics.DrawString("Fecha: "+ datecut, fuente, Brushes.Black, posX, posY);
-                posX = posX + 130;
-                e.Graphics.DrawString("Hora: " + timecut, fuente, Brushes.Black, posX, posY);
-                posX = posX + 110;
-                e.Graphics.DrawString("Cajero: "+CashierName, fuente, Brushes.Black, posX, posY);
-                posX = 10;
+                e.Graphics.DrawString("Fecha: "+ datecut, new Font("consola", 6, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX = posX + 85;
+                e.Graphics.DrawString("Hora: " + timecut, new Font("consola", 6, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX = posX + 60;
+                e.Graphics.DrawString("Cajero: "+CashierName, new Font("consola", 6, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX = 0;
                 posY = posY + 30;
                 e.Graphics.DrawString("Numero de ticket: " + Number, fuente, Brushes.Black, posX, posY);
                 posY = posY + 20;
                 //productos
-                e.Graphics.DrawString("-------------------------------------------------------------" +
-                    "---------------------", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("----------------------------------------------------------------------------------"
+                    , fuente, Brushes.Black, posX, posY);
                 posY = posY + 10;
-                e.Graphics.DrawString("DESCRIPCION", fuente, Brushes.Black, posX, posY);
-                posX += 140;
-                e.Graphics.DrawString("CANTIDAD", fuente, Brushes.Black, posX, posY);
-                posX += 80;
-                e.Graphics.DrawString("VALOR", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("DESCRIPCION", new Font("consola", 5, FontStyle.Bold), Brushes.Black, posX, posY);
                 posX += 70;
-                e.Graphics.DrawString("TOTAL", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("CANTIDAD", new Font("consola", 5, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX += 40;
+                e.Graphics.DrawString("VALOR", new Font("consola", 5, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX += 40;
+                e.Graphics.DrawString("TOTAL", new Font("consola", 5, FontStyle.Bold), Brushes.Black, posX, posY);
                 posY = posY + 10;
-                posX = 10;
-                e.Graphics.DrawString("-------------------------------------------------------------" +
-                    "---------------------", fuente, Brushes.Black, posX, posY);
+                posX = 0;
+                e.Graphics.DrawString("----------------------------------------------------------------------------------"
+                    , fuente, Brushes.Black, posX, posY);
                 posY = posY + 20;
 
                 for (int i = 0; i < ProductsLists.Count; i++)
@@ -143,12 +142,12 @@ namespace La_Lupita_Kika.Models
 
                     // Verificar la longitud del nombre del producto
                     string productName = ProductsLists[i].Nombre;
-                    if (productName.Length > 16)
+                    if (productName.Length > 8)
                     {
                         // Si es mayor a 16 caracteres, truncar a 16 caracteres y agregar puntos suspensivos solo si es necesario
-                        if (productName.Length > 19) // Si el nombre es mayor a 19 caracteres, truncar y agregar puntos
+                        if (productName.Length > 6) // Si el nombre es mayor a 19 caracteres, truncar y agregar puntos
                         {
-                            productName = productName.Substring(0, 16) + "...";
+                            productName = productName.Substring(0, 8) + "..";
                         }
                         else // Si el nombre está entre 16 y 19 caracteres, dejarlo así sin agregar puntos
                         {
@@ -157,31 +156,37 @@ namespace La_Lupita_Kika.Models
                     }
 
                     e.Graphics.DrawString(productName, fuente, Brushes.Black, posX, posY);
-                    posX += 150;
+                    posX += 75  ;
                     e.Graphics.DrawString($"{ProductsLists[i].Cantidad}", fuente, Brushes.Black, posX, posY);
-                    posX += 80;
+                    posX += 40;
                     e.Graphics.DrawString($"{ProductsLists[i].Valor}$", fuente, Brushes.Black, posX, posY);
-                    posX += 80;
+                    posX += 40;
                     e.Graphics.DrawString($"{ProductsLists[i].Cantidad * ProductsLists[i].Valor}$", fuente, Brushes.Black, posX, posY);
-                    posY += 25;
+                    posY += 30;
                 }
-                posY = posY + 20;
-                posX = 150;
+                posX = 60;
                 e.Graphics.DrawString("Subtotal: " + $"{Subtotal}$", fuente, Brushes.Black, posX, posY);
                 posY = posY + 20;
                 posX = 10;
-                e.Graphics.DrawString("-------------------------------------------------------------" +
-                    "---------------------", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("----------------------------------------------------------------------------------"
+                    , fuente, Brushes.Black, posX, posY);
                 posY = posY + 20;
                 posX = 10;
-                e.Graphics.DrawString("items: " + Items.ToString(), fuente, Brushes.Black, posX, posY);
-                posX = posX + 120;
-                e.Graphics.DrawString("cancelado: " + $"{Cancelled}$", fuente, Brushes.Black, posX, posY);
-                posX = posX + 120;
-                e.Graphics.DrawString("cambio: " + $"{Change}$", fuente, Brushes.Black, posX, posY);
-                posY = posY + 50;
-                posX = 120;
+                e.Graphics.DrawString("items: " + Items.ToString(), new Font("consola", 7, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX = posX + 40;
+                e.Graphics.DrawString("cancelado: " + $"{Cancelled}$", new Font("consola", 7, FontStyle.Bold), Brushes.Black, posX, posY);
+                posX = posX + 70;
+                e.Graphics.DrawString("cambio: " + $"{Change}$", new Font("consola", 7, FontStyle.Bold), Brushes.Black, posX, posY);
+                posY = posY + 10;
+                posX = 50;
+                e.Graphics.DrawString("......................."
+                    , fuente, Brushes.Black, posX, posY);
+                posY = posY + 20;
                 e.Graphics.DrawString(FarewellMessage, fuente, Brushes.Black, posX, posY);
+                posY = posY + 10;
+                e.Graphics.DrawString("......................."
+                    , fuente, Brushes.Black, posX, posY);
+
             }
             catch (Exception ex)
             {

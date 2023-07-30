@@ -151,7 +151,7 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT mangoneadas_id, name, price, codebar, code, category_id, cuantity FROM mangoneadas WHERE codebar = @Codebar";
+                string query = "SELECT mangoneadas_id, name, price, codebar, code, cuantity FROM mangoneadas WHERE codebar = @Codebar";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Codebar", codebar);
                 connection.Open();
@@ -162,7 +162,7 @@ namespace La_Lupita_Kika.UserRepository
                     string name = Convert.ToString(reader["name"]);
                     float price = Convert.ToSingle(reader["price"]);
                     string code = Convert.ToString(reader["code"]);
-                    int categoryId = Convert.ToInt32(reader["category_id"]);
+                    int categoryId = 1;
                     float cuantity = Convert.ToSingle(reader["cuantity"]);
                     Mangoneadas mangoneada = new Mangoneadas(mangoneadasId, name, price, codebar, code, categoryId, cuantity);
                     return mangoneada;

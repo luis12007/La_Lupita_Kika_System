@@ -203,6 +203,16 @@ namespace La_Lupita_Kika.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LOGO_2023_blanco_negro {
+            get {
+                object obj = ResourceManager.GetObject("LOGO 2023 blanco negro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LOGO_LETRAS {
             get {
                 object obj = ResourceManager.GetObject("LOGO LETRAS", resourceCulture);

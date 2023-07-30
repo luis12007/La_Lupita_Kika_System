@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N9/3ev8RNvgjxXgAdrfq/T+qCUS7oPiavSW4jATMVuX0Gl/RrhrLA9GCzXQz1FULtqLkvhZTeqBigk+NHRxuVQ==",
+  "dgSpecHash": "tY3EiYDTo5Ee6jM/3c5HX8gGzrP7YZvVH+4W/S3TVHPkbooA8h2GSwSBs3XhNeKIchqcSWegx4TXb1FaQkxcfA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\luish\\source\\repos\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+  "projectFilePath": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luish\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -72,10 +72,10 @@
     "C:\\Users\\luish\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\luish\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.15\\microsoft.netcore.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\luish\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.15\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\luish\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x64.6.0.15.nupkg.sha512",
-    "C:\\Users\\luish\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.15\\microsoft.netcore.app.crossgen2.win-x64.6.0.15.nupkg.sha512"
+    "C:\\Users\\luish\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.20\\microsoft.netcore.app.runtime.win-x64.6.0.20.nupkg.sha512",
+    "C:\\Users\\luish\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.20\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.20.nupkg.sha512",
+    "C:\\Users\\luish\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.20\\microsoft.aspnetcore.app.runtime.win-x64.6.0.20.nupkg.sha512",
+    "C:\\Users\\luish\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.20\\microsoft.netcore.app.crossgen2.win-x64.6.0.20.nupkg.sha512"
   ],
   "logs": []
 }
