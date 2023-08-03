@@ -5,6 +5,9 @@ using Microsoft.Data.SqlClient;
 using La_Lupita_Kika.Views;
 using System.Globalization;
 using La_Lupita_Kika.Views.Admin.AddProduct;
+using La_Lupita_Kika.Views.Admin.User;
+using La_Lupita_Kika.Views.Products.Palettes;
+using OfficeOpenXml;
 
 namespace La_Lupita_Kika
 {
@@ -16,6 +19,10 @@ namespace La_Lupita_Kika
         [STAThread]
         static void Main()
         {
+
+            // Establecer el contexto de la licencia para EPPlus
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
             // Cargar la configuración desde appsettings.json
             IConfiguration config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json",optional: false,reloadOnChange: true)
@@ -32,8 +39,8 @@ namespace La_Lupita_Kika
 
             try
             {
-                Application.Run(new Login(connectionString));
-                //Application.Run(new AddProducts(connectionString));
+                //Application.Run(new Inventario(connectionString));
+                Application.Run(new Inventario(connectionString));
             }
             catch (System.NullReferenceException)
             {
@@ -42,8 +49,6 @@ namespace La_Lupita_Kika
                 // Luego, cierra la aplicación con Environment.Exit(0).
                 Environment.Exit(0);
             }
-            //Application.Run(new Facturation(connectionString));
-            //Application.Run(new Home(connectionString));
         }
     }
 }

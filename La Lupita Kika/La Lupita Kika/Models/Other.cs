@@ -13,20 +13,28 @@ namespace La_Lupita_Kika.Models
             public float Price { get; set; }
             public string Codebar { get; set; }
 
-            public Other() { }
+            public float Cuantity { get; set; }
 
-            public Other(int othersid, string name, float price, string codebar)
+            public int Subsidiary_ID { get; set; }
+
+        public Other() { }
+
+            public Other(int othersid, string name, float price, string codebar, float cuantity,int subsidiary_ID)
             {
                 Others_id = othersid;
                 Name = name;
                 Price = price;
                 Codebar = codebar;
+                Cuantity = cuantity;
+                Subsidiary_ID = subsidiary_ID;
             }
-        public Other(string name, float price, string codebar)
+        public Other(string name, float price, string codebar, float cuantity, int subsidiary_ID)
         {
             Name = name;
             Price = price;
             Codebar = codebar;
+            Cuantity = cuantity;
+            Subsidiary_ID = subsidiary_ID;
         }
 
     }

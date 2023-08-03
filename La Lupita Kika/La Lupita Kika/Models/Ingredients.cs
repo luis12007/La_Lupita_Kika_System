@@ -15,9 +15,11 @@ namespace La_Lupita_Kika.Models
         public float Unit { get; set; }
         public string Type { get; set; }
 
+        public int Subsidiary_ID { get; set; }
+
         public Ingredients() { }
 
-        public Ingredients(int ingredientsId, string name, string code, float price, float unit, string type)
+        public Ingredients(int ingredientsId, string name, string code, float price, float unit, string type, int subsidiary_ID)
         {
             Ingredients_id = ingredientsId;
             Name = name;
@@ -25,6 +27,7 @@ namespace La_Lupita_Kika.Models
             Price = price;
             Unit = unit;
             Type = type;
+            Subsidiary_ID = subsidiary_ID;
         }
     }
 

@@ -32,10 +32,6 @@ namespace La_Lupita_Kika.Views
         {
             this.Close();
 
-            // Abrir el nuevo formulario de facturación
-            Login formFacturation = new Login(connectionString);
-            formFacturation.ShowDialog();
-
             Application.Exit();
 
         }

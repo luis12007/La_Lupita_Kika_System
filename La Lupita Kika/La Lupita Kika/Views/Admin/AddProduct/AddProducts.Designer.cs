@@ -41,12 +41,11 @@
             Add_button = new Components.RJButton();
             Process_button = new Components.RJButton();
             Exit_button = new Button();
-            Codebar_label = new Label();
             Number_textbox = new Components.RJTextBox();
-            Barcode_textbox = new Components.RJTextBox();
             Category_cbb = new Components.RJComboBox();
             Name_cbb = new Components.RJComboBox();
-            add_manual = new Components.RJButton();
+            label1 = new Label();
+            Subsidiary_cbb = new Components.RJComboBox();
             ((System.ComponentModel.ISupportInitialize)Products_dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -123,7 +122,7 @@
             Products_dataGridView.RowHeadersWidth = 51;
             Products_dataGridView.RowTemplate.Height = 29;
             Products_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Products_dataGridView.Size = new Size(617, 597);
+            Products_dataGridView.Size = new Size(889, 597);
             Products_dataGridView.TabIndex = 14;
             Products_dataGridView.CellDoubleClick += Products_dataGridView_CellDoubleClick;
             // 
@@ -155,7 +154,7 @@
             Products_cbb.Padding = new Padding(1);
             Products_cbb.Size = new Size(250, 38);
             Products_cbb.TabIndex = 16;
-            Products_cbb.Texts = "Seleccionar";
+            Products_cbb.Texts = "Paletas";
             Products_cbb.OnSelectedIndexChanged += Products_cbb_OnSelectedIndexChanged;
             // 
             // Add_button
@@ -189,9 +188,9 @@
             Process_button.FlatStyle = FlatStyle.Flat;
             Process_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Process_button.ForeColor = Color.Black;
-            Process_button.Location = new Point(523, 625);
+            Process_button.Location = new Point(608, 615);
             Process_button.Name = "Process_button";
-            Process_button.Size = new Size(223, 67);
+            Process_button.Size = new Size(254, 86);
             Process_button.TabIndex = 20;
             Process_button.Text = "Procesar";
             Process_button.TextColor = Color.Black;
@@ -212,16 +211,6 @@
             Exit_button.TabIndex = 17;
             Exit_button.UseVisualStyleBackColor = false;
             Exit_button.Click += button1_Click;
-            // 
-            // Codebar_label
-            // 
-            Codebar_label.AutoSize = true;
-            Codebar_label.Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            Codebar_label.Location = new Point(10, 441);
-            Codebar_label.Name = "Codebar_label";
-            Codebar_label.Size = new Size(226, 29);
-            Codebar_label.TabIndex = 23;
-            Codebar_label.Text = "Codigo del producto";
             // 
             // Number_textbox
             // 
@@ -246,30 +235,6 @@
             Number_textbox.TextAlign = ContentAlignment.MiddleLeft;
             Number_textbox.Texts = "";
             Number_textbox.UnderlinedStyle = false;
-            // 
-            // Barcode_textbox
-            // 
-            Barcode_textbox.BackColor = SystemColors.Window;
-            Barcode_textbox.BorderColor = Color.Silver;
-            Barcode_textbox.BorderFocusColor = Color.FromArgb(255, 54, 112);
-            Barcode_textbox.BorderRadius = 0;
-            Barcode_textbox.BorderSize = 2;
-            Barcode_textbox.Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            Barcode_textbox.ForeColor = Color.FromArgb(64, 64, 64);
-            Barcode_textbox.Location = new Point(12, 474);
-            Barcode_textbox.Margin = new Padding(4);
-            Barcode_textbox.Multiline = false;
-            Barcode_textbox.Name = "Barcode_textbox";
-            Barcode_textbox.Padding = new Padding(10, 7, 10, 7);
-            Barcode_textbox.PasswordChar = false;
-            Barcode_textbox.PlaceholderColor = Color.DarkGray;
-            Barcode_textbox.PlaceholderText = "Barcode";
-            Barcode_textbox.ReadOnly = false;
-            Barcode_textbox.Size = new Size(250, 44);
-            Barcode_textbox.TabIndex = 25;
-            Barcode_textbox.TextAlign = ContentAlignment.MiddleLeft;
-            Barcode_textbox.Texts = "";
-            Barcode_textbox.UnderlinedStyle = false;
             // 
             // Category_cbb
             // 
@@ -311,38 +276,49 @@
             Name_cbb.TabIndex = 27;
             Name_cbb.Texts = "Seleccionar";
             // 
-            // add_manual
+            // label1
             // 
-            add_manual.BackColor = Color.White;
-            add_manual.BackgroundColor = Color.White;
-            add_manual.BorderColor = Color.FromArgb(255, 54, 112);
-            add_manual.BorderRadius = 20;
-            add_manual.BorderSize = 2;
-            add_manual.FlatAppearance.BorderSize = 0;
-            add_manual.FlatStyle = FlatStyle.Flat;
-            add_manual.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            add_manual.ForeColor = Color.Black;
-            add_manual.Image = Properties.Resources.boton_agregar;
-            add_manual.Location = new Point(883, 648);
-            add_manual.Name = "add_manual";
-            add_manual.Size = new Size(48, 44);
-            add_manual.TabIndex = 28;
-            add_manual.TextColor = Color.Black;
-            add_manual.UseVisualStyleBackColor = false;
-            add_manual.Click += add_manual_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(13, 466);
+            label1.Name = "label1";
+            label1.Size = new Size(108, 29);
+            label1.TabIndex = 28;
+            label1.Text = "Sucursal";
+            // 
+            // Subsidiary_cbb
+            // 
+            Subsidiary_cbb.BackColor = Color.White;
+            Subsidiary_cbb.BorderColor = Color.Silver;
+            Subsidiary_cbb.BorderSize = 1;
+            Subsidiary_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            Subsidiary_cbb.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Subsidiary_cbb.ForeColor = Color.DimGray;
+            Subsidiary_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            Subsidiary_cbb.Items.AddRange(new object[] { "Paletas", "Mangoneadas", "Helados", "Dulces", "Otros(snacks)" });
+            Subsidiary_cbb.ListBackColor = Color.FromArgb(27, 166, 182);
+            Subsidiary_cbb.ListTextColor = Color.White;
+            Subsidiary_cbb.Location = new Point(13, 503);
+            Subsidiary_cbb.MinimumSize = new Size(200, 30);
+            Subsidiary_cbb.Name = "Subsidiary_cbb";
+            Subsidiary_cbb.Padding = new Padding(1);
+            Subsidiary_cbb.Size = new Size(250, 38);
+            Subsidiary_cbb.TabIndex = 29;
+            Subsidiary_cbb.Texts = "Seleccionar";
+            Subsidiary_cbb.OnSelectedIndexChanged += Subsidiary_cbb_OnSelectedIndexChanged;
+            Subsidiary_cbb.Click += Subsidiary_cbb_Click;
             // 
             // AddProducts
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(943, 704);
-            Controls.Add(add_manual);
+            ClientSize = new Size(1211, 713);
+            Controls.Add(Subsidiary_cbb);
+            Controls.Add(label1);
             Controls.Add(Name_cbb);
             Controls.Add(Category_cbb);
-            Controls.Add(Barcode_textbox);
             Controls.Add(Number_textbox);
-            Controls.Add(Codebar_label);
             Controls.Add(Process_button);
             Controls.Add(Add_button);
             Controls.Add(Exit_button);
@@ -373,11 +349,10 @@
         private Components.RJButton Add_button;
         private Components.RJButton Process_button;
         private Button Exit_button;
-        private Label Codebar_label;
         private Components.RJTextBox Number_textbox;
-        private Components.RJTextBox Barcode_textbox;
         private Components.RJComboBox Category_cbb;
         private Components.RJComboBox Name_cbb;
-        private Components.RJButton add_manual;
+        private Label label1;
+        private Components.RJComboBox Subsidiary_cbb;
     }
 }

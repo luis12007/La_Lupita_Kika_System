@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace La_Lupita_Kika.Views.Products.Palettes
+namespace La_Lupita_Kika.Views.Products.Inventario
 {
-    public partial class AdPalettes : Form
+    public partial class AddInventario : Form
     {
-        public AdPalettes()
+        private string Conection;
+        public AddInventario(string connection)
         {
+            this.Conection = connection;
             InitializeComponent();
         }
     }

@@ -13,6 +13,9 @@
     <Compile Update="Views\Admin\User\CreateUser.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\Admin\User\EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Admin\User\UserList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -34,10 +37,13 @@
     <Compile Update="Views\Ingredients\Ingredients.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\Products\OutIngredients.cs">
+    <Compile Update="Views\Products\Inventario\AddInventario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\Products\Inventario\AdPalettes.cs">
+    <Compile Update="Views\Products\Inventario\EditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Products\OutIngredients.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\Products\Inventario\Inventario.cs">

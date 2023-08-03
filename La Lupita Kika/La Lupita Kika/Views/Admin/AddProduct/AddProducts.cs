@@ -33,6 +33,9 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
         private OtherRepository otherrepo;
         private CategoryRepository categoryrepo;
         private CategoryCRepository categoryCrepo;
+        private SubsidiaryRepository subsidiaryrepo;
+        private string subsidiary;
+        private int subsidiaryint;
         public AddProducts(string connectionString)
         {
             this.ConnectionString = connectionString;
@@ -43,6 +46,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
             this.otherrepo = new OtherRepository(connectionString);
             this.categoryrepo = new CategoryRepository(connectionString);
             this.categoryCrepo = new CategoryCRepository(connectionString);
+            this.subsidiaryrepo = new SubsidiaryRepository(connectionString);
             InitializeComponent();
             InitializeDataGridView();
             this.FormClosing += MainForm_FormClosing;
@@ -63,12 +67,19 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
         private void AddProducts_Load(object sender, EventArgs e)
         {
-            add_manual.Visible = false;
-            add_manual.Enabled = false;
-            Codebar_label.Visible = false;
-            Codebar_label.Enabled = false;
-            Barcode_textbox.Visible = false;
-            Barcode_textbox.Visible = false;
+            List<Subsidiary> subsidiary = subsidiaryrepo.GetAll();
+
+            string[] subsidiaryNames = new string[subsidiary.Count];
+
+            // Recorrer la lista de categorías y guardar los nombres en el arreglo de strings
+            for (int i = 0; i < subsidiary.Count; i++)
+            {
+                subsidiaryNames[i] = subsidiary[i].Name;
+            }
+
+            Subsidiary_cbb.DataSource = subsidiaryNames;
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -81,19 +92,15 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
         private void Products_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             type = Products_cbb.SelectedItem.ToString();
-
+            subsidiary = Subsidiary_cbb.SelectedItem.ToString();
             switch (type)
             {
                 case "Paletas":
                     Name_cbb.Texts = "Seleccionar";
                     Category_cbb.Texts = "Seleccionar";
                     //view changes--------------------------------------------------------
-                    add_manual.Visible = false;
-                    add_manual.Enabled = false;
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+                    Name_cbb.Visible = true;
+                    Name_cbb.Enabled = true;
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
                     name_label.Location = new Point(name_label.Location.X, 250);
@@ -101,6 +108,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     Number_label.Location = new Point(Number_label.Location.X, 330);
                     Number_textbox.Location = new Point(Number_textbox.Location.X, 360);
                     //view changes--------------------------------------------------------
+
                     List<Category> categoriesList = categoryrepo.GetAll();
 
                     string[] categoryNames = new string[categoriesList.Count];
@@ -121,12 +129,9 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     Name_cbb.Texts = "Seleccionar";
                     Category_cbb.Texts = "Seleccionar";
                     //view changes--------------------------------------------------------
-                    add_manual.Visible = false;
-                    add_manual.Enabled = false;
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
+                    Name_cbb.Visible = true;
+                    Name_cbb.Enabled = true;
                     Category_cbb.Visible = false;
                     Cat_label.Visible = false;
                     Number_label.Visible = true;
@@ -140,7 +145,10 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     //view changes-------------------------------------------------------
                     Name_cbb.DataSource = clearlist;
                     Category_cbb.DataSource = clearlist;
-                    List<string> namesmango = mangoneadasrepo.GetAllNames();
+                    subsidiary = Subsidiary_cbb.SelectedItem.ToString();
+                    subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
+
+                    List<string> namesmango = mangoneadasrepo.GetAllNamesBySubsidiaryId(subsidiaryint);
                     Name_cbb.DataSource = namesmango;
 
                     break;
@@ -151,21 +159,20 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     Name_cbb.DataSource = clearlist;
                     Category_cbb.DataSource = clearlist;
                     //view changes--------------------------------------------------------
-                    add_manual.Visible = false;
-                    add_manual.Enabled = false;
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+                    Name_cbb.Visible = true;
+                    Name_cbb.Enabled = true;
+
                     Category_cbb.Visible = false;
                     Cat_label.Visible = false;
+
                     name_label.Location = new Point(name_label.Location.X, 160);
                     Name_cbb.Location = new Point(Name_cbb.Location.X, 190);
                     Number_label.Location = new Point(Number_label.Location.X, 240);
                     Number_textbox.Location = new Point(Number_textbox.Location.X, 270);
                     //view changes--------------------------------------------------------
-
-                    List<string> namesnow = snowicerepo.GetAllProductNames();
+                    subsidiary = Subsidiary_cbb.SelectedItem.ToString();
+                    subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
+                    List<string> namesnow = snowicerepo.GetAllProductNamesBySubsidiaryId(subsidiaryint);
                     Name_cbb.DataSource = namesnow;
 
                     break;
@@ -173,28 +180,27 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                 case "Dulces":
                     Name_cbb.Texts = "Seleccionar";
                     Category_cbb.Texts = "Seleccionar";
-                    Barcode_textbox.Texts = "";
                     Name_cbb.DataSource = clearlist;
                     Category_cbb.DataSource = clearlist;
                     //view changes--------------------------------------------------------
-                    add_manual.Visible = true;
-                    add_manual.Enabled = true;
-                    Codebar_label.Visible = true;
-                    Codebar_label.Enabled = true;
-                    Barcode_textbox.Visible = true;
-                    Barcode_textbox.Visible = true;
+
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
-                    Barcode_textbox.Location = new Point(Barcode_textbox.Location.X, 490);
-                    Codebar_label.Location = new Point(Codebar_label.Location.X, 450);
+                    Name_cbb.Visible = true;
+                    Name_cbb.Enabled = true;
+                    name_label.Visible = true;
+                    name_label.Enabled = true;
+                    //Barcode_textbox.Location = new Point(Barcode_textbox.Location.X, 490);
+                    //Codebar_label.Location = new Point(Codebar_label.Location.X, 450);
                     name_label.Location = new Point(name_label.Location.X, 250);
                     Name_cbb.Location = new Point(Name_cbb.Location.X, 280);
                     Number_label.Location = new Point(Number_label.Location.X, 330);
                     Number_textbox.Location = new Point(Number_textbox.Location.X, 360);
-                    Number_label.Visible = false;
-                    Number_label.Enabled = false;
-                    Number_textbox.Visible = false;
-                    Number_textbox.Enabled = false;
+                    Number_label.Visible = true;
+                    Number_label.Enabled = true;
+                    Number_textbox.Visible = true;
+                    Number_textbox.Enabled = true;
+
                     //view changes--------------------------------------------------------
 
                     List<CategoryC> categoriesCList = categoryCrepo.GetAll();
@@ -210,40 +216,32 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     Category_cbb.DataSource = categoryCNames;
                     Category_cbb.DisplayMember = "Seleccionar";
 
-                    Codebar = Barcode_textbox.Texts;
                     break;
 
                 case "Otros(snacks)":
                     Name_cbb.Texts = "Seleccionar";
                     Category_cbb.Texts = "Seleccionar";
-                    Barcode_textbox.Texts = "";
                     Name_cbb.DataSource = clearlist;
                     Category_cbb.DataSource = clearlist;
                     //view changes--------------------------------------------------------
-                    add_manual.Visible = true;
-                    add_manual.Enabled = true;
-                    Codebar_label.Visible = true;
-                    Codebar_label.Enabled = true;
-                    Barcode_textbox.Visible = true;
-                    Barcode_textbox.Visible = true;
+                    Name_cbb.Visible = true;
+                    Name_cbb.Enabled = true;
                     Category_cbb.Visible = false;
                     Cat_label.Visible = false;
-                    Barcode_textbox.Location = new Point(Barcode_textbox.Location.X, 490);
-                    Codebar_label.Location = new Point(Codebar_label.Location.X, 450);
+                    //Barcode_textbox.Location = new Point(Barcode_textbox.Location.X, 490);
+                    //Codebar_label.Location = new Point(Codebar_label.Location.X, 450);
                     name_label.Location = new Point(name_label.Location.X, 160);
                     Name_cbb.Location = new Point(Name_cbb.Location.X, 190);
-                    Number_label.Location = new Point(Number_label.Location.X, 330);
-                    Number_textbox.Location = new Point(Number_textbox.Location.X, 360);
-                    Number_label.Visible = false;
-                    Number_label.Enabled = false;
-                    Number_textbox.Visible = false;
-                    Number_textbox.Enabled = false;
+                    Number_label.Location = new Point(Number_label.Location.X, 240);
+                    Number_textbox.Location = new Point(Number_textbox.Location.X, 270);
+
 
                     //view changes--------------------------------------------------------
 
-                    Codebar = Barcode_textbox.Texts;
+                    subsidiary = Subsidiary_cbb.SelectedItem.ToString();
+                    subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
 
-                    List<string> namesother = otherrepo.GetAllNames();
+                    List<string> namesother = otherrepo.GetAllNamesBySubsidiaryId(subsidiaryint);
                     Name_cbb.DataSource = namesother;
                     break;
 
@@ -251,31 +249,23 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     //view changes--------------------------------------------------------
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
                     //view changes--------------------------------------------------------
                     break;
             }
-
-            //-------------------------------------------code for dgv------------------------------------
-
-
         }
 
         private void Add_button_Click(object sender, EventArgs e)
         {
             type = Products_cbb.SelectedItem.ToString();
-
+            Number = int.Parse(Number_textbox.Texts);
+            subsidiary = Subsidiary_cbb.SelectedItem.ToString();
+            subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
             switch (type)
             {
                 case "Paletas":
                     //view changes--------------------------------------------------------
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
                     //view changes--------------------------------------------------------
@@ -284,7 +274,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
                     productName = Name_cbb.SelectedItem.ToString();
 
-                    Palettes palette = palettesrepo.FindProductByName(productName);
+                    Palettes palette = palettesrepo.FindProductByNameAndSubsidiary(productName, subsidiaryint);
                     if (palette == null)
                     {
                         MessageBox.Show("Producto no encontrado");
@@ -292,17 +282,19 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     }
 
                     Models.Products existingProductMango = productosList.FirstOrDefault(p =>
-                        p.Nombre == palette.Name && p.Valor == palette.Price && p.Tipo == "Paletas");
+                        p.Nombre == palette.Name && p.Valor == palette.Price && p.Tipo == "Paletas" && p.Subsidiary_id == palette.Subsidiary_ID);
 
                     if (existingProductMango != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
                         existingProductMango.Cantidad += Number;
+                        existingProductMango.Numberadd += Number;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(palette.Name, Number, palette.Price, "Paletas", palette.Codebar);
+
+                        Models.Products productpalette = new Models.Products(palette.Name, Number, palette.Price, "Paletas", palette.Codebar, palette.Cuantity, Number, palette.Subsidiary_ID);
                         productosList.Add(productpalette);
                     }
 
@@ -310,27 +302,25 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     foreach (var palettec in productosList)
                     {
                         // Crear un nuevo String[] con los valores de cada elemento en la lista
-                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar };
+                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar,
+                            $"{palettec.Cuantitydb} -> {palettec.Cuantitydb + palettec.Numberadd}",$"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}"  };
 
                         // Agregar el nuevo String[] a Products_dataGridView.Rows
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-
+                    Number_textbox.Texts = "";
                     break;
 
                 case "Mangoneadas":
                     //view changes--------------------------------------------------------
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
                     //view changes-------------------------------------------------------
                     productName = Name_cbb.SelectedItem.ToString();
                     Number = int.Parse(Number_textbox.Texts);
-                    Mangoneadas mango = mangoneadasrepo.FindByProductName(productName);
+                    Mangoneadas mango = mangoneadasrepo.FindByProductNameAndSubsidiary(productName, subsidiaryint);
                     if (mango == null)
                     {
                         MessageBox.Show("Producto no encontrado");
@@ -338,17 +328,18 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     }
 
                     Models.Products existingProductpalette = productosList.FirstOrDefault(p =>
-                        p.Nombre == mango.Name && p.Valor == mango.Price && p.Tipo == "Mangoneada");
+                        p.Nombre == mango.Name && p.Valor == mango.Price && p.Tipo == "Mangoneada" && p.Subsidiary_id == mango.Subsidiary_ID);
 
                     if (existingProductpalette != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
                         existingProductpalette.Cantidad += Number;
+                        existingProductpalette.Numberadd += Number;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(mango.Name, Number, mango.Price, "Mangoneada", mango.Codebar);
+                        Models.Products productpalette = new Models.Products(mango.Name, Number, mango.Price, "Mangoneada", mango.Codebar, mango.Cuantity, Number, mango.Subsidiary_ID);
                         productosList.Add(productpalette);
                     }
 
@@ -356,21 +347,22 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     foreach (var palettec in productosList)
                     {
                         // Crear un nuevo String[] con los valores de cada elemento en la lista
-                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar };
+                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar,
+                            $"{palettec.Cuantitydb} -> {palettec.Cuantitydb + palettec.Numberadd}",$"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}" };
 
                         // Agregar el nuevo String[] a Products_dataGridView.Rows
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
 
-
+                    Number_textbox.Texts = "";
                     break;
 
                 case "Helados":
 
                     productName = Name_cbb.SelectedItem.ToString();
                     Number = int.Parse(Number_textbox.Texts);
-                    SnowIce helado = snowicerepo.FindByName(productName);
+                    SnowIce helado = snowicerepo.FindSnowIceByNameAndSubsidiary(productName, subsidiaryint);
                     if (helado == null)
                     {
                         MessageBox.Show("Producto no encontrado");
@@ -378,17 +370,18 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     }
 
                     Models.Products existingProductsnow = productosList.FirstOrDefault(p =>
-                        p.Nombre == helado.Name && p.Valor == helado.Price && p.Tipo == "Helados");
+                        p.Nombre == helado.Name && p.Valor == helado.Price && p.Tipo == "Helados" && p.Subsidiary_id == helado.Subsidiary_ID);
 
                     if (existingProductsnow != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
                         existingProductsnow.Cantidad += Number;
+                        existingProductsnow.Numberadd += Number;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(helado.Name, Number, helado.Price, "Helados", helado.Codebar);
+                        Models.Products productpalette = new Models.Products(helado.Name, Number, helado.Price, "Helados", helado.Codebar, helado.Cuantity, Number, helado.Subsidiary_ID);
                         productosList.Add(productpalette);
                     }
 
@@ -396,19 +389,20 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     foreach (var palettec in productosList)
                     {
                         // Crear un nuevo String[] con los valores de cada elemento en la lista
-                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar };
+                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar,
+                            $"{palettec.Cuantitydb} -> {palettec.Cuantitydb + palettec.Numberadd}" , $"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}"};
 
                         // Agregar el nuevo String[] a Products_dataGridView.Rows
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
+                    Number_textbox.Texts = "";
                     break;
 
                 case "Dulces":
-                    Codebar = Barcode_textbox.Texts;
 
                     productName = Name_cbb.SelectedItem.ToString();
-                    Candy dulce = candysrepo.FindByName(productName);
+                    Candy dulce = candysrepo.FindCandyByNameAndSubsidiary(productName, subsidiaryint);
                     if (dulce == null)
                     {
                         MessageBox.Show("Producto no encontrado");
@@ -416,17 +410,18 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     }
 
                     Models.Products existingProductcandy = productosList.FirstOrDefault(p =>
-                        p.Nombre == dulce.Name && p.Valor == dulce.Price && p.Tipo == "Dulces" && dulce.Codebar == p.Codebar);
+                        p.Nombre == dulce.Name && p.Valor == dulce.Price && p.Tipo == "Dulces" && dulce.Codebar == p.Codebar && p.Subsidiary_id == dulce.Subsidiary_ID);
 
                     if (existingProductcandy != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
                         existingProductcandy.Cantidad += Number;
+                        existingProductcandy.Numberadd += Number;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(dulce.Name, 1, dulce.Price, "Dulces", Codebar);
+                        Models.Products productpalette = new Models.Products(dulce.Name, Number, dulce.Price, "Dulces", dulce.Codebar, dulce.Cuantity, Number, dulce.Subsidiary_ID);
                         productosList.Add(productpalette);
                     }
 
@@ -434,42 +429,54 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                     foreach (var palettec in productosList)
                     {
                         // Crear un nuevo String[] con los valores de cada elemento en la lista
-                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar };
+                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar,
+                            $"{palettec.Cuantitydb} -> {palettec.Cuantitydb + palettec.Numberadd}",$"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}" };
 
                         // Agregar el nuevo String[] a Products_dataGridView.Rows
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    Barcode_textbox.Texts = "";
-                    Barcode_textbox.Focus();
+                    Number_textbox.Texts = "";
                     break;
 
                 case "Otros(snacks)":
-                    Codebar = Barcode_textbox.Texts;
 
                     productName = Name_cbb.SelectedItem.ToString();
-                    Other other = otherrepo.FindByName(productName);
+                    Other other = otherrepo.FindOtherByNameAndSubsidiary(productName, subsidiaryint);
                     if (other == null)
                     {
                         MessageBox.Show("Producto no encontrado");
                         return;
                     }
-                    // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                    Models.Products productothers = new Models.Products(other.Name, 1, other.Price, "Otros(snacks)", Codebar);
-                    productosList.Add(productothers);
+
+                    Models.Products existingProductOtros = productosList.FirstOrDefault(p =>
+                        p.Nombre == other.Name && p.Valor == other.Price && p.Tipo == "Otros(snacks)" && other.Codebar == p.Codebar && p.Subsidiary_id == other.Subsidiary_ID);
+
+                    if (existingProductOtros != null)
+                    {
+                        // Si existe un objeto igual, actualizar la cantidad a 2
+                        existingProductOtros.Cantidad += Number;
+                        existingProductOtros.Numberadd += Number;
+                    }
+                    else
+                    {
+                        // Si no existe un objeto igual, agregar el nuevo objeto a la lista
+                        Models.Products productpalette = new Models.Products(other.Name, Number, other.Price, "Otros(snacks)", other.Codebar, other.Cuantity, Number, other.Subsidiary_ID);
+                        productosList.Add(productpalette);
+                    }
 
                     Products_dataGridView.Rows.Clear();
                     foreach (var palettec in productosList)
                     {
                         // Crear un nuevo String[] con los valores de cada elemento en la lista
-                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar };
+                        String[] row2 = { palettec.Nombre, $"{palettec.Cantidad}", $"{palettec.Tipo}", palettec.Codebar, $"{palettec.Cuantitydb} -> {palettec.Cuantitydb + palettec.Numberadd}",
+                        $"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}"};
 
                         // Agregar el nuevo String[] a Products_dataGridView.Rows
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    Barcode_textbox.Texts = "";
-                    Barcode_textbox.Focus();
+                    Number_textbox.Texts = "";
                     break;
 
                 default:
@@ -481,18 +488,23 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
         private void InitializeDataGridView()
         {
             // Agregar las tres columnas al DataGridView y definir sus propiedades
-            Products_dataGridView.ColumnCount = 4;      // Columna para el nombre del producto
+            Products_dataGridView.ColumnCount = 6;      // Columna para el nombre del producto
             Products_dataGridView.Columns[0].Name = "Nombre";
             Products_dataGridView.Columns[1].Name = "Cantidad";
-            Products_dataGridView.Columns[2].Name = "tipo";
-            Products_dataGridView.Columns[3].Name = "barcode";
+            Products_dataGridView.Columns[2].Name = "Tipo";
+            Products_dataGridView.Columns[3].Name = "Barcode";
+            Products_dataGridView.Columns[4].Name = "Diferencia";
+            Products_dataGridView.Columns[5].Name = "Sucursal";
+
 
 
             // Ajustar el ancho de las columnas
-            Products_dataGridView.Columns["Nombre"].Width = 277;     // Establecer el ancho de la columna "Nombre" en 287 píxeles
-            Products_dataGridView.Columns["Cantidad"].Width = 100;   // Establecer el ancho de la columna "Cantidad" en 100 píxeles
-            Products_dataGridView.Columns["tipo"].Width = 110;      // Establecer el ancho de la columna "Valor" en 100 píxeles
-            Products_dataGridView.Columns["barcode"].Width = 127;      // Establecer el ancho de la columna "Valor" en 100 píxeles
+            Products_dataGridView.Columns["Nombre"].Width = 277;
+            Products_dataGridView.Columns["Cantidad"].Width = 100;
+            Products_dataGridView.Columns["tipo"].Width = 110;
+            Products_dataGridView.Columns["barcode"].Width = 127;
+            Products_dataGridView.Columns["Cantidad"].Width = 127;
+            Products_dataGridView.Columns["Sucursal"].Width = 120;
 
         }
 
@@ -504,28 +516,26 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
             {
                 case "Paletas":
                     //view changes--------------------------------------------------------
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
                     //view changes--------------------------------------------------------
                     category = Category_cbb.SelectedItem.ToString();
-
+                    subsidiary = Subsidiary_cbb.SelectedItem.ToString();
+                    subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
                     switch (category)
                     {
                         case "cremosas":
-                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryId(1);
+                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryIdAndSubsidiaryId(1, subsidiaryint);
                             break;
                         case "picantes":
-                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryId(2);
+                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryIdAndSubsidiaryId(2, subsidiaryint);
                             break;
                         case "fruta":
-                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryId(3);
+                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryIdAndSubsidiaryId(3, subsidiaryint);
                             break;
                         case "licor":
-                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryId(4);
+                            Name_cbb.DataSource = palettesrepo.GetNamesByCategoryIdAndSubsidiaryId(4, subsidiaryint);
                             break;
                         default:
                             // Acción por defecto si no coincide con ninguna categoría
@@ -537,10 +547,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
                 case "Helados":
                     //view changes--------------------------------------------------------
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
 
@@ -548,31 +555,26 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
                 case "Dulces":
                     //view changes--------------------------------------------------------
-                    Codebar_label.Visible = true;
-                    Codebar_label.Enabled = true;
-                    Barcode_textbox.Visible = true;
-                    Barcode_textbox.Visible = true;
+
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
-                    Barcode_textbox.Location = new Point(Barcode_textbox.Location.X, 490);
-                    Codebar_label.Location = new Point(Codebar_label.Location.X, 450);
+
                     //view changes--------------------------------------------------------
 
 
-                    Codebar = Barcode_textbox.Texts;
-
                     category = Category_cbb.SelectedItem.ToString();
-
+                    subsidiary = Subsidiary_cbb.SelectedItem.ToString();
+                    subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
                     switch (category)
                     {
                         case "mejicanos":
-                            Name_cbb.DataSource = candysrepo.FindNamesByCategory(1);
+                            Name_cbb.DataSource = candysrepo.FindNamesByCategoryAndSubsidiary(1, subsidiaryint);
                             break;
-                        case "chobo-banano":
-                            Name_cbb.DataSource = candysrepo.FindNamesByCategory(2);
+                        case "choco-banano":
+                            Name_cbb.DataSource = candysrepo.FindNamesByCategoryAndSubsidiary(2, subsidiaryint);
                             break;
                         case "otros":
-                            Name_cbb.DataSource = candysrepo.FindNamesByCategory(3);
+                            Name_cbb.DataSource = candysrepo.FindNamesByCategoryAndSubsidiary(3, subsidiaryint);
                             break;
                         default:
                             // Acción por defecto si no coincide con ninguna categoría
@@ -582,27 +584,18 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
                 case "Otros(snacks)":
                     //view changes--------------------------------------------------------
-                    Codebar_label.Visible = true;
-                    Codebar_label.Enabled = true;
-                    Barcode_textbox.Visible = true;
-                    Barcode_textbox.Visible = true;
+
                     Category_cbb.Visible = false;
                     Cat_label.Visible = false;
-                    Barcode_textbox.Location = new Point(Barcode_textbox.Location.X, 200);
-                    Codebar_label.Location = new Point(Codebar_label.Location.X, 170);
                     //view changes--------------------------------------------------------
 
-                    Codebar = Barcode_textbox.Texts;
                     break;
 
                 default:
                     //view changes--------------------------------------------------------
                     Category_cbb.Visible = true;
                     Cat_label.Visible = true;
-                    Codebar_label.Visible = false;
-                    Codebar_label.Enabled = false;
-                    Barcode_textbox.Visible = false;
-                    Barcode_textbox.Visible = false;
+
                     //view changes--------------------------------------------------------
                     break;
             }
@@ -645,22 +638,19 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                 switch (tipoProducto)
                 {
                     case "Paletas":
-                        palettesrepo.UpdateCuantityByCodebarPlus(producto.Codebar, producto.Cantidad);
+                        palettesrepo.UpdateCuantityByCodebarAndSubsidiary(producto.Codebar, producto.Cantidad, producto.Subsidiary_id);
                         break;
                     case "Helados":
-                        snowicerepo.IncrementCuantityByCodebarplus(producto.Codebar, producto.Cantidad);
+                        snowicerepo.IncrementCuantityByCodebarPlus(producto.Codebar, producto.Cantidad, producto.Subsidiary_id);
                         break;
                     case "Mangoneada":
-                        mangoneadasrepo.UpdateCuantityByCodebarplus(producto.Codebar, producto.Cantidad);
+                        mangoneadasrepo.UpdateCuantityByCodebarPlus(producto.Codebar, producto.Cantidad, producto.Subsidiary_id);
                         break;
                     case "Dulces":
-                        Candy newcandy = new Candy(producto.Nombre, 1, producto.Valor, producto.Codebar);
-                        candysrepo.Add(newcandy);
+                        candysrepo.UpdateCuantityByCodebarPlus(producto.Codebar, producto.Cantidad, producto.Subsidiary_id);
                         break;
                     case "Otros(snacks)":
-                        Other newother = new Other(producto.Nombre, producto.Valor, producto.Codebar);
-                        otherrepo.AddOther(newother);
-
+                        otherrepo.UpdateCuantityByCodebarPlus(producto.Codebar, producto.Cantidad, producto.Subsidiary_id);
                         break;
                     default:
                         MessageBox.Show("Error contacte a soporte");
@@ -682,6 +672,16 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
             formFacturation.ShowDialog();
 
             this.Show();
+        }
+
+        private void Subsidiary_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Subsidiary_cbb_Click(object sender, EventArgs e)
+        {
+            Products_cbb_OnSelectedIndexChanged(sender, e);
         }
     }
 }

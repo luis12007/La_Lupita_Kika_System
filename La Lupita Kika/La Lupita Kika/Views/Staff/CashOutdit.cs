@@ -20,12 +20,15 @@ namespace La_Lupita_Kika.Views.Staff
         private int thisregis;
         private RegisterXSalesRepository registerrepo;
         private SalesRepository salesrepo;
+        private RegisterRepository regisrepo;
+        private float daygains;
         public CashOutdit(string connectionString, int thisregis)
         {
             this.connectionString = connectionString;
             this.thisregis = thisregis;
             this.registerrepo = new RegisterXSalesRepository(connectionString);
             this.salesrepo = new SalesRepository(connectionString);
+            this.regisrepo = new RegisterRepository(connectionString);
             InitializeComponent();
         }
 
@@ -49,6 +52,7 @@ namespace La_Lupita_Kika.Views.Staff
 
 
             day_textbox.Texts = totalSum.ToString();
+            daygains = totalSum;
         }
 
         private void Accept_button_Click(object sender, EventArgs e)
@@ -94,6 +98,9 @@ namespace La_Lupita_Kika.Views.Staff
             {
                 MessageBox.Show("Reportar incongruencia. ");
             }
+            TimeSpan outhour = DateTime.Now.TimeOfDay;
+            regisrepo.UpdateOuthourById(thisregis, outhour);
+            regisrepo.UpdateDayGainsById(thisregis, daygains);
 
             this.DialogResult = DialogResult.OK;
             Application.Exit();

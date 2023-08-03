@@ -33,8 +33,9 @@ namespace La_Lupita_Kika.Views
 
         private int thisregis;
         private float totalfrice = 0;
+        private int subsidiary;
 
-        public Facturation(String connectionString, int thisregis)
+        public Facturation(String connectionString, int thisregis, int subsidiary)
         {
             this.palettesrepo = new UserRepository.PalettesRepository(connectionString);
             this.snowicerepo = new SnowIceRepository(connectionString);
@@ -49,6 +50,7 @@ namespace La_Lupita_Kika.Views
             this.FormClosing += MyForm_FormClosing;
             InitializeComponent();
             InitializeDataGridView();
+            this.subsidiary = subsidiary;
         }
         private void MyForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -134,8 +136,10 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    mangoneadasrepo.UpdateCuantityByCodebarmin(mangoneadas.Codebar,1);
+                    mangoneadasrepo.UpdateCuantityByCodebarMinus(mangoneadas.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
+                    totalfrice = (float)Math.Round(totalfrice, 2);
+
                     Total.Text = $"Total: {totalfrice}$";
                     break;
 
@@ -166,8 +170,10 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    palettesrepo.UpdateCuantityByCodebarmin(palette.Codebar, 1);
+                    palettesrepo.UpdateCuantityByCodebarmin(palette.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
+                    totalfrice = (float)Math.Round(totalfrice, 2);
+
                     Total.Text = $"Total: {totalfrice}$";
                     break;
 
@@ -198,8 +204,10 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    snowicerepo.IncrementCuantityByCodebarmin(snowice.Codebar,1);
+                    snowicerepo.IncrementCuantityByCodebarmin(snowice.Codebar, 1);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
+                    totalfrice = (float)Math.Round(totalfrice, 2);
+
                     Total.Text = $"Total: {totalfrice}$";
                     break;
 
@@ -230,8 +238,9 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    candysrepo.DeleteByCodebar(candy.Codebar);
+                    candysrepo.UpdateCuantityByCodebarMinus(candy.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
+                    totalfrice = (float)Math.Round(totalfrice, 2);
                     Total.Text = $"Total: {totalfrice}$";
                     break;
 
@@ -262,8 +271,9 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    otherrepo.DeleteByCodebar(other.Codebar);
+                    otherrepo.UpdateCuantityByCodebarMinus(other.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
+                    totalfrice = (float)Math.Round(totalfrice, 2);
                     Total.Text = $"Total: {totalfrice}$";
 
                     break;
@@ -271,6 +281,7 @@ namespace La_Lupita_Kika.Views
                 default:
                     // No se encontró el objeto con el código de barras en ninguno de los repositorios
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
+                    totalfrice = (float)Math.Round(totalfrice, 2);
                     Total.Text = $"Total: {totalfrice}$";
                     MessageBox.Show("producto no econtrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
@@ -396,25 +407,23 @@ namespace La_Lupita_Kika.Views
                 switch (productoEncontrado.Tipo)
                 {
                     case "candy":
-                        Candy readdC = new Candy(productoEncontrado.Nombre, 1, productoEncontrado.Valor, productoEncontrado.Codebar);
-                        candysrepo.Add(readdC);
+                        candysrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
                         break;
 
                     case "other":
-                        Other readdO = new Other(productoEncontrado.Nombre, productoEncontrado.Valor, productoEncontrado.Codebar);
-                        otherrepo.AddOther(readdO);
+                        otherrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
                         break;
 
                     case "Mangoneada":
-                        mangoneadasrepo.UpdateCuantityByCodebarplus(productoEncontrado.Codebar, 1);
+                        mangoneadasrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
                         break;
 
                     case "palette":
-                        palettesrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1);
+                        palettesrepo.UpdateCuantityByCodebarAndSubsidiary(productoEncontrado.Codebar, 1, subsidiary);
                         break;
 
                     case "snowice":
-                        snowicerepo.IncrementCuantityByCodebarplus(productoEncontrado.Codebar, 1);
+                        snowicerepo.IncrementCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
                         break;
 
                     default:
@@ -436,7 +445,11 @@ namespace La_Lupita_Kika.Views
 
         private void Barcode_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llamar al evento Login_button_Click
+                Add_button.PerformClick();
+            }
         }
     }
 }

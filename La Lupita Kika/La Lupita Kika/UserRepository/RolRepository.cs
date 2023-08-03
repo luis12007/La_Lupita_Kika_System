@@ -26,6 +26,22 @@ namespace La_Lupita_Kika.UserRepository
                 command.ExecuteNonQuery();
             }
         }
+        public int FindIdByName(string name)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT rol_id FROM rol WHERE Name = @Name";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Name", name);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int id))
+                {
+                    return id;
+                }
+                return -1; // Si no se encuentra el nombre, devolver -1
+            }
+        }
 
         public List<Rol> GetAll()
         {
@@ -45,6 +61,23 @@ namespace La_Lupita_Kika.UserRepository
                 }
             }
             return roles;
+        }
+        public string GetNameById(int rolId)
+        {
+            string name = null;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT Name FROM rol WHERE rol_id = @RolId";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@RolId", rolId);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    name = result.ToString();
+                }
+            }
+            return name;
         }
 
         public void Update(Rol rol)

@@ -15,15 +15,18 @@ namespace La_Lupita_Kika.Models
 
         public float Cuantity { get; set; }
 
+        public int Subsidiary_ID { get; set; }
+
         public SnowIce() { }
 
-        public SnowIce(int snowIceId, string name, float price, string codebar, float cuantity)
+        public SnowIce(int snowIceId, string name, float price, string codebar, float cuantity, int subsidiary_ID)
         {
             SnowIce_id = snowIceId;
             Name = name;
             Price = price;
             Codebar = codebar;
             Cuantity = cuantity;
+            Subsidiary_ID = subsidiary_ID;
         }
     }
 

@@ -17,9 +17,11 @@ namespace La_Lupita_Kika.Models
 
         public float Cuantity { get; set; }
 
+        public int Subsidiary_ID { get; set; }
+
         public Palettes() { }
 
-        public Palettes(int paletteId, string name, int categoryId, float price, string codebar, string codigo, float cuantity)
+        public Palettes(int paletteId, string name, int categoryId, float price, string codebar, string codigo, float cuantity, int subsidiary_ID)
         {
             Palette_id = paletteId;
             Name = name;
@@ -28,6 +30,7 @@ namespace La_Lupita_Kika.Models
             Codebar = codebar;
             Codigo = codigo;
             Cuantity = cuantity;
+            Subsidiary_ID = subsidiary_ID;
         }
     }
 }

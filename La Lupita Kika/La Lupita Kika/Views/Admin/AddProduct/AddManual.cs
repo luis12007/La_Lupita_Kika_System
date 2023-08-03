@@ -43,14 +43,10 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
             switch (product)
             {
                 case "dulce":
-                    Candy candy = new Candy(rjTextBox1.Texts,int.Parse(rjTextBox2.Texts),float.Parse(rjTextBox3.Texts)
-                        ,rjTextBox4.Texts);
-                    candysrepo.Add(candy);
+
                     break;
                 case "otro":
-                    Other other = new Other(rjTextBox1.Texts, float.Parse(rjTextBox3.Texts)
-                        , rjTextBox4.Texts);
-                    otherrepo.AddOther(other);
+
                     break;
 
                 default:

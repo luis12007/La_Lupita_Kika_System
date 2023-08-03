@@ -136,6 +136,31 @@ namespace La_Lupita_Kika.UserRepository
             return register;
         }
 
+        public void UpdateOuthourById(int registerId, TimeSpan? outhour)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "UPDATE register SET outhour = @Outhour WHERE register_id = @RegisterId";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Outhour", outhour);
+                command.Parameters.AddWithValue("@RegisterId", registerId);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateDayGainsById(int registerId, float? dayGains)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "UPDATE register SET daygains = @DayGains WHERE register_id = @RegisterId";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@DayGains", dayGains);
+                command.Parameters.AddWithValue("@RegisterId", registerId);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
 
 
         public void Delete(int registerId)

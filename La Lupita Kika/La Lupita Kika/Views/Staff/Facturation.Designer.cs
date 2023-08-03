@@ -68,7 +68,7 @@
             Barcode_textBox.Padding = new Padding(10, 7, 10, 7);
             Barcode_textBox.PasswordChar = false;
             Barcode_textBox.PlaceholderColor = Color.DarkGray;
-            Barcode_textBox.PlaceholderText = "Barcode";
+            Barcode_textBox.PlaceholderText = "";
             Barcode_textBox.ReadOnly = false;
             Barcode_textBox.Size = new Size(351, 56);
             Barcode_textBox.TabIndex = 8;

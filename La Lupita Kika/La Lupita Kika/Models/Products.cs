@@ -15,6 +15,14 @@ namespace La_Lupita_Kika.Models
         public string Tipo { get; set; }
 
         public string Codebar { get; set; }
+
+        public float Cuantitydb { get; set; }
+
+        public float Numberadd { get; set; }
+
+        public int Subsidiary_id { get; set; }
+
+        public string catego { get; set; }
         // Constructor vacío
         public Products()
         {
@@ -30,6 +38,29 @@ namespace La_Lupita_Kika.Models
             Valor = valor;
             Tipo = tipo;
             Codebar = codebar;
+        }
+
+        public Products(string name, int cuantity, float valor, string tipo, string codebar,float cuantitydb, float numberadd)
+        {
+            Nombre = name;
+            Cantidad = cuantity;
+            Valor = valor;
+            Tipo = tipo;
+            Codebar = codebar;
+            Cuantitydb = cuantitydb;
+            Numberadd = numberadd;
+        }
+
+        public Products(string name, int cuantity, float valor, string tipo, string codebar, float cuantitydb, float numberadd, int subsidiary_id)
+        {
+            Nombre = name;
+            Cantidad = cuantity;
+            Valor = valor;
+            Tipo = tipo;
+            Codebar = codebar;
+            Cuantitydb = cuantitydb;
+            Numberadd = numberadd;
+            Subsidiary_id = subsidiary_id;
         }
     }
 }

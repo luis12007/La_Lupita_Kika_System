@@ -18,13 +18,14 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO ingredients (name, code, price, unit, type) VALUES (@Name, @Code, @Price, @Unit, @Type)";
+                string query = "INSERT INTO ingredients (name, code, price, unit, type, Subsidiary_ID) VALUES (@Name, @Code, @Price, @Unit, @Type, @Subsidiary_ID )";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", ingredient.Name);
                 command.Parameters.AddWithValue("@Code", ingredient.Code);
                 command.Parameters.AddWithValue("@Price", ingredient.Price);
                 command.Parameters.AddWithValue("@Unit", ingredient.Unit);
                 command.Parameters.AddWithValue("@Type", ingredient.Type);
+                command.Parameters.AddWithValue("@Subsidiary_ID", ingredient.Subsidiary_ID);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -35,7 +36,7 @@ namespace La_Lupita_Kika.UserRepository
             List<Ingredients> ingredients = new List<Ingredients>();
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT ingredients_id, name, code, price, unit, type FROM ingredients";
+                string query = "SELECT ingredients_id, name, code, price, unit, type, Subsidiary_ID FROM ingredients";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
@@ -47,7 +48,8 @@ namespace La_Lupita_Kika.UserRepository
                     float price = Convert.ToSingle(reader["price"]);
                     float unit = Convert.ToSingle(reader["unit"]);
                     string type = Convert.ToString(reader["type"]);
-                    Ingredients ingredient = new Ingredients(ingredientsId, name, code, price, unit, type);
+                    int Subsidiary_ID = Convert.ToInt32(reader["Subsidiary_ID"]);
+                    Ingredients ingredient = new Ingredients(ingredientsId, name, code, price, unit, type, Subsidiary_ID);
                     ingredients.Add(ingredient);
                 }
             }

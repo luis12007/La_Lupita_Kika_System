@@ -18,13 +18,14 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO user (name, password, username, mail, rol_id) VALUES (@Name, @Password, @Username, @Mail, @RolId)";
+                string query = "INSERT INTO user (name, password, username, mail, rol_id,subsidiary_ID) VALUES (@Name, @Password, @Username, @Mail, @RolId,@subsidiary_ID)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", user.Name);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 command.Parameters.AddWithValue("@Username", user.Username);
                 command.Parameters.AddWithValue("@Mail", user.Mail);
                 command.Parameters.AddWithValue("@RolId", user.Rol_id);
+                command.Parameters.AddWithValue("@subsidiary_ID", user.Subsidiary_ID);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -35,7 +36,7 @@ namespace La_Lupita_Kika.UserRepository
             List<User> users = new List<User>();
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT user_id, name, password, username, mail, rol_id FROM user";
+                string query = "SELECT user_id, name, password, username, mail, rol_id, subsidiary_ID FROM user";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
@@ -47,18 +48,19 @@ namespace La_Lupita_Kika.UserRepository
                     string username = Convert.ToString(reader["username"]);
                     string mail = Convert.ToString(reader["mail"]);
                     int rolId = Convert.ToInt32(reader["rol_id"]);
-                    User user = new User(userId, name, password, username, mail, rolId);
+                    int subsidiary_ID = Convert.ToInt32(reader["subsidiary_ID"]);
+                    User user = new User(userId, name, password, username, mail, rolId, subsidiary_ID);
                     users.Add(user);
                 }
             }
             return users;
         }
 
-        public void Update(User user)
+        public void Update(User user, string username)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "UPDATE user SET name = @Name, password = @Password, username = @Username, mail = @Mail, rol_id = @RolId WHERE user_id = @UserId";
+                string query = $"UPDATE user SET name = @Name, password = @Password, username = @Username, mail = @Mail, rol_id = @RolId, subsidiary_ID =@subsidiary_ID WHERE Username = @olduser";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", user.Name);
                 command.Parameters.AddWithValue("@Password", user.Password);
@@ -66,6 +68,8 @@ namespace La_Lupita_Kika.UserRepository
                 command.Parameters.AddWithValue("@Mail", user.Mail);
                 command.Parameters.AddWithValue("@RolId", user.Rol_id);
                 command.Parameters.AddWithValue("@UserId", user.User_id);
+                command.Parameters.AddWithValue("@subsidiary_ID", user.Subsidiary_ID);
+                command.Parameters.AddWithValue("@olduser", username);
                 connection.Open();
                 command.ExecuteNonQuery();
             }
@@ -87,7 +91,7 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT user_id, name, password, username, mail, rol_id FROM user WHERE username = @Username";
+                string query = "SELECT user_id, name, password, username, mail, rol_id, subsidiary_ID FROM user WHERE username = @Username";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Username", username);
                 connection.Open();
@@ -99,7 +103,8 @@ namespace La_Lupita_Kika.UserRepository
                     string password = Convert.ToString(reader["password"]);
                     string mail = Convert.ToString(reader["mail"]);
                     int rolId = Convert.ToInt32(reader["rol_id"]);
-                    User user = new User(userId, name, password, username, mail, rolId);
+                    int subsidiary_ID = Convert.ToInt32(reader["subsidiary_ID"]);
+                    User user = new User(userId, name, password, username, mail, rolId, subsidiary_ID);
                     return user;
                 }
                 else
@@ -112,7 +117,7 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT user_id, name, password, username, mail, rol_id FROM user WHERE user_id = @UserId";
+                string query = "SELECT user_id, name, password, username, mail, rol_id, subsidiary_ID FROM user WHERE user_id = @UserId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@UserId", userId);
                 connection.Open();
@@ -124,7 +129,8 @@ namespace La_Lupita_Kika.UserRepository
                     string username = Convert.ToString(reader["username"]);
                     string mail = Convert.ToString(reader["mail"]);
                     int rolId = Convert.ToInt32(reader["rol_id"]);
-                    User user = new User(userId, name, password, username, mail, rolId);
+                    int subsidiary_ID = Convert.ToInt32(reader["subsidiary_ID"]);
+                    User user = new User(userId, name, password, username, mail, rolId, subsidiary_ID);
                     return user;
                 }
                 else
@@ -139,7 +145,7 @@ namespace La_Lupita_Kika.UserRepository
             List<User> users = new List<User>();
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT user_id, name, password, username, mail FROM user WHERE rol_id = @RolId";
+                string query = "SELECT user_id, name, password, username, mail, subsidiary_ID FROM user WHERE rol_id = @RolId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@RolId", rolId);
                 connection.Open();
@@ -151,11 +157,24 @@ namespace La_Lupita_Kika.UserRepository
                     string password = Convert.ToString(reader["password"]);
                     string username = Convert.ToString(reader["username"]);
                     string mail = Convert.ToString(reader["mail"]);
-                    User user = new User(userId, name, password, username, mail, rolId);
+                    int subsidiary_ID = Convert.ToInt32(reader["subsidiary_ID"]);
+                    User user = new User(userId, name, password, username, mail, rolId, subsidiary_ID);
                     users.Add(user);
                 }
             }
             return users;
+        }
+
+        public void DeleteByUsername(string username)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "DELETE FROM user WHERE username = @Username";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
     }

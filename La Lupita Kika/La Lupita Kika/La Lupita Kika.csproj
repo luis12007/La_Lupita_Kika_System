@@ -11,18 +11,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Products\Candys\**" />
+    <Compile Remove="Views\Products\Mangoneadas\**" />
+    <Compile Remove="Views\Products\SnowIce\**" />
+    <EmbeddedResource Remove="Views\Products\Candys\**" />
+    <EmbeddedResource Remove="Views\Products\Mangoneadas\**" />
+    <EmbeddedResource Remove="Views\Products\SnowIce\**" />
+    <None Remove="Views\Products\Candys\**" />
+    <None Remove="Views\Products\Mangoneadas\**" />
+    <None Remove="Views\Products\SnowIce\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="LOGO 2 LA LUPITAKIKA.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DataAccess\" />
     <Folder Include="Services\" />
-    <Folder Include="Views\Products\Candys\" />
-    <Folder Include="Views\Products\Mangoneadas\" />
-    <Folder Include="Views\Products\SnowIce\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="6.2.7" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />

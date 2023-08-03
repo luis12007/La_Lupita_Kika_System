@@ -28,92 +28,218 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Exit_button = new Button();
-            Add_button = new Button();
-            Excel_button = new Button();
-            dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
-            Search_button = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inventario));
+            button1 = new Button();
+            Products_dataGridView = new DataGridView();
+            Add_button = new Components.RJButton();
+            rjButton1 = new Components.RJButton();
+            Products_cbb = new Components.RJComboBox();
+            subsidiary_cbb = new Components.RJComboBox();
+            Find = new Components.RJTextBox();
+            ((System.ComponentModel.ISupportInitialize)Products_dataGridView).BeginInit();
             SuspendLayout();
             // 
-            // Exit_button
+            // button1
             // 
-            Exit_button.Location = new Point(12, 12);
-            Exit_button.Name = "Exit_button";
-            Exit_button.Size = new Size(94, 29);
-            Exit_button.TabIndex = 0;
-            Exit_button.Text = "<-";
-            Exit_button.UseVisualStyleBackColor = true;
+            button1.BackColor = Color.White;
+            button1.FlatAppearance.BorderColor = Color.White;
+            button1.FlatAppearance.MouseDownBackColor = Color.White;
+            button1.FlatAppearance.MouseOverBackColor = Color.White;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Image = Properties.Resources.esquema_de_boton_circular_de_flecha_hacia_atras_izquierda__2_;
+            button1.Location = new Point(12, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(45, 40);
+            button1.TabIndex = 18;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // Products_dataGridView
+            // 
+            Products_dataGridView.AllowUserToAddRows = false;
+            Products_dataGridView.AllowUserToDeleteRows = false;
+            Products_dataGridView.AllowUserToResizeColumns = false;
+            Products_dataGridView.AllowUserToResizeRows = false;
+            Products_dataGridView.BackgroundColor = Color.White;
+            Products_dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            Products_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            Products_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(152, 153, 182);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            Products_dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            Products_dataGridView.EnableHeadersVisualStyles = false;
+            Products_dataGridView.GridColor = Color.Black;
+            Products_dataGridView.Location = new Point(12, 116);
+            Products_dataGridView.Name = "Products_dataGridView";
+            Products_dataGridView.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 98, 133);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            Products_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            Products_dataGridView.RowHeadersVisible = false;
+            Products_dataGridView.RowHeadersWidth = 51;
+            Products_dataGridView.RowTemplate.Height = 29;
+            Products_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Products_dataGridView.Size = new Size(1010, 387);
+            Products_dataGridView.TabIndex = 19;
+            Products_dataGridView.CellContentClick += Products_dataGridView_CellContentClick;
+            Products_dataGridView.CellDoubleClick += Products_dataGridView_CellDoubleClick;
             // 
             // Add_button
             // 
-            Add_button.Location = new Point(12, 409);
+            Add_button.BackColor = Color.White;
+            Add_button.BackgroundColor = Color.White;
+            Add_button.BorderColor = Color.FromArgb(255, 54, 112);
+            Add_button.BorderRadius = 20;
+            Add_button.BorderSize = 2;
+            Add_button.FlatAppearance.BorderSize = 0;
+            Add_button.FlatStyle = FlatStyle.Flat;
+            Add_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Add_button.ForeColor = Color.Black;
+            Add_button.Location = new Point(12, 509);
             Add_button.Name = "Add_button";
-            Add_button.Size = new Size(94, 29);
-            Add_button.TabIndex = 1;
+            Add_button.Size = new Size(240, 68);
+            Add_button.TabIndex = 20;
             Add_button.Text = "Agregar";
-            Add_button.UseVisualStyleBackColor = true;
+            Add_button.TextColor = Color.Black;
+            Add_button.UseVisualStyleBackColor = false;
+            Add_button.Click += Add_button_Click;
             // 
-            // Excel_button
+            // rjButton1
             // 
-            Excel_button.Location = new Point(694, 409);
-            Excel_button.Name = "Excel_button";
-            Excel_button.Size = new Size(94, 29);
-            Excel_button.TabIndex = 2;
-            Excel_button.Text = "Excel";
-            Excel_button.UseVisualStyleBackColor = true;
+            rjButton1.BackColor = Color.White;
+            rjButton1.BackgroundColor = Color.White;
+            rjButton1.BorderColor = Color.Green;
+            rjButton1.BorderRadius = 20;
+            rjButton1.BorderSize = 2;
+            rjButton1.FlatAppearance.BorderSize = 0;
+            rjButton1.FlatStyle = FlatStyle.Flat;
+            rjButton1.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            rjButton1.ForeColor = Color.Black;
+            rjButton1.Location = new Point(782, 509);
+            rjButton1.Name = "rjButton1";
+            rjButton1.Size = new Size(240, 68);
+            rjButton1.TabIndex = 21;
+            rjButton1.Text = "Excel";
+            rjButton1.TextColor = Color.Black;
+            rjButton1.UseVisualStyleBackColor = false;
+            rjButton1.Click += rjButton1_Click;
             // 
-            // dataGridView1
+            // Products_cbb
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 116);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(776, 273);
-            dataGridView1.TabIndex = 3;
+            Products_cbb.BackColor = Color.WhiteSmoke;
+            Products_cbb.BorderColor = Color.LightSlateGray;
+            Products_cbb.BorderSize = 1;
+            Products_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            Products_cbb.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Products_cbb.ForeColor = Color.DimGray;
+            Products_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            Products_cbb.Items.AddRange(new object[] { "Paletas", "Mangoneadas", "Helados", "Dulces", "Otros(snacks)" });
+            Products_cbb.ListBackColor = Color.FromArgb(230, 228, 245);
+            Products_cbb.ListTextColor = Color.DimGray;
+            Products_cbb.Location = new Point(12, 68);
+            Products_cbb.MinimumSize = new Size(200, 30);
+            Products_cbb.Name = "Products_cbb";
+            Products_cbb.Padding = new Padding(1);
+            Products_cbb.Size = new Size(220, 38);
+            Products_cbb.TabIndex = 22;
+            Products_cbb.Texts = "Paletas";
+            Products_cbb.OnSelectedIndexChanged += Products_cbb_OnSelectedIndexChanged;
             // 
-            // textBox1
+            // subsidiary_cbb
             // 
-            textBox1.Location = new Point(12, 83);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(490, 27);
-            textBox1.TabIndex = 4;
+            subsidiary_cbb.BackColor = Color.WhiteSmoke;
+            subsidiary_cbb.BorderColor = Color.LightSlateGray;
+            subsidiary_cbb.BorderSize = 1;
+            subsidiary_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            subsidiary_cbb.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            subsidiary_cbb.ForeColor = Color.DimGray;
+            subsidiary_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            subsidiary_cbb.Items.AddRange(new object[] { "Todas" });
+            subsidiary_cbb.ListBackColor = Color.FromArgb(230, 228, 245);
+            subsidiary_cbb.ListTextColor = Color.DimGray;
+            subsidiary_cbb.Location = new Point(248, 68);
+            subsidiary_cbb.MinimumSize = new Size(200, 30);
+            subsidiary_cbb.Name = "subsidiary_cbb";
+            subsidiary_cbb.Padding = new Padding(1);
+            subsidiary_cbb.Size = new Size(208, 38);
+            subsidiary_cbb.TabIndex = 23;
+            subsidiary_cbb.Texts = "";
+            subsidiary_cbb.OnSelectedIndexChanged += subsidiary_cbb_OnSelectedIndexChanged;
             // 
-            // Search_button
+            // Find
             // 
-            Search_button.Location = new Point(520, 81);
-            Search_button.Name = "Search_button";
-            Search_button.Size = new Size(94, 29);
-            Search_button.TabIndex = 5;
-            Search_button.UseVisualStyleBackColor = true;
+            Find.BackColor = SystemColors.Window;
+            Find.BorderColor = Color.FromArgb(255, 54, 112);
+            Find.BorderFocusColor = Color.HotPink;
+            Find.BorderRadius = 5;
+            Find.BorderSize = 2;
+            Find.Font = new Font("Bahnschrift", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Find.ForeColor = Color.FromArgb(64, 64, 64);
+            Find.Location = new Point(473, 68);
+            Find.Margin = new Padding(4);
+            Find.Multiline = false;
+            Find.Name = "Find";
+            Find.Padding = new Padding(10, 7, 10, 7);
+            Find.PasswordChar = false;
+            Find.PlaceholderColor = Color.DarkGray;
+            Find.PlaceholderText = "";
+            Find.ReadOnly = false;
+            Find.Size = new Size(548, 36);
+            Find.TabIndex = 24;
+            Find.TextAlign = ContentAlignment.MiddleLeft;
+            Find.Texts = "";
+            Find.UnderlinedStyle = false;
+            Find._TextChanged += Find__TextChanged;
             // 
-            // Palettes
+            // Inventario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(Search_button);
-            Controls.Add(textBox1);
-            Controls.Add(dataGridView1);
-            Controls.Add(Excel_button);
+            BackColor = Color.White;
+            ClientSize = new Size(1034, 589);
+            Controls.Add(Find);
+            Controls.Add(subsidiary_cbb);
+            Controls.Add(Products_cbb);
+            Controls.Add(rjButton1);
             Controls.Add(Add_button);
-            Controls.Add(Exit_button);
-            Name = "Palettes";
+            Controls.Add(Products_dataGridView);
+            Controls.Add(button1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "Inventario";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Palettes";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Inventario_Load;
+            ((System.ComponentModel.ISupportInitialize)Products_dataGridView).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Button Exit_button;
-        private Button Add_button;
-        private Button Excel_button;
-        private DataGridView dataGridView1;
-        private TextBox textBox1;
-        private Button Search_button;
+        private Button button1;
+        private DataGridView Products_dataGridView;
+        private Components.RJButton Add_button;
+        private Components.RJButton rjButton1;
+        private Components.RJComboBox Products_cbb;
+        private Components.RJComboBox subsidiary_cbb;
+        private Components.RJTextBox Find;
     }
 }

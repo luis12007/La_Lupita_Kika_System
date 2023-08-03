@@ -15,9 +15,13 @@ namespace La_Lupita_Kika.Models
         public string Mail { get; set; }
         public int Rol_id { get; set; }
 
+
+
+        public int Subsidiary_ID { get; set; }
+
         public User() { }
 
-        public User(int userId, string name, string password, string username, string mail, int rolId)
+        public User(int userId, string name, string password, string username, string mail, int rolId, int subsidiary_ID)
         {
             User_id = userId;
             Name = name;
@@ -25,6 +29,7 @@ namespace La_Lupita_Kika.Models
             Username = username;
             Mail = mail;
             Rol_id = rolId;
+            Subsidiary_ID = subsidiary_ID;
         }
     }
 }

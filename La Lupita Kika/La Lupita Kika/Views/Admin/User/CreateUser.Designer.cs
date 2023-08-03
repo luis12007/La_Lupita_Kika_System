@@ -28,174 +28,217 @@
         /// </summary>
         private void InitializeComponent()
         {
-            exit_button = new Button();
-            AddUser_button = new Button();
-            delete_filds = new Button();
-            name = new Label();
-            Rol = new Label();
-            NameUser_textBox = new TextBox();   
-            RolUser_comboBox = new ComboBox();
-            Password = new Label();
-            PasswordUser_textBox = new TextBox();
-            Username_textBox = new TextBox();
-            Username = new Label();
-            Mail = new Label();
-            MailUser_textBox = new TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateUser));
+            Exit_button = new Button();
+            Add_button = new Components.RJButton();
+            NameUser_textBox = new Components.RJTextBox();
+            MailUser_textBox = new Components.RJTextBox();
+            Username_textBox = new Components.RJTextBox();
+            PasswordUser_textBox = new Components.RJTextBox();
+            RolUser_comboBox = new Components.RJComboBox();
+            Place_cbb = new Components.RJComboBox();
             SuspendLayout();
             // 
-            // exit_button
+            // Exit_button
             // 
-            exit_button.Location = new Point(22, 12);
-            exit_button.Name = "exit_button";
-            exit_button.Size = new Size(94, 29);
-            exit_button.TabIndex = 0;
-            exit_button.Text = "<-";
-            exit_button.UseVisualStyleBackColor = true;
+            Exit_button.BackColor = Color.White;
+            Exit_button.FlatAppearance.BorderColor = Color.White;
+            Exit_button.FlatAppearance.MouseDownBackColor = Color.White;
+            Exit_button.FlatAppearance.MouseOverBackColor = Color.White;
+            Exit_button.FlatStyle = FlatStyle.Flat;
+            Exit_button.Image = Properties.Resources.esquema_de_boton_circular_de_flecha_hacia_atras_izquierda__2_;
+            Exit_button.Location = new Point(12, 12);
+            Exit_button.Name = "Exit_button";
+            Exit_button.Size = new Size(45, 40);
+            Exit_button.TabIndex = 19;
+            Exit_button.UseVisualStyleBackColor = false;
+            Exit_button.Click += Exit_button_Click;
             // 
-            // AddUser_button
+            // Add_button
             // 
-            AddUser_button.Location = new Point(41, 391);
-            AddUser_button.Name = "AddUser_button";
-            AddUser_button.Size = new Size(94, 29);
-            AddUser_button.TabIndex = 1;
-            AddUser_button.Text = "Agregar";
-            AddUser_button.UseVisualStyleBackColor = true;
-            AddUser_button.Click += AddUser_button_Click;
-            // 
-            // delete_filds
-            // 
-            delete_filds.Location = new Point(289, 391);
-            delete_filds.Name = "delete_filds";
-            delete_filds.Size = new Size(94, 29);
-            delete_filds.TabIndex = 2;
-            delete_filds.Text = "Limpiar";
-            delete_filds.UseVisualStyleBackColor = true;
-            // 
-            // name
-            // 
-            name.AutoSize = true;
-            name.Location = new Point(22, 76);
-            name.Name = "name";
-            name.Size = new Size(64, 20);
-            name.TabIndex = 3;
-            name.Text = "Nombre";
-            // 
-            // Rol
-            // 
-            Rol.AutoSize = true;
-            Rol.Location = new Point(406, 111);
-            Rol.Name = "Rol";
-            Rol.Size = new Size(31, 20);
-            Rol.TabIndex = 4;
-            Rol.Text = "Rol";
-            Rol.Click += label2_Click;
+            Add_button.BackColor = Color.White;
+            Add_button.BackgroundColor = Color.White;
+            Add_button.BorderColor = Color.FromArgb(255, 54, 112);
+            Add_button.BorderRadius = 20;
+            Add_button.BorderSize = 2;
+            Add_button.FlatAppearance.BorderSize = 0;
+            Add_button.FlatStyle = FlatStyle.Flat;
+            Add_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Add_button.ForeColor = Color.Black;
+            Add_button.Location = new Point(43, 451);
+            Add_button.Name = "Add_button";
+            Add_button.Size = new Size(250, 118);
+            Add_button.TabIndex = 21;
+            Add_button.Text = "Agregar";
+            Add_button.TextColor = Color.Black;
+            Add_button.UseVisualStyleBackColor = false;
+            Add_button.Click += Add_button_Click;
             // 
             // NameUser_textBox
             // 
-            NameUser_textBox.Location = new Point(22, 108);
+            NameUser_textBox.BackColor = SystemColors.Window;
+            NameUser_textBox.BorderColor = Color.FromArgb(255, 54, 112);
+            NameUser_textBox.BorderFocusColor = Color.HotPink;
+            NameUser_textBox.BorderRadius = 5;
+            NameUser_textBox.BorderSize = 2;
+            NameUser_textBox.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            NameUser_textBox.ForeColor = Color.FromArgb(64, 64, 64);
+            NameUser_textBox.Location = new Point(13, 59);
+            NameUser_textBox.Margin = new Padding(4);
+            NameUser_textBox.Multiline = false;
             NameUser_textBox.Name = "NameUser_textBox";
-            NameUser_textBox.PlaceholderText = "Alex";
-            NameUser_textBox.Size = new Size(125, 27);
-            NameUser_textBox.TabIndex = 5;
-            // 
-            // RolUser_comboBox
-            // 
-            RolUser_comboBox.FormattingEnabled = true;
-            RolUser_comboBox.Items.AddRange(new object[] { "Staff", "Admin" });
-            RolUser_comboBox.Location = new Point(406, 145);
-            RolUser_comboBox.Name = "RolUser_comboBox";
-            RolUser_comboBox.Size = new Size(151, 28);
-            RolUser_comboBox.TabIndex = 6;
-            // 
-            // Password
-            // 
-            Password.AutoSize = true;
-            Password.Location = new Point(22, 177);
-            Password.Name = "Password";
-            Password.Size = new Size(83, 20);
-            Password.TabIndex = 7;
-            Password.Text = "Contraseña";
-            // 
-            // PasswordUser_textBox
-            // 
-            PasswordUser_textBox.Location = new Point(22, 210);
-            PasswordUser_textBox.Name = "PasswordUser_textBox";
-            PasswordUser_textBox.PlaceholderText = "pass";
-            PasswordUser_textBox.Size = new Size(125, 27);
-            PasswordUser_textBox.TabIndex = 8;
-            // 
-            // Username_textBox
-            // 
-            Username_textBox.Location = new Point(228, 108);
-            Username_textBox.Name = "Username_textBox";
-            Username_textBox.PlaceholderText = "Alex12007";
-            Username_textBox.Size = new Size(125, 27);
-            Username_textBox.TabIndex = 9;
-            // 
-            // Username
-            // 
-            Username.AutoSize = true;
-            Username.Location = new Point(228, 76);
-            Username.Name = "Username";
-            Username.Size = new Size(75, 20);
-            Username.TabIndex = 10;
-            Username.Text = "Username";
-            // 
-            // Mail
-            // 
-            Mail.AutoSize = true;
-            Mail.Location = new Point(228, 177);
-            Mail.Name = "Mail";
-            Mail.Size = new Size(38, 20);
-            Mail.TabIndex = 11;
-            Mail.Text = "Mail";
+            NameUser_textBox.Padding = new Padding(10, 7, 10, 7);
+            NameUser_textBox.PasswordChar = false;
+            NameUser_textBox.PlaceholderColor = Color.DarkGray;
+            NameUser_textBox.PlaceholderText = "Nombre";
+            NameUser_textBox.ReadOnly = false;
+            NameUser_textBox.Size = new Size(312, 45);
+            NameUser_textBox.TabIndex = 23;
+            NameUser_textBox.TextAlign = ContentAlignment.MiddleLeft;
+            NameUser_textBox.Texts = "";
+            NameUser_textBox.UnderlinedStyle = true;
+            NameUser_textBox._TextChanged += NameUser_textBox__TextChanged;
             // 
             // MailUser_textBox
             // 
-            MailUser_textBox.Location = new Point(228, 210);
+            MailUser_textBox.BackColor = SystemColors.Window;
+            MailUser_textBox.BorderColor = Color.FromArgb(255, 54, 112);
+            MailUser_textBox.BorderFocusColor = Color.HotPink;
+            MailUser_textBox.BorderRadius = 5;
+            MailUser_textBox.BorderSize = 2;
+            MailUser_textBox.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            MailUser_textBox.ForeColor = Color.FromArgb(64, 64, 64);
+            MailUser_textBox.Location = new Point(13, 121);
+            MailUser_textBox.Margin = new Padding(4);
+            MailUser_textBox.Multiline = false;
             MailUser_textBox.Name = "MailUser_textBox";
-            MailUser_textBox.PlaceholderText = "alexhdz@gmail.com";
-            MailUser_textBox.Size = new Size(209, 27);
-            MailUser_textBox.TabIndex = 12;
+            MailUser_textBox.Padding = new Padding(10, 7, 10, 7);
+            MailUser_textBox.PasswordChar = false;
+            MailUser_textBox.PlaceholderColor = Color.DarkGray;
+            MailUser_textBox.PlaceholderText = "Correo";
+            MailUser_textBox.ReadOnly = false;
+            MailUser_textBox.Size = new Size(312, 45);
+            MailUser_textBox.TabIndex = 24;
+            MailUser_textBox.TextAlign = ContentAlignment.MiddleLeft;
+            MailUser_textBox.Texts = "";
+            MailUser_textBox.UnderlinedStyle = true;
+            // 
+            // Username_textBox
+            // 
+            Username_textBox.BackColor = SystemColors.Window;
+            Username_textBox.BorderColor = Color.FromArgb(255, 54, 112);
+            Username_textBox.BorderFocusColor = Color.HotPink;
+            Username_textBox.BorderRadius = 5;
+            Username_textBox.BorderSize = 2;
+            Username_textBox.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            Username_textBox.ForeColor = Color.FromArgb(64, 64, 64);
+            Username_textBox.Location = new Point(13, 184);
+            Username_textBox.Margin = new Padding(4);
+            Username_textBox.Multiline = false;
+            Username_textBox.Name = "Username_textBox";
+            Username_textBox.Padding = new Padding(10, 7, 10, 7);
+            Username_textBox.PasswordChar = false;
+            Username_textBox.PlaceholderColor = Color.DarkGray;
+            Username_textBox.PlaceholderText = "Username";
+            Username_textBox.ReadOnly = false;
+            Username_textBox.Size = new Size(312, 45);
+            Username_textBox.TabIndex = 25;
+            Username_textBox.TextAlign = ContentAlignment.MiddleLeft;
+            Username_textBox.Texts = "";
+            Username_textBox.UnderlinedStyle = true;
+            // 
+            // PasswordUser_textBox
+            // 
+            PasswordUser_textBox.BackColor = SystemColors.Window;
+            PasswordUser_textBox.BorderColor = Color.FromArgb(255, 54, 112);
+            PasswordUser_textBox.BorderFocusColor = Color.HotPink;
+            PasswordUser_textBox.BorderRadius = 5;
+            PasswordUser_textBox.BorderSize = 2;
+            PasswordUser_textBox.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordUser_textBox.ForeColor = Color.FromArgb(64, 64, 64);
+            PasswordUser_textBox.Location = new Point(12, 246);
+            PasswordUser_textBox.Margin = new Padding(4);
+            PasswordUser_textBox.Multiline = false;
+            PasswordUser_textBox.Name = "PasswordUser_textBox";
+            PasswordUser_textBox.Padding = new Padding(10, 7, 10, 7);
+            PasswordUser_textBox.PasswordChar = false;
+            PasswordUser_textBox.PlaceholderColor = Color.DarkGray;
+            PasswordUser_textBox.PlaceholderText = "Contraseña";
+            PasswordUser_textBox.ReadOnly = false;
+            PasswordUser_textBox.Size = new Size(312, 45);
+            PasswordUser_textBox.TabIndex = 26;
+            PasswordUser_textBox.TextAlign = ContentAlignment.MiddleLeft;
+            PasswordUser_textBox.Texts = "";
+            PasswordUser_textBox.UnderlinedStyle = true;
+            // 
+            // RolUser_comboBox
+            // 
+            RolUser_comboBox.BackColor = Color.White;
+            RolUser_comboBox.BorderColor = Color.LightSteelBlue;
+            RolUser_comboBox.BorderSize = 1;
+            RolUser_comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            RolUser_comboBox.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            RolUser_comboBox.ForeColor = Color.DimGray;
+            RolUser_comboBox.IconColor = Color.FromArgb(255, 54, 112);
+            RolUser_comboBox.ListBackColor = Color.FromArgb(230, 228, 245);
+            RolUser_comboBox.ListTextColor = Color.DodgerBlue;
+            RolUser_comboBox.Location = new Point(12, 312);
+            RolUser_comboBox.MinimumSize = new Size(200, 30);
+            RolUser_comboBox.Name = "RolUser_comboBox";
+            RolUser_comboBox.Padding = new Padding(1);
+            RolUser_comboBox.Size = new Size(312, 38);
+            RolUser_comboBox.TabIndex = 27;
+            RolUser_comboBox.Texts = "Rol";
+            // 
+            // Place_cbb
+            // 
+            Place_cbb.BackColor = Color.White;
+            Place_cbb.BorderColor = Color.LightSteelBlue;
+            Place_cbb.BorderSize = 1;
+            Place_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            Place_cbb.Font = new Font("Bahnschrift", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            Place_cbb.ForeColor = Color.DimGray;
+            Place_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            Place_cbb.ListBackColor = Color.FromArgb(230, 228, 245);
+            Place_cbb.ListTextColor = Color.DodgerBlue;
+            Place_cbb.Location = new Point(13, 371);
+            Place_cbb.MinimumSize = new Size(200, 30);
+            Place_cbb.Name = "Place_cbb";
+            Place_cbb.Padding = new Padding(1);
+            Place_cbb.Size = new Size(312, 38);
+            Place_cbb.TabIndex = 28;
+            Place_cbb.Texts = "Sucursal";
             // 
             // CreateUser
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(571, 459);
-            Controls.Add(MailUser_textBox);
-            Controls.Add(Mail);
-            Controls.Add(Username);
-            Controls.Add(Username_textBox);
-            Controls.Add(PasswordUser_textBox);
-            Controls.Add(Password);
+            BackColor = Color.White;
+            ClientSize = new Size(351, 614);
+            Controls.Add(Place_cbb);
             Controls.Add(RolUser_comboBox);
+            Controls.Add(PasswordUser_textBox);
+            Controls.Add(Username_textBox);
+            Controls.Add(MailUser_textBox);
             Controls.Add(NameUser_textBox);
-            Controls.Add(Rol);
-            Controls.Add(name);
-            Controls.Add(delete_filds);
-            Controls.Add(AddUser_button);
-            Controls.Add(exit_button);
+            Controls.Add(Add_button);
+            Controls.Add(Exit_button);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateUser";
-            Text = "CreateUser";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Crear usuario";
+            Load += CreateUser_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Button exit_button;
-        private Button AddUser_button;
-        private Button delete_filds;
-        private Label name;
-        private Label Rol;
-        private TextBox NameUser_textBox;
-        private ComboBox RolUser_comboBox;
-        private Label Password;
-        private TextBox PasswordUser_textBox;
-        private TextBox Username_textBox;
-        private Label Username;
-        private Label Mail;
-        private TextBox MailUser_textBox;
+        private Button Exit_button;
+        private Components.RJButton Add_button;
+        private Components.RJTextBox NameUser_textBox;
+        private Components.RJTextBox MailUser_textBox;
+        private Components.RJTextBox Username_textBox;
+        private Components.RJTextBox PasswordUser_textBox;
+        private Components.RJComboBox RolUser_comboBox;
+        private Components.RJComboBox Place_cbb;
     }
 }

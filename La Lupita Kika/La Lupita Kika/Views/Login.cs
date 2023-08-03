@@ -27,6 +27,7 @@ namespace La_Lupita_Kika
         private RegisterRepository registerrepo;
         private int register;
         private DateTime currentDateTime;
+        private Models.User myuser;
 
 
         public Login(string connectionString)
@@ -61,7 +62,7 @@ namespace La_Lupita_Kika
                 return;
             }
             Models.User usercomp = userrepo.GetUserByUsername(username);
-
+            myuser = usercomp;
             if (usercomp == null)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -128,7 +129,7 @@ namespace La_Lupita_Kika
 
                     if (foundRegister != null)
                     {
-                        Facturation formFacturation = new Facturation(connectionString, foundRegister.Register_id);
+                        Facturation formFacturation = new Facturation(connectionString, foundRegister.Register_id, myuser.Subsidiary_ID);
                         formFacturation.ShowDialog();
                     }
                 }
