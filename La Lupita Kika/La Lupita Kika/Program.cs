@@ -8,6 +8,8 @@ using La_Lupita_Kika.Views.Admin.AddProduct;
 using La_Lupita_Kika.Views.Admin.User;
 using La_Lupita_Kika.Views.Products.Palettes;
 using OfficeOpenXml;
+using La_Lupita_Kika.Models;
+using La_Lupita_Kika.Views.Ingredients;
 
 namespace La_Lupita_Kika
 {
@@ -39,13 +41,12 @@ namespace La_Lupita_Kika
 
             try
             {
-                //Application.Run(new Inventario(connectionString));
-                Application.Run(new Inventario(connectionString));
+                Application.Run(new Login(connectionString));
+                //Application.Run(new Views.Ingredients.Ingredients(connectionString));
+                //Application.Run(new Gains(connectionString));
             }
             catch (System.NullReferenceException)
             {
-                // Se produjo una excepción de tipo NullReferenceException.
-                // Puedes mostrar un mensaje de error o realizar cualquier acción antes de cerrar la aplicación.
                 // Luego, cierra la aplicación con Environment.Exit(0).
                 Environment.Exit(0);
             }

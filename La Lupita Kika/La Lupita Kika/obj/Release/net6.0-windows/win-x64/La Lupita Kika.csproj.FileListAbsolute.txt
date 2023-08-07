@@ -1125,7 +1125,6 @@ C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lu
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Ingredients.AddIngredients.resources
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Ingredients.Ingredients.resources
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Login.resources
-C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Products.Palettes.AdPalettes.resources
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Products.Palettes.Inventario.resources
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Products.OutIngredients.resources
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Staff.CashOutdit.resources
@@ -1144,3 +1143,10 @@ C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lu
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La Lupita Kika.pdb
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La Lupita Kika.genruntimeconfig.cache
 C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\ref\La Lupita Kika.dll
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\bin\Release\net6.0-windows\win-x64\EPPlus.dll
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\bin\Release\net6.0-windows\win-x64\EPPlus.Interfaces.dll
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\bin\Release\net6.0-windows\win-x64\EPPlus.System.Drawing.dll
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\bin\Release\net6.0-windows\win-x64\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Admin.User.EditUser.resources
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Products.Inventario.AddInventario.resources
+C:\Users\luish\source\repos\luis12007\La_Lupita_Kika_System\La Lupita Kika\La Lupita Kika\obj\Release\net6.0-windows\win-x64\La_Lupita_Kika.Views.Products.Inventario.EditProduct.resources

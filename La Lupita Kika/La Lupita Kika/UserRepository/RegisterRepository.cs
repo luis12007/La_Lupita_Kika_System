@@ -162,6 +162,42 @@ namespace La_Lupita_Kika.UserRepository
             }
         }
 
+        public List<SalesWithRegisterData> GetSalesWithRegisterDataByDateRange(DateTime startDate, DateTime endDate, int subsidiaryId)
+        {
+            List<SalesWithRegisterData> salesWithRegisterDataList = new List<SalesWithRegisterData>();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = @"SELECT s.sales_id, r.inhour, s.name AS sales_name, s.lot, s.total, r.user_id
+                        FROM sales s
+                        INNER JOIN registerxsales rs ON s.sales_id = rs.sales_id
+                        INNER JOIN register r ON rs.register_id = r.register_id
+                        INNER JOIN user u ON r.user_id = r.user_id
+                        WHERE r.inhour BETWEEN @StartDate AND @EndDate AND u.subsidiary_id = @SubsidiaryId";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@StartDate", startDate);
+                command.Parameters.AddWithValue("@EndDate", endDate);
+                command.Parameters.AddWithValue("@SubsidiaryId", subsidiaryId);
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int salesId = Convert.ToInt32(reader["sales_id"]);
+                    DateTime registerInhour = Convert.ToDateTime(reader["inhour"]);
+                    string salesName = Convert.ToString(reader["sales_name"]);
+                    float lot = Convert.ToSingle(reader["lot"]);
+                    float total = Convert.ToSingle(reader["total"]);
+                    int userId = Convert.ToInt32(reader["user_id"]);
+
+                    SalesWithRegisterData salesData = new SalesWithRegisterData(salesId, registerInhour, salesName, lot, total, userId);
+                    salesWithRegisterDataList.Add(salesData);
+                }
+            }
+            return salesWithRegisterDataList;
+        }
+
+
+
+
 
         public void Delete(int registerId)
         {
@@ -174,5 +210,8 @@ namespace La_Lupita_Kika.UserRepository
                 command.ExecuteNonQuery();
             }
         }
+
+
+
     }
 }

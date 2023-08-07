@@ -18,5 +18,10 @@ namespace La_Lupita_Kika.Views.Products.Inventario
             this.Conection = connection;
             InitializeComponent();
         }
+
+        private void AddInventario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

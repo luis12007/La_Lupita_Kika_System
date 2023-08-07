@@ -71,9 +71,7 @@ namespace La_Lupita_Kika.Views.Products.Palettes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Home formFacturation = new Home(ConnectionString);
-            formFacturation.ShowDialog();
+            this.Close();
         }
 
 
@@ -120,7 +118,7 @@ namespace La_Lupita_Kika.Views.Products.Palettes
 
 
             // Ajustar el ancho de las columnas
-            Products_dataGridView.Columns["Nombre"].Width = 260;
+            Products_dataGridView.Columns["Nombre"].Width = 400;
             Products_dataGridView.Columns["Precio"].Width = 115;
             Products_dataGridView.Columns["Codebar"].Width = 140;
             Products_dataGridView.Columns["Categoria"].Width = 200;
@@ -554,8 +552,8 @@ namespace La_Lupita_Kika.Views.Products.Palettes
 
         private void Add_button_Click(object sender, EventArgs e)
         {
-            this.Hide();    
-                
+            this.Hide();
+
             AddInventario inventario = new AddInventario(ConnectionString);
             inventario.ShowDialog();
 
