@@ -33,17 +33,19 @@ namespace La_Lupita_Kika.Views.Admin.User
         private void InitializeDataGridView()
         {
             // Agregar las tres columnas al DataGridView y definir sus propiedades
-            Userlist_dataGridView.ColumnCount = 6;      // Columna para el nombre del producto
-            Userlist_dataGridView.Columns[0].Name = "Nombre";
-            Userlist_dataGridView.Columns[1].Name = "Contraseña";
-            Userlist_dataGridView.Columns[2].Name = "Correo";
-            Userlist_dataGridView.Columns[3].Name = "Username";
-            Userlist_dataGridView.Columns[4].Name = "Rol";
-            Userlist_dataGridView.Columns[5].Name = "Sucursal";
+            Userlist_dataGridView.ColumnCount = 7;      // Columna para el nombre del producto
+            Userlist_dataGridView.Columns[0].Name = "Cajero";
+            Userlist_dataGridView.Columns[1].Name = "Nombre";
+            Userlist_dataGridView.Columns[2].Name = "Contraseña";
+            Userlist_dataGridView.Columns[3].Name = "Correo";
+            Userlist_dataGridView.Columns[4].Name = "Username";
+            Userlist_dataGridView.Columns[5].Name = "Rol";
+            Userlist_dataGridView.Columns[6].Name = "Sucursal";
 
 
 
             // Ajustar el ancho de las columnas
+            Userlist_dataGridView.Columns["Cajero"].Width = 80 ;
             Userlist_dataGridView.Columns["Nombre"].Width = 220;
             Userlist_dataGridView.Columns["Contraseña"].Width = 130;
             Userlist_dataGridView.Columns["Correo"].Width = 220;
@@ -66,7 +68,7 @@ namespace La_Lupita_Kika.Views.Admin.User
 
                 rol = rolrepository.GetNameById(palettec.Rol_id);
                 Surucsal = subsidiaryrepo.FindNameById(palettec.Subsidiary_ID);
-                String[] row2 = { palettec.Name, $"{palettec.Password}", $"{palettec.Mail}", palettec.Username, $"{rol}", $"{Surucsal}" };
+                String[] row2 = { $"{palettec.User_id}", palettec.Name, $"{palettec.Password}", $"{palettec.Mail}", palettec.Username, $"{rol}", $"{Surucsal}" };
                 Userlist_dataGridView.Rows.Add(row2);
                 Userlist_dataGridView.ClearSelection();
 

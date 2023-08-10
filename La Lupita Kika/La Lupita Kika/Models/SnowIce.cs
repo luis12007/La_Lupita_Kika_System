@@ -28,6 +28,15 @@ namespace La_Lupita_Kika.Models
             Cuantity = cuantity;
             Subsidiary_ID = subsidiary_ID;
         }
+
+        public SnowIce(string name, float price, string codebar, float cuantity, int subsidiary_ID)
+        {
+            Name = name;
+            Price = price;
+            Codebar = codebar;
+            Cuantity = cuantity;
+            Subsidiary_ID = subsidiary_ID;
+        }
     }
 
 }

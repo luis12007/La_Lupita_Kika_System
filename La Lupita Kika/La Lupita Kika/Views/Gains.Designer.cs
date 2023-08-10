@@ -47,6 +47,7 @@
             // 
             // dateTimePicker1
             // 
+            dateTimePicker1.CalendarTitleForeColor = Color.Silver;
             dateTimePicker1.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker1.Format = DateTimePickerFormat.Short;
             dateTimePicker1.Location = new Point(473, 78);
@@ -54,10 +55,11 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(121, 32);
             dateTimePicker1.TabIndex = 5;
-            dateTimePicker1.Value = new DateTime(2023, 8, 6, 0, 0, 0, 0);
+            dateTimePicker1.Value = new DateTime(2023, 8, 8, 0, 0, 0, 0);
             // 
             // dateTimePicker2
             // 
+            dateTimePicker2.CalendarTitleForeColor = Color.Silver;
             dateTimePicker2.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker2.Format = DateTimePickerFormat.Short;
             dateTimePicker2.Location = new Point(726, 77);
@@ -68,12 +70,12 @@
             // Subsidiary_cbb
             // 
             Subsidiary_cbb.BackColor = Color.White;
-            Subsidiary_cbb.BorderColor = Color.MediumSlateBlue;
+            Subsidiary_cbb.BorderColor = Color.Silver;
             Subsidiary_cbb.BorderSize = 1;
             Subsidiary_cbb.DropDownStyle = ComboBoxStyle.DropDown;
             Subsidiary_cbb.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Subsidiary_cbb.ForeColor = Color.Black;
-            Subsidiary_cbb.IconColor = Color.MediumSlateBlue;
+            Subsidiary_cbb.IconColor = Color.FromArgb(255, 54, 112);
             Subsidiary_cbb.ListBackColor = Color.FromArgb(230, 228, 245);
             Subsidiary_cbb.ListTextColor = Color.DimGray;
             Subsidiary_cbb.Location = new Point(12, 64);
@@ -88,7 +90,7 @@
             // 
             Total_label.AutoSize = true;
             Total_label.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            Total_label.Location = new Point(708, 519);
+            Total_label.Location = new Point(12, 509);
             Total_label.Name = "Total_label";
             Total_label.Size = new Size(145, 41);
             Total_label.TabIndex = 8;
@@ -120,13 +122,14 @@
             Excel_Button.FlatStyle = FlatStyle.Flat;
             Excel_Button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Excel_Button.ForeColor = Color.Black;
-            Excel_Button.Location = new Point(710, 569);
+            Excel_Button.Location = new Point(13, 564);
             Excel_Button.Name = "Excel_Button";
             Excel_Button.Size = new Size(144, 64);
             Excel_Button.TabIndex = 26;
             Excel_Button.Text = "Excel";
             Excel_Button.TextColor = Color.Black;
             Excel_Button.UseVisualStyleBackColor = false;
+            Excel_Button.Click += Excel_Button_Click;
             // 
             // label1
             // 
@@ -154,16 +157,16 @@
             // 
             rjButton1.BackColor = Color.White;
             rjButton1.BackgroundColor = Color.White;
-            rjButton1.BorderColor = Color.Green;
+            rjButton1.BorderColor = Color.FromArgb(255, 54, 112);
             rjButton1.BorderRadius = 20;
             rjButton1.BorderSize = 2;
             rjButton1.FlatAppearance.BorderSize = 0;
             rjButton1.FlatStyle = FlatStyle.Flat;
-            rjButton1.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            rjButton1.Font = new Font("Bahnschrift", 36F, FontStyle.Regular, GraphicsUnit.Point);
             rjButton1.ForeColor = Color.Black;
-            rjButton1.Location = new Point(188, 541);
+            rjButton1.Location = new Point(259, 512);
             rjButton1.Name = "rjButton1";
-            rjButton1.Size = new Size(285, 92);
+            rjButton1.Size = new Size(594, 116);
             rjButton1.TabIndex = 29;
             rjButton1.Text = "Buscar";
             rjButton1.TextColor = Color.Black;

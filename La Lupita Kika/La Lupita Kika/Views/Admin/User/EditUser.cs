@@ -105,5 +105,10 @@ namespace La_Lupita_Kika.Views.Admin.User
 
             this.Close();
         }
+
+        private void Exit_button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

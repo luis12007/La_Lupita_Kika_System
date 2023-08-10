@@ -207,6 +207,7 @@
             Exit_button.Size = new Size(45, 40);
             Exit_button.TabIndex = 29;
             Exit_button.UseVisualStyleBackColor = false;
+            Exit_button.Click += Exit_button_Click;
             // 
             // EditUser
             // 

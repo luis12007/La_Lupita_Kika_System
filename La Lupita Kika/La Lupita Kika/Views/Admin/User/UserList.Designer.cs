@@ -82,7 +82,7 @@
             Userlist_dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             Userlist_dataGridView.EnableHeadersVisualStyles = false;
             Userlist_dataGridView.GridColor = Color.Black;
-            Userlist_dataGridView.Location = new Point(10, 80);
+            Userlist_dataGridView.Location = new Point(10, 82);
             Userlist_dataGridView.Name = "Userlist_dataGridView";
             Userlist_dataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -97,7 +97,7 @@
             Userlist_dataGridView.RowHeadersWidth = 51;
             Userlist_dataGridView.RowTemplate.Height = 29;
             Userlist_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Userlist_dataGridView.Size = new Size(880, 322);
+            Userlist_dataGridView.Size = new Size(960, 339);
             Userlist_dataGridView.TabIndex = 19;
             Userlist_dataGridView.CellClick += Userlist_dataGridView_CellClick;
             Userlist_dataGridView.CellDoubleClick += Userlist_dataGridView_CellDoubleClick;
@@ -113,7 +113,7 @@
             Add_button.FlatStyle = FlatStyle.Flat;
             Add_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Add_button.ForeColor = Color.Black;
-            Add_button.Location = new Point(12, 427);
+            Add_button.Location = new Point(10, 427);
             Add_button.Name = "Add_button";
             Add_button.Size = new Size(250, 118);
             Add_button.TabIndex = 20;
@@ -133,7 +133,7 @@
             Delete_button.FlatStyle = FlatStyle.Flat;
             Delete_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Delete_button.ForeColor = Color.Black;
-            Delete_button.Location = new Point(640, 427);
+            Delete_button.Location = new Point(720, 427);
             Delete_button.Name = "Delete_button";
             Delete_button.Size = new Size(250, 118);
             Delete_button.TabIndex = 21;
@@ -146,7 +146,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Bahnschrift", 22F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(386, 22);
+            label1.Location = new Point(390, 23);
             label1.Name = "label1";
             label1.Size = new Size(168, 45);
             label1.TabIndex = 22;
@@ -157,7 +157,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(902, 557);
+            ClientSize = new Size(983, 557);
             Controls.Add(label1);
             Controls.Add(Delete_button);
             Controls.Add(Add_button);

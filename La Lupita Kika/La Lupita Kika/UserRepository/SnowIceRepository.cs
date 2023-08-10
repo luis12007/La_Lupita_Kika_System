@@ -18,10 +18,11 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO snowice (name, price, codebar) VALUES (@Name, @Price, @Codebar)";
+                string query = "INSERT INTO snowice (name, price, codebar, cuantity) VALUES (@Name, @Price, @Codebar, @cuantity)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", snowIce.Name);
                 command.Parameters.AddWithValue("@Price", snowIce.Price);
+                command.Parameters.AddWithValue("@cuantity", snowIce.Cuantity);
                 command.Parameters.AddWithValue("@Codebar", snowIce.Codebar);
                 connection.Open();
                 command.ExecuteNonQuery();

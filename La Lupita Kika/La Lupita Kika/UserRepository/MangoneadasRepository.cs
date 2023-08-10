@@ -18,13 +18,14 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO mangoneadas (name, price, codebar, code, category_id, Subsidiary_ID) VALUES (@Name, @Price, @Codebar, @Code, @CategoryId, @Subsidiary_ID)";
+                string query = "INSERT INTO mangoneadas (name, price, codebar, code, category_id,cuantity, Subsidiary_ID) VALUES (@Name, @Price, @Codebar, @Code, @CategoryId,@Cuantity, @Subsidiary_ID)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Name", mangoneada.Name);
                 command.Parameters.AddWithValue("@Price", mangoneada.Price);
                 command.Parameters.AddWithValue("@Codebar", mangoneada.Codebar);
                 command.Parameters.AddWithValue("@Code", mangoneada.Code);
                 command.Parameters.AddWithValue("@CategoryId", mangoneada.Category_id);
+                command.Parameters.AddWithValue("@Cuantity", mangoneada.Cuantity);
                 command.Parameters.AddWithValue("@Subsidiary_ID", mangoneada.Subsidiary_ID);
                 connection.Open();
                 command.ExecuteNonQuery();

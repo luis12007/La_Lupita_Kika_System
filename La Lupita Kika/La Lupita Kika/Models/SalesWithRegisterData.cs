@@ -29,6 +29,8 @@ namespace La_Lupita_Kika.Models
         public string ProductName { get; set; }
         public float Lot { get; set; }
         public float Total { get; set; }
+
+        public float totalpluslot { get; set; }
         public int UserId { get; set; }
     }
 

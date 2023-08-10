@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace La_Lupita_Kika.UserRepository
 {
@@ -65,6 +66,32 @@ namespace La_Lupita_Kika.UserRepository
             }
             return subsidiaries;
         }
+
+        public async Task<List<Subsidiary>> GetAllAsync()
+        {
+            List<Subsidiary> subsidiaries = new List<Subsidiary>();
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT subsidiary_ID, Name, Place, Address FROM subsidiary";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                await connection.OpenAsync();
+
+                using (DbDataReader reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        int subsidiaryId = Convert.ToInt32(reader["subsidiary_ID"]);
+                        string name = Convert.ToString(reader["Name"]);
+                        string place = Convert.ToString(reader["Place"]);
+                        string address = Convert.ToString(reader["Address"]);
+                        Subsidiary subsidiary = new Subsidiary(subsidiaryId, name, place, address);
+                        subsidiaries.Add(subsidiary);
+                    }
+                }
+            }
+            return subsidiaries;
+        }
+
 
         public void Update(Subsidiary subsidiary)
         {

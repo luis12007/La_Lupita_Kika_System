@@ -75,6 +75,24 @@ namespace La_Lupita_Kika.UserRepository
             }
         }
 
+        public int FindIdByName(string categoryName)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT categoryD_ID FROM categoryc WHERE Name = @CategoryName";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CategoryName", categoryName);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int categoryId))
+                {
+                    return categoryId;
+                }
+                return -1; // Devolver un valor negativo si no se encuentra la categoría
+            }
+        }
+
+
         public void Delete(int categoryDId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))

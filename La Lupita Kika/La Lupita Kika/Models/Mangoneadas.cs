@@ -32,5 +32,16 @@ namespace La_Lupita_Kika.Models
             Cuantity = cuantity;
             Subsidiary_ID = subsidiary_ID;
         }
+
+        public Mangoneadas(string name, float price, string codebar, string code, int categoryId, float cuantity, int subsidiary_ID)
+        {
+            Name = name;
+            Price = price;
+            Codebar = codebar;
+            Code = code;
+            Category_id = categoryId;
+            Cuantity = cuantity;
+            Subsidiary_ID = subsidiary_ID;
+        }
     }
 }
