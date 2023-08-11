@@ -171,8 +171,8 @@ namespace La_Lupita_Kika.UserRepository
                         FROM sales s
                         INNER JOIN registerxsales rs ON s.sales_id = rs.sales_id
                         INNER JOIN register r ON rs.register_id = r.register_id
-                        INNER JOIN user u ON r.user_id = r.user_id
-                        WHERE r.inhour BETWEEN @StartDate AND @EndDate AND u.subsidiary_id = @SubsidiaryId";
+                        INNER JOIN user u ON r.user_id = u.user_id
+                        WHERE r.inhour BETWEEN @StartDate AND @EndDate AND u.subsidiary_ID = @SubsidiaryId";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@StartDate", startDate);
                 command.Parameters.AddWithValue("@EndDate", endDate);

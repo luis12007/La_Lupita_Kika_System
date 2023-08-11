@@ -42,6 +42,8 @@
             label2 = new Label();
             rjButton1 = new Components.RJButton();
             dataGridView1 = new DataGridView();
+            Sum_cbb = new Components.RJComboBox();
+            Sum_label = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +74,7 @@
             Subsidiary_cbb.BackColor = Color.White;
             Subsidiary_cbb.BorderColor = Color.Silver;
             Subsidiary_cbb.BorderSize = 1;
-            Subsidiary_cbb.DropDownStyle = ComboBoxStyle.DropDown;
+            Subsidiary_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
             Subsidiary_cbb.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Subsidiary_cbb.ForeColor = Color.Black;
             Subsidiary_cbb.IconColor = Color.FromArgb(255, 54, 112);
@@ -85,6 +87,7 @@
             Subsidiary_cbb.Size = new Size(200, 38);
             Subsidiary_cbb.TabIndex = 7;
             Subsidiary_cbb.Texts = "";
+            Subsidiary_cbb.OnSelectedIndexChanged += Subsidiary_cbb_OnSelectedIndexChanged;
             // 
             // Total_label
             // 
@@ -164,9 +167,9 @@
             rjButton1.FlatStyle = FlatStyle.Flat;
             rjButton1.Font = new Font("Bahnschrift", 36F, FontStyle.Regular, GraphicsUnit.Point);
             rjButton1.ForeColor = Color.Black;
-            rjButton1.Location = new Point(259, 512);
+            rjButton1.Location = new Point(236, 512);
             rjButton1.Name = "rjButton1";
-            rjButton1.Size = new Size(594, 116);
+            rjButton1.Size = new Size(358, 116);
             rjButton1.TabIndex = 29;
             rjButton1.Text = "Buscar";
             rjButton1.TextColor = Color.Black;
@@ -218,12 +221,44 @@
             dataGridView1.Size = new Size(841, 387);
             dataGridView1.TabIndex = 30;
             // 
+            // Sum_cbb
+            // 
+            Sum_cbb.BackColor = Color.White;
+            Sum_cbb.BorderColor = Color.Silver;
+            Sum_cbb.BorderSize = 1;
+            Sum_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            Sum_cbb.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Sum_cbb.ForeColor = Color.Black;
+            Sum_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            Sum_cbb.ListBackColor = Color.FromArgb(230, 228, 245);
+            Sum_cbb.ListTextColor = Color.DimGray;
+            Sum_cbb.Location = new Point(614, 577);
+            Sum_cbb.MinimumSize = new Size(200, 30);
+            Sum_cbb.Name = "Sum_cbb";
+            Sum_cbb.Padding = new Padding(1);
+            Sum_cbb.Size = new Size(237, 38);
+            Sum_cbb.TabIndex = 31;
+            Sum_cbb.Texts = "";
+            Sum_cbb.OnSelectedIndexChanged += Sum_cbb_OnSelectedIndexChanged;
+            // 
+            // Sum_label
+            // 
+            Sum_label.AutoSize = true;
+            Sum_label.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Sum_label.Location = new Point(614, 521);
+            Sum_label.Name = "Sum_label";
+            Sum_label.Size = new Size(195, 41);
+            Sum_label.TabIndex = 32;
+            Sum_label.Text = "Recuento: 0";
+            // 
             // Gains
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(863, 640);
+            Controls.Add(Sum_label);
+            Controls.Add(Sum_cbb);
             Controls.Add(dataGridView1);
             Controls.Add(rjButton1);
             Controls.Add(label2);
@@ -255,5 +290,7 @@
         private Label label2;
         private Components.RJButton rjButton1;
         private DataGridView dataGridView1;
+        private Components.RJComboBox Sum_cbb;
+        private Label Sum_label;
     }
 }

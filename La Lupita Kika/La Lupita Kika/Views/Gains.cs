@@ -65,6 +65,8 @@ namespace La_Lupita_Kika.Views
             DateTime endDate = dateTimePicker2.Value;
             registrosEncontrados.Clear();
             registrosEncontrados = RegisterRepository.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryNumber);
+
+           
             if (registrosEncontrados.IsNullOrEmpty())
             {
                 return;
@@ -93,11 +95,13 @@ namespace La_Lupita_Kika.Views
                 // Llamada 2
                 List<SalesWithRegisterData> registrosEncontradosSubsidiary2 = RegisterRepository.GetSalesWithRegisterDataByDateRange(startDate, endDate, 2);
                 registrosEncontrados.AddRange(registrosEncontradosSubsidiary2);
+                RefreshDGV();
                 return;
             }
 
 
             registrosEncontrados = RegisterRepository.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryNumber);
+            
             if (registrosEncontrados.IsNullOrEmpty())
             {
                 MessageBox.Show("No registros encontrados para este rango.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -171,8 +175,21 @@ namespace La_Lupita_Kika.Views
                 dataGridView1.ClearSelection();
             }
 
+            HashSet<string> nombresUnicos = new HashSet<string>();
+
+            foreach (var registro in registrosEncontrados)
+            {
+                nombresUnicos.Add(registro.ProductName);
+            }
+
+            List<string> nombresProductosUnicos = nombresUnicos.ToList();
+
+            Sum_cbb.DataSource = nombresProductosUnicos;
+
             // Actualizar el texto del Total_label con la suma total calculada
             Total_label.Text = $"Total: {totalSum}$";
+            Sum_label.Text = $"Recuento: 0";
+
         }
 
         private void Excel_Button_Click(object sender, EventArgs e)
@@ -244,6 +261,42 @@ namespace La_Lupita_Kika.Views
 
                 // Guardar los cambios en el archivo
                 package.Save();
+            }
+        }
+
+        private void Sum_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string nombreBuscado = Sum_cbb.SelectedItem.ToString();
+            float sumaLot = 0;
+
+            foreach (var registro in registrosEncontrados)
+            {
+                if (registro.ProductName == nombreBuscado)
+                {
+                    sumaLot += registro.Lot;
+                }
+            }
+            Sum_label.Text = $"Recuento: {sumaLot}";
+        }
+
+        private void Subsidiary_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (Subsidiary_cbb.SelectedItem.ToString()) {
+                case "Sonsonate":
+                    subsidiaryNumber = 1;
+                    break;
+
+                case "Juayua":
+                    subsidiaryNumber = 2;
+                    break;
+
+                case "Todos":
+                    subsidiaryNumber = 3;
+                    break;
+
+                default
+                    : break;
             }
         }
     }

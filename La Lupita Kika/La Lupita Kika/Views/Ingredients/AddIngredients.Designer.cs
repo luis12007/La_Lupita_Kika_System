@@ -28,149 +28,247 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Name_label = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Subsidiary_cbb = new Components.RJComboBox();
+            label1 = new Label();
+            Number_textbox = new Components.RJTextBox();
+            Process_button = new Components.RJButton();
+            Add_button = new Components.RJButton();
             Exit_button = new Button();
-            label3 = new Label();
-            Price_label = new Label();
-            comboBox1 = new ComboBox();
-            unit_label = new Label();
-            number_label = new Label();
-            Price_textBox = new TextBox();
-            textBox1 = new TextBox();
-            Number_textBox = new TextBox();
-            Add_button = new Button();
+            Products_cbb = new Components.RJComboBox();
+            Products_dataGridView = new DataGridView();
+            Number_label = new Label();
+            product_label = new Label();
+            ((System.ComponentModel.ISupportInitialize)Products_dataGridView).BeginInit();
             SuspendLayout();
             // 
-            // Name_label
+            // Subsidiary_cbb
             // 
-            Name_label.AutoSize = true;
-            Name_label.Location = new Point(12, 71);
-            Name_label.Name = "Name_label";
-            Name_label.Size = new Size(85, 20);
-            Name_label.TabIndex = 0;
-            Name_label.Text = "Ingrediente";
+            Subsidiary_cbb.BackColor = Color.White;
+            Subsidiary_cbb.BorderColor = Color.Silver;
+            Subsidiary_cbb.BorderSize = 1;
+            Subsidiary_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            Subsidiary_cbb.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Subsidiary_cbb.ForeColor = Color.DimGray;
+            Subsidiary_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            Subsidiary_cbb.Items.AddRange(new object[] { "Paletas", "Mangoneadas", "Helados", "Dulces", "Otros(snacks)" });
+            Subsidiary_cbb.ListBackColor = Color.FromArgb(27, 166, 182);
+            Subsidiary_cbb.ListTextColor = Color.White;
+            Subsidiary_cbb.Location = new Point(9, 293);
+            Subsidiary_cbb.MinimumSize = new Size(200, 30);
+            Subsidiary_cbb.Name = "Subsidiary_cbb";
+            Subsidiary_cbb.Padding = new Padding(1);
+            Subsidiary_cbb.Size = new Size(250, 38);
+            Subsidiary_cbb.TabIndex = 43;
+            Subsidiary_cbb.Texts = "Seleccionar";
             // 
-            // Exit_button
+            // label1
             // 
-            Exit_button.Location = new Point(12, 12);
-            Exit_button.Name = "Exit_button";
-            Exit_button.Size = new Size(62, 29);
-            Exit_button.TabIndex = 1;
-            Exit_button.Text = "<-";
-            Exit_button.UseVisualStyleBackColor = true;
+            label1.AutoSize = true;
+            label1.Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(9, 256);
+            label1.Name = "label1";
+            label1.Size = new Size(108, 29);
+            label1.TabIndex = 42;
+            label1.Text = "Sucursal";
             // 
-            // label3
+            // Number_textbox
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(178, 97);
-            label3.Name = "label3";
-            label3.Size = new Size(110, 20);
-            label3.TabIndex = 3;
-            label3.Text = "Codigo: XXXXX";
+            Number_textbox.BackColor = SystemColors.Window;
+            Number_textbox.BorderColor = Color.Silver;
+            Number_textbox.BorderFocusColor = Color.FromArgb(255, 54, 112);
+            Number_textbox.BorderRadius = 0;
+            Number_textbox.BorderSize = 2;
+            Number_textbox.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
+            Number_textbox.ForeColor = Color.FromArgb(64, 64, 64);
+            Number_textbox.Location = new Point(10, 198);
+            Number_textbox.Margin = new Padding(4);
+            Number_textbox.Multiline = false;
+            Number_textbox.Name = "Number_textbox";
+            Number_textbox.Padding = new Padding(10, 7, 10, 7);
+            Number_textbox.PasswordChar = false;
+            Number_textbox.PlaceholderColor = Color.DarkGray;
+            Number_textbox.PlaceholderText = "#";
+            Number_textbox.ReadOnly = false;
+            Number_textbox.Size = new Size(78, 35);
+            Number_textbox.TabIndex = 39;
+            Number_textbox.TextAlign = ContentAlignment.MiddleLeft;
+            Number_textbox.Texts = "";
+            Number_textbox.UnderlinedStyle = false;
             // 
-            // Price_label
+            // Process_button
             // 
-            Price_label.AutoSize = true;
-            Price_label.Location = new Point(12, 144);
-            Price_label.Name = "Price_label";
-            Price_label.Size = new Size(50, 20);
-            Price_label.TabIndex = 4;
-            Price_label.Text = "Precio";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 94);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 5;
-            // 
-            // unit_label
-            // 
-            unit_label.AutoSize = true;
-            unit_label.Location = new Point(179, 144);
-            unit_label.Name = "unit_label";
-            unit_label.Size = new Size(109, 20);
-            unit_label.TabIndex = 6;
-            unit_label.Text = "Cunidad en: KG";
-            // 
-            // number_label
-            // 
-            number_label.AutoSize = true;
-            number_label.Location = new Point(12, 230);
-            number_label.Name = "number_label";
-            number_label.Size = new Size(152, 20);
-            number_label.TabIndex = 7;
-            number_label.Text = "numero de productos";
-            // 
-            // Price_textBox
-            // 
-            Price_textBox.Location = new Point(12, 167);
-            Price_textBox.Name = "Price_textBox";
-            Price_textBox.PlaceholderText = "$10";
-            Price_textBox.Size = new Size(125, 27);
-            Price_textBox.TabIndex = 8;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(179, 167);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "10";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 9;
-            // 
-            // Number_textBox
-            // 
-            Number_textBox.Location = new Point(12, 253);
-            Number_textBox.Name = "Number_textBox";
-            Number_textBox.PlaceholderText = "10";
-            Number_textBox.Size = new Size(125, 27);
-            Number_textBox.TabIndex = 10;
+            Process_button.BackColor = Color.White;
+            Process_button.BackgroundColor = Color.White;
+            Process_button.BorderColor = Color.FromArgb(255, 54, 112);
+            Process_button.BorderRadius = 20;
+            Process_button.BorderSize = 2;
+            Process_button.FlatAppearance.BorderSize = 0;
+            Process_button.FlatStyle = FlatStyle.Flat;
+            Process_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Process_button.ForeColor = Color.Black;
+            Process_button.Location = new Point(604, 615);
+            Process_button.Name = "Process_button";
+            Process_button.Size = new Size(254, 86);
+            Process_button.TabIndex = 38;
+            Process_button.Text = "Procesar";
+            Process_button.TextColor = Color.Black;
+            Process_button.UseVisualStyleBackColor = false;
             // 
             // Add_button
             // 
-            Add_button.FlatStyle = FlatStyle.Popup;
-            Add_button.Location = new Point(100, 320);
+            Add_button.BackColor = Color.White;
+            Add_button.BackgroundColor = Color.White;
+            Add_button.BorderColor = Color.FromArgb(255, 54, 112);
+            Add_button.BorderRadius = 20;
+            Add_button.BorderSize = 2;
+            Add_button.FlatAppearance.BorderSize = 0;
+            Add_button.FlatStyle = FlatStyle.Flat;
+            Add_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Add_button.ForeColor = Color.Black;
+            Add_button.Location = new Point(8, 350);
             Add_button.Name = "Add_button";
-            Add_button.Size = new Size(122, 54);
-            Add_button.TabIndex = 11;
+            Add_button.Size = new Size(265, 139);
+            Add_button.TabIndex = 37;
             Add_button.Text = "Agregar";
-            Add_button.UseVisualStyleBackColor = true;
+            Add_button.TextColor = Color.Black;
+            Add_button.UseVisualStyleBackColor = false;
+            // 
+            // Exit_button
+            // 
+            Exit_button.BackColor = Color.White;
+            Exit_button.FlatAppearance.BorderColor = Color.White;
+            Exit_button.FlatAppearance.MouseDownBackColor = Color.White;
+            Exit_button.FlatAppearance.MouseOverBackColor = Color.White;
+            Exit_button.FlatStyle = FlatStyle.Flat;
+            Exit_button.Image = Properties.Resources.esquema_de_boton_circular_de_flecha_hacia_atras_izquierda__2_;
+            Exit_button.Location = new Point(8, 12);
+            Exit_button.Name = "Exit_button";
+            Exit_button.Size = new Size(45, 40);
+            Exit_button.TabIndex = 36;
+            Exit_button.UseVisualStyleBackColor = false;
+            // 
+            // Products_cbb
+            // 
+            Products_cbb.BackColor = Color.White;
+            Products_cbb.BorderColor = Color.Silver;
+            Products_cbb.BorderSize = 1;
+            Products_cbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            Products_cbb.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Products_cbb.ForeColor = Color.DimGray;
+            Products_cbb.IconColor = Color.FromArgb(255, 54, 112);
+            Products_cbb.Items.AddRange(new object[] { "Paletas", "Mangoneadas", "Helados", "Dulces", "Otros(snacks)" });
+            Products_cbb.ListBackColor = Color.FromArgb(27, 166, 182);
+            Products_cbb.ListTextColor = Color.White;
+            Products_cbb.Location = new Point(8, 102);
+            Products_cbb.MinimumSize = new Size(200, 30);
+            Products_cbb.Name = "Products_cbb";
+            Products_cbb.Padding = new Padding(1);
+            Products_cbb.Size = new Size(250, 38);
+            Products_cbb.TabIndex = 35;
+            Products_cbb.Texts = "Paletas";
+            // 
+            // Products_dataGridView
+            // 
+            Products_dataGridView.AllowUserToAddRows = false;
+            Products_dataGridView.AllowUserToDeleteRows = false;
+            Products_dataGridView.AllowUserToResizeColumns = false;
+            Products_dataGridView.AllowUserToResizeRows = false;
+            Products_dataGridView.BackgroundColor = Color.White;
+            Products_dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            Products_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            Products_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(255, 204, 204);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            Products_dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            Products_dataGridView.EnableHeadersVisualStyles = false;
+            Products_dataGridView.GridColor = Color.Black;
+            Products_dataGridView.Location = new Point(310, 12);
+            Products_dataGridView.Name = "Products_dataGridView";
+            Products_dataGridView.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(255, 98, 133);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            Products_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            Products_dataGridView.RowHeadersVisible = false;
+            Products_dataGridView.RowHeadersWidth = 51;
+            Products_dataGridView.RowTemplate.Height = 29;
+            Products_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Products_dataGridView.Size = new Size(879, 597);
+            Products_dataGridView.TabIndex = 33;
+            // 
+            // Number_label
+            // 
+            Number_label.AutoSize = true;
+            Number_label.Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            Number_label.Location = new Point(9, 165);
+            Number_label.Name = "Number_label";
+            Number_label.Size = new Size(107, 29);
+            Number_label.TabIndex = 32;
+            Number_label.Text = "Cantidad";
+            // 
+            // product_label
+            // 
+            product_label.AutoSize = true;
+            product_label.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            product_label.Location = new Point(8, 55);
+            product_label.Name = "product_label";
+            product_label.Size = new Size(306, 41);
+            product_label.TabIndex = 30;
+            product_label.Text = "Tipo de Ingrediente";
             // 
             // AddIngredients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(330, 386);
+            BackColor = Color.White;
+            ClientSize = new Size(1198, 718);
+            Controls.Add(Subsidiary_cbb);
+            Controls.Add(label1);
+            Controls.Add(Number_textbox);
+            Controls.Add(Process_button);
             Controls.Add(Add_button);
-            Controls.Add(Number_textBox);
-            Controls.Add(textBox1);
-            Controls.Add(Price_textBox);
-            Controls.Add(number_label);
-            Controls.Add(unit_label);
-            Controls.Add(comboBox1);
-            Controls.Add(Price_label);
-            Controls.Add(label3);
             Controls.Add(Exit_button);
-            Controls.Add(Name_label);
+            Controls.Add(Products_cbb);
+            Controls.Add(Products_dataGridView);
+            Controls.Add(Number_label);
+            Controls.Add(product_label);
             Name = "AddIngredients";
             Text = "AddIngredients";
+            ((System.ComponentModel.ISupportInitialize)Products_dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label Name_label;
+        private Components.RJComboBox Subsidiary_cbb;
+        private Label label1;
+        private Components.RJTextBox Number_textbox;
+        private Components.RJButton Process_button;
+        private Components.RJButton Add_button;
         private Button Exit_button;
-        private Label label3;
-        private Label Price_label;
-        private ComboBox comboBox1;
-        private Label unit_label;
-        private Label number_label;
-        private TextBox Price_textBox;
-        private TextBox textBox1;
-        private TextBox Number_textBox;
-        private Button Add_button;
+        private Components.RJComboBox Products_cbb;
+        private DataGridView Products_dataGridView;
+        private Label Number_label;
+        private Label product_label;
     }
 }

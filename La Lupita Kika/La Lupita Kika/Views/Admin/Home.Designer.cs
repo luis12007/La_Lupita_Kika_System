@@ -129,7 +129,7 @@
             Gains_button.Padding = new Padding(0, 20, 0, 20);
             Gains_button.Size = new Size(308, 206);
             Gains_button.TabIndex = 10;
-            Gains_button.Text = "Ganancias";
+            Gains_button.Text = "Ventas";
             Gains_button.TextAlign = ContentAlignment.BottomCenter;
             Gains_button.TextColor = Color.Black;
             Gains_button.UseVisualStyleBackColor = false;
@@ -230,7 +230,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Admin";
+            Text = "Menu";
             Load += Home_Load;
             ResumeLayout(false);
         }

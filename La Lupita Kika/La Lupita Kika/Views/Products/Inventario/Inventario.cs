@@ -509,9 +509,29 @@ namespace La_Lupita_Kika.Views.Products.Palettes
                     Categorynone = "none";
                     foreach (var palettec in palettes)
                     {
-                        Subsidiarynone = SubsidiaryRepository.FindNameById(palettec.Subsidiary_ID);
-                        Categorynone = categorepo.FindNameById(palettec.Category_Id);
-                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{Subsidiarynone}" };
+                            switch (palettec.Category_Id)
+                            {
+                                case 1:
+                                    Categorynone = "Cremosas";
+                                    break;
+
+                                case 2:
+                                    Categorynone = "Picantes";
+                                    break;
+
+                                case 3:
+                                    Categorynone = "Fruta";
+                                    break;
+
+                                case 4:
+                                    Categorynone = "Licor";
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                            Categorynone = categorepo.FindNameById(palettec.Category_Id);
+                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{palettec.Subsidiary_ID}" };
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
 
@@ -531,9 +551,7 @@ namespace La_Lupita_Kika.Views.Products.Palettes
                     Categorynone = "none";
                     foreach (var palettec in Mangoneadas)
                     {
-                        Subsidiarynone = SubsidiaryRepository.FindNameById(palettec.Subsidiary_ID);
-                        Categorynone = categorepo.FindNameById(palettec.Category_id);
-                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{Subsidiarynone}" };
+                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"Mangoneada", $"{palettec.Cuantity}", $"{palettec.Subsidiary_ID}" };
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
 
@@ -555,8 +573,7 @@ namespace La_Lupita_Kika.Views.Products.Palettes
                     Categorynone = "none";
                     foreach (var palettec in snowIce)
                     {
-                        Subsidiarynone = SubsidiaryRepository.FindNameById(palettec.Subsidiary_ID);
-                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{Subsidiarynone}" };
+                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{palettec.Subsidiary_ID}" };
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
 
@@ -577,9 +594,21 @@ namespace La_Lupita_Kika.Views.Products.Palettes
                     Categorynone = "none";
                     foreach (var palettec in candys)
                     {
-                        Subsidiarynone = SubsidiaryRepository.FindNameById(palettec.Subsidiary_ID);
-                        Categorynone = categoryCRepository.FindNameById(palettec.Category_id);
-                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{Subsidiarynone}" };
+                        switch (palettec.Category_id)
+                        {
+                            case 1:
+                                Categorynone = "Mejicanos";
+                                break;
+
+                            case 2:
+                                Categorynone = "Otros";
+                                break;
+
+                            default:
+                                break;
+
+                        }
+                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{palettec.Subsidiary_ID}" };
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
 
@@ -600,8 +629,7 @@ namespace La_Lupita_Kika.Views.Products.Palettes
                     Categorynone = "none";
                     foreach (var palettec in others)
                     {
-                        Subsidiarynone = SubsidiaryRepository.FindNameById(palettec.Subsidiary_ID);
-                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{Subsidiarynone}" };
+                        String[] row2 = { palettec.Name, $"{palettec.Price}", $"{palettec.Codebar}", $"{Categorynone}", $"{palettec.Cuantity}", $"{palettec.Subsidiary_ID}" };
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
 
