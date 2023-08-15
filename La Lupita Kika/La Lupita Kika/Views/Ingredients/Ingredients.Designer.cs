@@ -38,6 +38,7 @@
             button2 = new Button();
             Find = new Components.RJTextBox();
             Subsidiary_cbb = new Components.RJComboBox();
+            Add_Products = new Components.RJButton();
             ((System.ComponentModel.ISupportInitialize)Ingredients_dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             Ingredients_dataGridView.RowHeadersWidth = 51;
             Ingredients_dataGridView.RowTemplate.Height = 29;
             Ingredients_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Ingredients_dataGridView.Size = new Size(1010, 387);
+            Ingredients_dataGridView.Size = new Size(1126, 387);
             Ingredients_dataGridView.TabIndex = 20;
             // 
             // button1
@@ -110,7 +111,7 @@
             Add_button.FlatStyle = FlatStyle.Flat;
             Add_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Add_button.ForeColor = Color.Black;
-            Add_button.Location = new Point(386, 491);
+            Add_button.Location = new Point(459, 491);
             Add_button.Name = "Add_button";
             Add_button.Size = new Size(273, 72);
             Add_button.TabIndex = 22;
@@ -124,7 +125,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.White;
             button2.Image = Properties.Resources.buscar;
-            button2.Location = new Point(965, 54);
+            button2.Location = new Point(1066, 54);
             button2.Name = "button2";
             button2.Size = new Size(70, 35);
             button2.TabIndex = 33;
@@ -140,7 +141,7 @@
             Find.BorderSize = 1;
             Find.Font = new Font("Microsoft Sans Serif", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
             Find.ForeColor = Color.FromArgb(64, 64, 64);
-            Find.Location = new Point(538, 54);
+            Find.Location = new Point(639, 54);
             Find.Margin = new Padding(4);
             Find.Multiline = false;
             Find.Name = "Find";
@@ -176,12 +177,33 @@
             Subsidiary_cbb.Texts = "";
             Subsidiary_cbb.OnSelectedIndexChanged += Subsidiary_cbb_OnSelectedIndexChanged;
             // 
+            // Add_Products
+            // 
+            Add_Products.BackColor = Color.White;
+            Add_Products.BackgroundColor = Color.White;
+            Add_Products.BorderColor = Color.FromArgb(255, 54, 112);
+            Add_Products.BorderRadius = 20;
+            Add_Products.BorderSize = 2;
+            Add_Products.FlatAppearance.BorderSize = 0;
+            Add_Products.FlatStyle = FlatStyle.Flat;
+            Add_Products.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Add_Products.ForeColor = Color.Black;
+            Add_Products.Image = Properties.Resources.boton_agregar;
+            Add_Products.Location = new Point(1062, 520);
+            Add_Products.Name = "Add_Products";
+            Add_Products.Size = new Size(76, 43);
+            Add_Products.TabIndex = 34;
+            Add_Products.TextColor = Color.Black;
+            Add_Products.UseVisualStyleBackColor = false;
+            Add_Products.Click += rjButton2_Click;
+            // 
             // Ingredients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1036, 575);
+            ClientSize = new Size(1152, 575);
+            Controls.Add(Add_Products);
             Controls.Add(button2);
             Controls.Add(Find);
             Controls.Add(Subsidiary_cbb);
@@ -209,5 +231,6 @@
         private Components.RJTextBox Find;
         private Components.RJComboBox subsidiary_cbb;
         private Components.RJComboBox Subsidiary_cbb;
+        private Components.RJButton Add_Products;
     }
 }

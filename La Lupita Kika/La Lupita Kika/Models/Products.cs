@@ -62,5 +62,18 @@ namespace La_Lupita_Kika.Models
             Numberadd = numberadd;
             Subsidiary_id = subsidiary_id;
         }
+
+        public Products(string name, int cuantity, float valor, string tipo, string codebar, float cuantitydb, float numberadd, int subsidiary_id, string catego)
+        {
+            Nombre = name;
+            Cantidad = cuantity;
+            Valor = valor;
+            Tipo = tipo;
+            Codebar = codebar;
+            Cuantitydb = cuantitydb;
+            Numberadd = numberadd;
+            Subsidiary_id = subsidiary_id;
+            this.catego = catego;
+        }
     }
 }

@@ -676,7 +676,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
         private void Subsidiary_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Subsidiary_cbb_Click(object sender, EventArgs e)

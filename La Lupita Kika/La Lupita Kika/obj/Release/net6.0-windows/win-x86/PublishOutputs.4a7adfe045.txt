@@ -1,0 +1,8 @@
+C:\Users\luish\OneDrive\Documentos\resultados\La Lupita Kika.pdb
+C:\Users\luish\OneDrive\Documentos\resultados\D3DCompiler_47_cor3.dll
+C:\Users\luish\OneDrive\Documentos\resultados\PenImc_cor3.dll
+C:\Users\luish\OneDrive\Documentos\resultados\PresentationNative_cor3.dll
+C:\Users\luish\OneDrive\Documentos\resultados\vcruntime140_cor3.dll
+C:\Users\luish\OneDrive\Documentos\resultados\wpfgfx_cor3.dll
+C:\Users\luish\OneDrive\Documentos\resultados\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\luish\OneDrive\Documentos\resultados\La Lupita Kika.exe

@@ -33,23 +33,25 @@ namespace La_Lupita_Kika.Views.Ingredients
         private void InitializeDataGridView()
         {
             // Agregar las tres columnas al DataGridView y definir sus propiedades
-            Ingredients_dataGridView.ColumnCount = 6;      // Columna para el nombre del producto
+            Ingredients_dataGridView.ColumnCount = 7;      // Columna para el nombre del producto
             Ingredients_dataGridView.Columns[0].Name = "Nombre";
             Ingredients_dataGridView.Columns[1].Name = "Precio";
             Ingredients_dataGridView.Columns[2].Name = "Codigo";
             Ingredients_dataGridView.Columns[3].Name = "Cantidad";
             Ingredients_dataGridView.Columns[4].Name = "Tipo";
             Ingredients_dataGridView.Columns[5].Name = "Sucursal";
+            Ingredients_dataGridView.Columns[6].Name = "Categoria";
 
 
 
             // Ajustar el ancho de las columnas
-            Ingredients_dataGridView.Columns["Nombre"].Width = 290;
+            Ingredients_dataGridView.Columns["Nombre"].Width = 340;
             Ingredients_dataGridView.Columns["Precio"].Width = 115;
             Ingredients_dataGridView.Columns["Codigo"].Width = 140;
-            Ingredients_dataGridView.Columns["Cantidad"].Width = 200;
+            Ingredients_dataGridView.Columns["Cantidad"].Width = 150;
             Ingredients_dataGridView.Columns["Tipo"].Width = 120;
             Ingredients_dataGridView.Columns["Sucursal"].Width = 120;
+            Ingredients_dataGridView.Columns["Categoria"].Width = 120;
 
         }
 
@@ -64,12 +66,11 @@ namespace La_Lupita_Kika.Views.Ingredients
 
             IngredientsList = IngredientsRepository.FindBySubsidiary(subsidiarynumber);
 
-
             Ingredients_dataGridView.Rows.Clear();
 
             foreach (var palettec in IngredientsList)
             {
-                String[] row2 = { $"{palettec.Name}", $"{palettec.Price}", $"{palettec.Code}", $"{palettec.Unit}", $"{palettec.Type}", $"{palettec.Subsidiary_ID}" };
+                String[] row2 = { $"{palettec.Name}", $"{palettec.Price}", $"{palettec.Code}", $"{palettec.Unit}", $"{palettec.Type}", $"{palettec.Subsidiary_ID}", $"{palettec.Category}" };
                 Ingredients_dataGridView.Rows.Add(row2);
                 Ingredients_dataGridView.ClearSelection();
 
@@ -145,7 +146,7 @@ namespace La_Lupita_Kika.Views.Ingredients
         {
             string find = Find.Texts.ToString();
 
-            IngredientsList = FindByNameOrCodeContaining(IngredientsList, find);
+            IngredientsList = FindByName(IngredientsList, find);
 
 
             Ingredients_dataGridView.Rows.Clear();
@@ -160,10 +161,10 @@ namespace La_Lupita_Kika.Views.Ingredients
             Find.Texts = "";
         }
 
-        public List<Models.Ingredients> FindByNameOrCodeContaining(List<Models.Ingredients> ingredientsList, string searchText)
+        public List<Models.Ingredients> FindByName(List<Models.Ingredients> ingredientsList, string searchText)
         {
             List<Models.Ingredients> matchingIngredients = ingredientsList
-                .Where(ingredient => ingredient.Name.Contains(searchText) || ingredient.Code.Contains(searchText))
+                .Where(ingredient => ingredient.Name.Contains(searchText))
                 .ToList();
             return matchingIngredients;
         }
@@ -188,14 +189,25 @@ namespace La_Lupita_Kika.Views.Ingredients
                     float price = float.Parse(row.Cells["Precio"].Value.ToString());
                     float unit = float.Parse(row.Cells["Cantidad"].Value.ToString());
                     string type = row.Cells["Tipo"].Value.ToString();
+                    string Category = row.Cells["Categoria"].Value.ToString();
                     int subsidiaryId = Convert.ToInt32(row.Cells["Sucursal"].Value);
 
-                    Models.Ingredients ingredient = new Models.Ingredients(0, name, code, price, unit, type, subsidiaryId);
+                    Models.Ingredients ingredient = new Models.Ingredients(0, name, code, price, unit, type, subsidiaryId, Category);
                     ingredientsList.Add(ingredient);
                 }
             }
 
             return ingredientsList;
+        }
+
+        private void rjButton2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            AddIngredients addIngredients = new AddIngredients(ConnectionString);
+            addIngredients.ShowDialog();
+
+            this.Show();
         }
     }
 }

@@ -333,6 +333,9 @@ namespace La_Lupita_Kika.Views
                 MessageBox.Show("Sin productos para procesar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            
+
             // Supongamos que tienes una instancia del repositorio SalesRepository llamada salesrepo
             foreach (var producto in productosList)
             {
@@ -363,6 +366,9 @@ namespace La_Lupita_Kika.Views
 
 
             }
+
+            //ingredients
+            CalculateIngredients();
 
             float totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
 
@@ -449,6 +455,109 @@ namespace La_Lupita_Kika.Views
             {
                 // Llamar al evento Login_button_Click
                 Add_button.PerformClick();
+            }
+        }
+
+        private void CalculateIngredients()
+        {
+            // recorriendo para ingredientes
+            foreach (var producto in productosList)
+            {
+                switch (producto.Codebar)
+                {
+                    case "M03":
+                        MessageBox.Show("hola");
+                        break;
+                    case "M04":
+                        break;
+                    case "M05":
+                        break;
+                    case "M06":
+                        break;
+                    case "M07":
+                        break;
+                    case "M08":
+                        break;
+                    case "M09":
+                        break;
+                    case "M10":
+                        break;
+                    case "M11":
+                        break;
+                    case "M01":
+                        break;
+                    case "M02":
+                        MessageBox.Show("Producto de tipo M");
+                        break;
+
+                    case "C01":
+                        break;
+                    case "C02":
+                        break;
+                    case "C03":
+                        break;
+                    case "C04":
+                        break;
+                    case "C05":
+                        break;
+                    case "C06":
+                        break;
+                    case "C07":
+                        break;
+                    case "C08":
+                        break;
+                    case "C09":
+
+                        Console.WriteLine("Producto de tipo C");
+                        break;
+
+                    case "P01":
+                        break;
+                    case "P02":
+                        break;
+                    case "P03":
+                        break;
+
+                    case "P04":
+                        break;
+                    case "P05":
+                        break;
+                    case "P06":
+                        break;
+                    case "P07":
+                        break;
+                    case "P08":
+                        break;
+                    case "P09":
+                        break;
+                    case "P10":
+                        Console.WriteLine("Producto de tipo P");
+                        break;
+
+                    case "F01":
+                        break;
+                    case "F02":
+                        break;
+                    case "F03":
+                        break;
+                        Console.WriteLine("Producto de tipo F");
+                        break;
+
+                    case "L01":
+                        break;
+                    case "L02":
+                        break;
+                    case "L03":
+                        break;
+                    case "L04":
+                        Console.WriteLine("Producto de tipo L");
+                        break;
+
+                    default:
+                        Console.WriteLine("Tipo de producto no reconocido");
+                        break;
+                }
+
             }
         }
     }

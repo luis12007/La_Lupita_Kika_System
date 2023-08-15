@@ -188,7 +188,7 @@
             Process_button.FlatStyle = FlatStyle.Flat;
             Process_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Process_button.ForeColor = Color.Black;
-            Process_button.Location = new Point(608, 615);
+            Process_button.Location = new Point(638, 615);
             Process_button.Name = "Process_button";
             Process_button.Size = new Size(254, 86);
             Process_button.TabIndex = 20;
