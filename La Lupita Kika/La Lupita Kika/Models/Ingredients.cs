@@ -33,6 +33,17 @@ namespace La_Lupita_Kika.Models
             Category = category;
         }
 
+        public Ingredients(string name, string code, float price, float unit, string type, int subsidiary_ID, string category)
+        {
+            Name = name;
+            Code = code;
+            Price = price;
+            Unit = unit;
+            Type = type;
+            Subsidiary_ID = subsidiary_ID;
+            Category = category;
+        }
+
 
     }
 

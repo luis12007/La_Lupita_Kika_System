@@ -32,21 +32,22 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Warning));
-            label = new Label();
+            tittle_label = new Label();
             Products_dataGridView = new DataGridView();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)Products_dataGridView).BeginInit();
             SuspendLayout();
             // 
-            // label
+            // tittle_label
             // 
-            label.AutoSize = true;
-            label.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            label.Location = new Point(29, 9);
-            label.Name = "label";
-            label.Size = new Size(355, 41);
-            label.TabIndex = 0;
-            label.Text = "Pocos ingredientes de";
-            label.Click += label_Click;
+            tittle_label.AutoSize = true;
+            tittle_label.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            tittle_label.Location = new Point(111, 11);
+            tittle_label.Name = "tittle_label";
+            tittle_label.Size = new Size(355, 41);
+            tittle_label.TabIndex = 0;
+            tittle_label.Text = "Pocos ingredientes de";
+            tittle_label.Click += label_Click;
             // 
             // Products_dataGridView
             // 
@@ -75,7 +76,7 @@
             Products_dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             Products_dataGridView.EnableHeadersVisualStyles = false;
             Products_dataGridView.GridColor = Color.Black;
-            Products_dataGridView.Location = new Point(12, 53);
+            Products_dataGridView.Location = new Point(12, 67);
             Products_dataGridView.Name = "Products_dataGridView";
             Products_dataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -90,20 +91,38 @@
             Products_dataGridView.RowHeadersWidth = 51;
             Products_dataGridView.RowTemplate.Height = 29;
             Products_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Products_dataGridView.Size = new Size(382, 326);
+            Products_dataGridView.Size = new Size(605, 512);
             Products_dataGridView.TabIndex = 20;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.White;
+            button1.FlatAppearance.BorderColor = Color.White;
+            button1.FlatAppearance.MouseDownBackColor = Color.White;
+            button1.FlatAppearance.MouseOverBackColor = Color.White;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Image = Properties.Resources.esquema_de_boton_circular_de_flecha_hacia_atras_izquierda__2_;
+            button1.Location = new Point(12, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(45, 40);
+            button1.TabIndex = 23;
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // Warning
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(410, 388);
+            BackColor = Color.White;
+            ClientSize = new Size(627, 599);
+            Controls.Add(button1);
             Controls.Add(Products_dataGridView);
-            Controls.Add(label);
+            Controls.Add(tittle_label);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Warning";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Warning";
+            Load += Warning_Load;
             ((System.ComponentModel.ISupportInitialize)Products_dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -111,7 +130,8 @@
 
         #endregion
 
-        private Label label;
+        private Label tittle_label;
         private DataGridView Products_dataGridView;
+        private Button button1;
     }
 }

@@ -74,7 +74,11 @@ namespace La_Lupita_Kika.Models
         }
         public void imprimir(Ticket p)
         {
+#pragma warning disable CS0219 // La variable está asignada pero nunca se usa su valor
+#pragma warning disable CS0219 // La variable está asignada pero nunca se usa su valor
             int numerio = 3;
+#pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
+#pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
             doc.PrintPage += new PrintPageEventHandler(imprimeticket);
             vista.Document = doc;

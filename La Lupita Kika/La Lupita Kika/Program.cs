@@ -42,6 +42,7 @@ namespace La_Lupita_Kika
             try
             {
                 Application.Run(new Login(connectionString));
+                //Application.Run(new AddProducts(connectionString));
             }
             catch (System.NullReferenceException)
             {

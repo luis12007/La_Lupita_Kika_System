@@ -1,4 +1,5 @@
-﻿using La_Lupita_Kika.Models;
+﻿using Google.Protobuf.WellKnownTypes;
+using La_Lupita_Kika.Models;
 using La_Lupita_Kika.UserRepository;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -23,6 +24,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
         private string Codebar;
 
         private List<Models.Products> productosList = new List<Models.Products>(); // Lista de productos
+        private List<Models.Products> productosFaltantesList = new List<Models.Products>(); // Lista de productos que faltan
         private List<string> clearlist = new List<string>();
 
 
@@ -34,6 +36,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
         private CategoryRepository categoryrepo;
         private CategoryCRepository categoryCrepo;
         private SubsidiaryRepository subsidiaryrepo;
+        private IngredientsRepository ingredientsrepo;
         private string subsidiary;
         private int subsidiaryint;
         public AddProducts(string connectionString)
@@ -47,6 +50,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
             this.categoryrepo = new CategoryRepository(connectionString);
             this.categoryCrepo = new CategoryCRepository(connectionString);
             this.subsidiaryrepo = new SubsidiaryRepository(connectionString);
+            this.ingredientsrepo = new IngredientsRepository(connectionString);
             InitializeComponent();
             InitializeDataGridView();
             this.FormClosing += MainForm_FormClosing;
@@ -78,7 +82,7 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
             }
 
             Subsidiary_cbb.DataSource = subsidiaryNames;
-
+            Subsidiary_cbb.SelectedIndex = 1;
 
         }
 
@@ -257,6 +261,14 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
 
         private void Add_button_Click(object sender, EventArgs e)
         {
+            if (!int.TryParse(Number_textbox.Texts, out int result))
+            {
+                MessageBox.Show("Valor ingresado en cantidad no es un numero.", "Cuidado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Number_textbox.Texts = "";
+                return;
+            }
+
+
             type = Products_cbb.SelectedItem.ToString();
             Number = int.Parse(Number_textbox.Texts);
             subsidiary = Subsidiary_cbb.SelectedItem.ToString();
@@ -657,9 +669,24 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
                         break;
                 }
             }
+            productosFaltantesList.Clear();
+            //ingredients
+            CalculateIngredients();
+
+            if (productosFaltantesList.Count > 0)
+            {
+                this.Hide();
+
+                Warning warning = new Warning(ConnectionString, productosFaltantesList, "Productos que hacen falta");
+                warning.ShowDialog();
+
+                this.Show();
+            }
+
             MessageBox.Show("Agreagdo correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Products_dataGridView.Rows.Clear();
             Products_dataGridView.Refresh();
+            productosFaltantesList.Clear();
             productosList.Clear();
 
         }
@@ -682,6 +709,1257 @@ namespace La_Lupita_Kika.Views.Admin.AddProduct
         private void Subsidiary_cbb_Click(object sender, EventArgs e)
         {
             Products_cbb_OnSelectedIndexChanged(sender, e);
+        }
+
+        private void CalculateIngredients()
+        {
+            // recorriendo para ingredientes
+            foreach (var producto in productosList)
+            {
+                switch (producto.Codebar.ToUpper())
+                {
+                    case "M03":
+                        Dictionary<string, float> ingredientsToSubtractm03 = new Dictionary<string, float>
+                                {
+                                    { "Jocote", 2.86f * producto.Cantidad },
+                                    { "Azucar", 0.09f * producto.Cantidad },
+                                    { "Sal", 0.06f * producto.Cantidad },
+                                    { "Acido cítrico", 0.20f * producto.Cantidad },
+                                    { "Maizena", 0.06f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker jocote", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm03)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType,$"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M04":
+                        Dictionary<string, float> ingredientsToSubtractm04 = new Dictionary<string, float>
+                                {
+                                    { "Arrayán", 0.20f * producto.Cantidad },
+                                    { "Azucar", 0.11f * producto.Cantidad },
+                                    { "Sal", 0.06f * producto.Cantidad },
+                                    { "Acido cítrico", 0.20f * producto.Cantidad },
+                                    { "Maizena", 0.06f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker arrayán", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm04)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M05":
+                        Dictionary<string, float> ingredientsToSubtractm05 = new Dictionary<string, float>
+                                {
+                                    { "Mora", 0.10f * producto.Cantidad },
+                                    { "Azucar", 0.10f * producto.Cantidad },
+                                    { "Acido cítrico", 0.23f * producto.Cantidad },
+                                    { "Maizena", 0.07f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker mora", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm05)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M06":
+                        Dictionary<string, float> ingredientsToSubtractm06 = new Dictionary<string, float>
+                                {
+                                    { "Mango maduro", 0.53f * producto.Cantidad },
+                                    { "Azucar", 0.10f * producto.Cantidad },
+                                    { "Sal", 0.07f * producto.Cantidad },
+                                    { "Acido cítrico", 0.23f * producto.Cantidad },
+                                    { "Maizena", 0.07f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker mango maduro", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm06)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M07":
+                        Dictionary<string, float> ingredientsToSubtractm07 = new Dictionary<string, float>
+                                {
+                                    { "Mango verde", 0.53f * producto.Cantidad },
+                                    { "Azucar", 0.12f * producto.Cantidad },
+                                    { "Sal", 0.07f * producto.Cantidad },
+                                    { "Acido cítrico", 0.23f * producto.Cantidad },
+                                    { "Maizena", 0.07f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker mango verde", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm07)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M08":
+                        Dictionary<string, float> ingredientsToSubtractm08 = new Dictionary<string, float>
+                                {
+                                    { "Piña para fresco", 0.05f * producto.Cantidad },
+                                    { "Azucar", 0.15f * producto.Cantidad },
+                                    { "Sal", 0.10f * producto.Cantidad },
+                                    { "Acido cítrico", 0.35f * producto.Cantidad },
+                                    { "Maizena", 0.10f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker piña", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm08)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M09":
+                        Dictionary<string, float> ingredientsToSubtractm09 = new Dictionary<string, float>
+                                {
+                                    { "Fresa", 0.08f * producto.Cantidad },
+                                    { "Azucar", 0.10f * producto.Cantidad },
+                                    { "Sal", 0.03f * producto.Cantidad },
+                                    { "Acido cítrico", 0.23f * producto.Cantidad },
+                                    { "Maizena", 0.07f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker fresa", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm09)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M10":
+                        Dictionary<string, float> ingredientsToSubtractm10 = new Dictionary<string, float>
+                                {
+                                    { "Tamarindo", 0.05f * producto.Cantidad },
+                                    { "Azucar", 0.18f * producto.Cantidad },
+                                    { "Sal", 0.10f * producto.Cantidad },
+                                    { "Acido cítrico", 0.35f * producto.Cantidad },
+                                    { "Maizena", 0.10f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker tamarindo", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm10)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M11":
+                        Dictionary<string, float> ingredientsToSubtractm11 = new Dictionary<string, float>
+                                    {
+                                        { "Sandía grande", 0.03f * producto.Cantidad },
+                                        { "Azucar", 0.07f * producto.Cantidad },
+                                        { "Acido cítrico", 0.23f * producto.Cantidad },
+                                        { "Maizena", 0.07f * producto.Cantidad },
+                                        { "Palo de madera", 1.00f * producto.Cantidad },
+                                        { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                        { "Sticker sandía", 1.00f * producto.Cantidad }
+                                    };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm11)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "M01":
+                        Dictionary<string, float> ingredientsToSubtractm01 = new Dictionary<string, float>
+                                {
+                                    { "Tamarindo", 0.03f * producto.Cantidad },
+                                    { "Azucar", 0.10f * producto.Cantidad },
+                                    { "Cerveza", 0.13f * producto.Cantidad },
+                                    { "Jugo de tomate", 0.03f * producto.Cantidad },
+                                    { "Salsa inglesa", 0.07f * producto.Cantidad },
+                                    { "Sal", 0.07f * producto.Cantidad },
+                                    { "Limón", 0.07f * producto.Cantidad },
+                                    { "Tajín", 0.02f * producto.Cantidad },
+                                    { "Chile liquido", 0.07f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker michelada", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm01)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+
+                        break;
+                    case "M02":
+                        Dictionary<string, float> ingredientsToSubtractm02 = new Dictionary<string, float>
+                                {
+                                    { "Piña para fresco", 0.03f * producto.Cantidad },
+                                    { "Azucar", 0.10f * producto.Cantidad },
+                                    { "Cerveza", 0.13f * producto.Cantidad },
+                                    { "Jugo de tomate", 0.03f * producto.Cantidad },
+                                    { "Salsa inglesa", 0.07f * producto.Cantidad },
+                                    { "Sal", 0.07f * producto.Cantidad },
+                                    { "Limón", 0.07f * producto.Cantidad },
+                                    { "Tajín", 0.02f * producto.Cantidad },
+                                    { "Chile liquido", 0.07f * producto.Cantidad },
+                                    { "Palo de madera", 1.00f * producto.Cantidad },
+                                    { "Vaso mangoneada", 1.00f * producto.Cantidad },
+                                    { "Sticker michelanga", 1.00f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractm02)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+                        break;
+
+                    case "C01":
+                        Dictionary<string, float> ingredientsToSubtract = new Dictionary<string, float>
+                            {
+                            { "Galleta oreo", 0.075f * producto.Cantidad },
+                            { "Leche entera", 0.01f* producto.Cantidad },
+                            { "Vainilla", 0.05f * producto.Cantidad },
+                            { "Azucar", 0.075f* producto.Cantidad },
+                            { "Queso crema 230 gramos", 0.025f* producto.Cantidad },
+                            { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                            { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                            { "Paleta madera", 1f * producto.Cantidad },
+                            { "Emboltorio paleta", 1f * producto.Cantidad },
+                            { "Servilleta", 1f * producto.Cantidad },
+                            { "Sticker la luna", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtract)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+                        break;
+                    case "C02":
+                        Dictionary<string, float> ingredientsToSubtractc02 = new Dictionary<string, float>
+                            {
+                                { "Coco sazón", 0.075f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Escencia de coco", 0.05f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker la palma", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc02)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+                        break;
+                    case "C03":
+                        Dictionary<string, float> ingredientsToSubtractc03 = new Dictionary<string, float>
+                            {
+                                { "Café listo 2 gramos", 0.075f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Vainilla", 0.05f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f* producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker el apache", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc03)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "C04":
+                        Dictionary<string, float> ingredientsToSubtractc04 = new Dictionary<string, float>
+                            {
+                                { "Chocolate liquido", 0.125f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Vainilla", 0.05f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker el negrito", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc04)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+                        break;
+                    case "C05":
+                        Dictionary<string, float> ingredientsToSubtractc05 = new Dictionary<string, float>
+                            {
+                                { "Zapote", 0.075f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Vainilla", 0.025f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker el catrín", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc05)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        //
+                        break;
+                    case "C06":
+                        Dictionary<string, float> ingredientsToSubtractc06 = new Dictionary<string, float>
+                            {
+                                { "Fresa", 0.0375f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Vainilla", 0.025f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker el corazón", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc06)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+                        break;
+                    case "C07":
+                        Dictionary<string, float> ingredientsToSubtractc07 = new Dictionary<string, float>
+                            {
+                                { "Cebada", 0.0375f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 0.025f * producto.Cantidad },
+                                { "Sticker la selena", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc07)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "C08":
+                        Dictionary<string, float> ingredientsToSubtractc08 = new Dictionary<string, float>
+                            {
+                                { "Horchata de maní", 0.0125f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Vainilla", 0.025f * producto.Cantidad },
+                                { "Azucar", 0.0625f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker La estrella", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc08)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "C09":
+                        Dictionary<string, float> ingredientsToSubtractc09 = new Dictionary<string, float>
+                            {
+                                { "Aguacate", 0.05f * producto.Cantidad },
+                                { "Leche entera", 0.01f * producto.Cantidad },
+                                { "Vainilla", 0.025f * producto.Cantidad },
+                                { "Azucar", 0.1125f * producto.Cantidad },
+                                { "Queso crema 230 gramos", 0.025f * producto.Cantidad },
+                                { "Leche condensada  395 gramos", 0.025f * producto.Cantidad },
+                                { "Estabilizador paleta de leche", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker la rana", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractc09)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+                        break;
+
+                    case "P01":
+                        Dictionary<string, float> ingredientsToSubtractp01 = new Dictionary<string, float>
+                            {
+                                { "Tamarindo", 0.025f * producto.Cantidad },
+                                { "Azucar", 0.0875f * producto.Cantidad },
+                                { "Tajín", 0.0125f * producto.Cantidad },
+                                { "Sal", 0.05f * producto.Cantidad },
+                                { "Acido cítrico", 0.175f * producto.Cantidad },
+                                { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker el alacrán", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp01)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P02":
+                        Dictionary<string, float> ingredientsToSubtractp02 = new Dictionary<string, float>
+                                    {
+                                        { "Piña para fresco", 0.0375f * producto.Cantidad },
+                                        { "Azucar", 0.0875f * producto.Cantidad },
+                                        { "Tajín", 0.0125f * producto.Cantidad },
+                                        { "Sal", 0.05f * producto.Cantidad },
+                                        { "Acido cítrico", 0.175f * producto.Cantidad },
+                                        { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                        { "Paleta madera", 1f * producto.Cantidad },
+                                        { "Emboltorio paleta", 1f * producto.Cantidad },
+                                        { "Servilleta", 1f * producto.Cantidad },
+                                        { "Sticker la sirena", 1f * producto.Cantidad }
+                                    };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp02)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P03":
+                        Dictionary<string, float> ingredientsToSubtractp03 = new Dictionary<string, float>
+                            {
+                                { "Mango verde", 0.3f * producto.Cantidad },
+                                { "Azucar", 0.0875f * producto.Cantidad },
+                                { "Tajín", 0.0125f * producto.Cantidad },
+                                { "Sal", 0.05f * producto.Cantidad },
+                                { "Acido cítrico", 0.175f * producto.Cantidad },
+                                { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker el venado", 1f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp03)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+
+                    case "P04":
+                        Dictionary<string, float> ingredientsToSubtractp04 = new Dictionary<string, float>
+                            {
+                                { "Arrayán", 0.175f * producto.Cantidad },
+                                { "Azucar", 0.1125f * producto.Cantidad },
+                                { "Tajín", 0.0125f * producto.Cantidad },
+                                { "Sal", 0.05f * producto.Cantidad },
+                                { "Acido cítrico", 0.175f * producto.Cantidad },
+                                { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                { "Paleta madera", 1f * producto.Cantidad },
+                                { "Emboltorio paleta", 1f * producto.Cantidad },
+                                { "Servilleta", 1f * producto.Cantidad },
+                                { "Sticker la garza", 1f * producto.Cantidad },
+                                { "Alguashte", 0.05f * producto.Cantidad }
+                            };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp04)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P05":
+                        Dictionary<string, float> ingredientsToSubtractp05 = new Dictionary<string, float>
+                                {
+                                    { "Fresa", 0.0625f * producto.Cantidad },
+                                    { "Azucar", 0.0875f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.05f * producto.Cantidad },
+                                    { "Acido cítrico", 0.175f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                    { "Sticker la dama", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp05)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P06":
+                        Dictionary<string, float> ingredientsToSubtractp06 = new Dictionary<string, float>
+                                {
+                                    { "Pepino", 0.0625f * producto.Cantidad },
+                                    { "Limón", 0.15f * producto.Cantidad },
+                                    { "Hierba buena", 0.175f * producto.Cantidad },
+                                    { "Azucar", 0.075f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.05f * producto.Cantidad },
+                                    { "Acido cítrico", 0.175f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                                            {"Sticker el nopal", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp06)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P07":
+                        Dictionary<string, float> ingredientsToSubtractp07 = new Dictionary<string, float>
+                                {
+                                    { "Sandía grande", 0.025f * producto.Cantidad },
+                                    { "Kiwi", 0.075f * producto.Cantidad },
+                                    { "Azucar", 0.05f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Chile liquido", 0.05f * producto.Cantidad },
+                                    { "Acido cítrico", 0.175f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                    {"Sticker la sandía", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp07)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P08":
+                        Dictionary<string, float> ingredientsToSubtractp08 = new Dictionary<string, float>
+                                {
+                                    { "Jocote", 0.025f * producto.Cantidad },
+                                    { "Azucar", 0.0875f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.05f * producto.Cantidad },
+                                    { "Acido cítrico", 0.175f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                                            {"Sticker la chalupa", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp08)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P09":
+                        Dictionary<string, float> ingredientsToSubtractp09 = new Dictionary<string, float>
+                                {
+                                    { "Jamaica", 0.0125f * producto.Cantidad },
+                                    { "Azucar", 0.0875f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.025f * producto.Cantidad },
+                                    { "Acido cítrico", 0.175f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                                            {"Sticker la rosa", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp09)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "P10":
+                        Dictionary<string, float> ingredientsToSubtractp10 = new Dictionary<string, float>
+                                {
+                                    { "Limón", 0.75f * producto.Cantidad },
+                                    { "Hierba buena", 0.25f * producto.Cantidad },
+                                    { "Azucar", 0.1f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.025f * producto.Cantidad },
+                                    { "Acido cítrico", 0.175f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                                            {"Sticker el soldado", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractp10)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+
+                    case "F01":
+                        Dictionary<string, float> ingredientsToSubtractf01 = new Dictionary<string, float>
+                                    {
+                                        { "Fresa", 0.0625f * producto.Cantidad },
+                                        { "Azucar", 0.0875f * producto.Cantidad },
+                                        { "Sal", 0.05f * producto.Cantidad },
+                                        { "Acido cítrico", 0.175f * producto.Cantidad },
+                                        { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                        { "Paleta madera", 1f * producto.Cantidad },
+                                        { "Emboltorio paleta", 1f * producto.Cantidad },
+                                        { "Servilleta", 1f * producto.Cantidad },
+                                        { "Sticker el diablito", 1f * producto.Cantidad }
+
+                                    };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractf01)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "F02":
+                        Dictionary<string, float> ingredientsToSubtractf02 = new Dictionary<string, float>
+                                    {
+                                        { "Naranja", 0.875f * producto.Cantidad },
+                                        { "Azucar", 0.05f * producto.Cantidad },
+                                        { "Sal", 0.025f * producto.Cantidad },
+                                        { "Acido cítrico", 0.175f * producto.Cantidad },
+                                        { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                        { "Paleta madera", 1f * producto.Cantidad },
+                                        { "Emboltorio paleta", 1f * producto.Cantidad },
+                                        { "Servilleta", 1f * producto.Cantidad },
+                                        { "Sticker el cotorro", 1f * producto.Cantidad }
+                                    };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractf02)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "F03":
+                        Dictionary<string, float> ingredientsToSubtractf03 = new Dictionary<string, float>
+                                    {
+                                        { "Sandía grande", 0.025f * producto.Cantidad },
+                                        { "Azucar", 0.05f * producto.Cantidad },
+                                        { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                        { "Acido cítrico", 0.175f * producto.Cantidad },
+                                        { "Paleta madera", 1f * producto.Cantidad },
+                                        { "Emboltorio paleta", 1f * producto.Cantidad },
+                                        { "Servilleta", 1f * producto.Cantidad },
+                                        { "Sticker la sandillita", 1f * producto.Cantidad }
+                                    };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractf03)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+
+                    case "L01":
+                        Dictionary<string, float> ingredientsToSubtractl01 = new Dictionary<string, float>
+                                {
+                                    { "Piña para fresco", 0.025f * producto.Cantidad },
+                                    { "Limón", 0.075f * producto.Cantidad },
+                                    { "Azucar", 0.075f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.05f * producto.Cantidad },
+                                    { "Tequila", 0.025f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                    { "Sticker el valiente", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractl01)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+
+                        break;
+                    case "L02":
+                        Dictionary<string, float> ingredientsToSubtractl02 = new Dictionary<string, float>
+                                {
+                                    { "Tamarindo", 0.025f * producto.Cantidad },
+                                    { "Limón", 0.05f * producto.Cantidad },
+                                    { "Azucar", 0.075f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.05f * producto.Cantidad },
+                                    { "Cerveza", 0.1f * producto.Cantidad },
+                                    { "Salsa inglesa", 0.05f * producto.Cantidad },
+                                    { "Jugo de tomate", 0.025f * producto.Cantidad },
+                                    { "Chile liquido", 0.0125f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                    { "Sticker el borracho", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractl02)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "L03":
+                        Dictionary<string, float> ingredientsToSubtractl03 = new Dictionary<string, float>
+                                {
+                                    { "Fresa", 0.0625f * producto.Cantidad },
+                                    { "Limón", 0.15f * producto.Cantidad },
+                                    { "Soda mineral de limón", 0.05f * producto.Cantidad },
+                                    { "Tajín", 0.0125f * producto.Cantidad },
+                                    { "Sal", 0.05f * producto.Cantidad },
+                                    { "Ron claro", 0.0375f * producto.Cantidad },
+                                    { "Hierba buena", 1f * producto.Cantidad },
+                                    { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                    { "Paleta madera", 1f * producto.Cantidad },
+                                    { "Emboltorio paleta", 1f * producto.Cantidad },
+                                    { "Servilleta", 1f * producto.Cantidad },
+                                    { "Sticker el diablo", 1f * producto.Cantidad }
+                                };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractl03)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+                    case "L04":
+                        Dictionary<string, float> ingredientsToSubtractl04 = new Dictionary<string, float>
+                                    {
+                                        { "Fresa", 0.025f * producto.Cantidad },
+                                        { "Mora", 0.075f * producto.Cantidad },
+                                        { "Hierba buena", 0.3f * producto.Cantidad },
+                                        { "Azucar", 0.075f * producto.Cantidad },
+                                        { "Escencia de coco", 0.05f * producto.Cantidad },
+                                        { "Sal", 0.05f * producto.Cantidad },
+                                        { "Estabilizador paleta de agua", 0.875f * producto.Cantidad },
+                                        { "Paleta madera", 1f * producto.Cantidad },
+                                        { "Emboltorio paleta", 1f * producto.Cantidad },
+                                        { "Servilleta", 1f * producto.Cantidad },
+                                        { "Sticker el cardenal", 1f * producto.Cantidad }
+                                    };
+
+                        foreach (var ingredientEntry in ingredientsToSubtractl04)
+                        {
+                            var response = ingredientsrepo.SubtractFromUnitByNameAndSubsidiary(
+                                ingredientEntry.Key,
+                                producto.Subsidiary_id,
+                                ingredientEntry.Value
+                            );
+
+                            if (response.success == false)
+                            {
+                                Models.Products productsfaltantes = new Models.Products(ingredientEntry.Key,
+                                    producto.Subsidiary_id, ingredientEntry.Value, response.returnType, $"none");
+                                productosFaltantesList.Add(productsfaltantes);
+
+                            }
+                        }
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+            }
         }
     }
 }

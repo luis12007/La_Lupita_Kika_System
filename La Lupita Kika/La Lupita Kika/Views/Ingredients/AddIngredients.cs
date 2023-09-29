@@ -18,11 +18,11 @@ namespace La_Lupita_Kika.Views.Ingredients
         private string connection;
 
         private string Ingredient;
-        private string category;
+        private string category = "Emboltorio";
         private string productName;
-        private int Number;
+        private float Number;
         private int subsidiaryint;
-        private string Codebar;
+        private string type;
         private string subsidiary;
 
         private SubsidiaryRepository subsidiaryrepo;
@@ -40,7 +40,187 @@ namespace La_Lupita_Kika.Views.Ingredients
 
         private void Products_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
         {
+            productName = ingredients_cbb.SelectedItem.ToString();
+            switch (category)
+            {
+                case "Fruta":
+                    switch (productName)
+                    {
+                        case "Fresa":
+                            Tipo.Text = "LIBRA";
+                            break;
+                        case "Mango maduro":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Mango verde":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Piña para fresco":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Arrayán":
+                            Tipo.Text = "LIBRA";
+                            //hacer conversion pertinente de unidad a libra (check)
+                            break;
+                        case "Tamarindo":
+                            Tipo.Text = "LIBRA";
+                            break;
+                        case "Sandía grande":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Coco Sazón":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Mora":
+                            Tipo.Text = "LIBRA";
+                            break;
+                        case "Jocote":
+                            Tipo.Text = "CIENTO";
+                            break;
+                        case "Zapote":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Limón":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Naranja":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Kiwi":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Pepino":
+                            Tipo.Text = "LIBRA";
+                            break;
+                        case "Hierba buena":
+                            Tipo.Text = "HOJAS";
+                            break;
+                        case "Jamaica":
+                            Tipo.Text = "LIBRA";
+                            break;
+                        case "Aguacate":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Acido cítrico":
+                            Tipo.Text = "GRAMOS";
+                            break;
+                        case "Estabilizador paleta de agua":
+                            Tipo.Text = "GRAMOS";
+                            break;
+                        default:
+                            // Código para manejar otros casos no especificados (check)
+                            break;
+                    }
 
+
+                    break;
+                case "Emboltorio":
+                    switch (productName)
+                    {
+                        case "Paleta madera":
+                        case "Emboltorio paleta":
+                        case "Palo para pincho":
+                        case "Palo de madera":
+                        case "Vaso mangoneada":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Servilleta":
+                            Tipo.Text = "PAQUETES";
+                            //hacer conversion
+                            break;
+                        default:
+                            // Código para manejar otros casos no especificados (check)
+                            break;
+                    }
+                    break;
+                case "Stickers":
+                    Tipo.Text = "UNIDAD";
+                    break;
+                case "Ingredientes":
+                    switch (productName)
+                    {
+                        case "Acido cítrico":
+                            Tipo.Text = "GRAMOS";
+                            break;
+                        case "Estabilizador paleta de agua":
+                            Tipo.Text = "GRAMOS";
+                            break;
+                        case "Galleta oreo":
+                            Tipo.Text = "PAQUETES";
+                            break;
+                        case "Leche entera":
+                            Tipo.Text = "GALÓN";
+                            break;
+                        case "Vainilla":
+                        case "Escencia de coco":
+                            Tipo.Text = "LIBRA";
+                            //de tbsp a libra
+                            break;
+                        case "Azucar":
+                        case "Cebada":
+                            Tipo.Text = "TAZA";
+                            break;
+                        case "Queso crema 230 gramos":
+                        case "Leche condensada 395 gramos":
+                        case "Café listo 2 gramos":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Chocolate liquido":
+                            Tipo.Text = "ONZ";
+                            break;
+                        case "Horchata de maní":
+                            Tipo.Text = "LIBRA";
+                            break;
+                        case "Estabilizador paleta de leche":
+                            Tipo.Text = "GRAMOS";
+                            break;
+                        case "Tajín":
+                            Tipo.Text = "TAZA";
+                            break;
+                        case "Sal":
+                            Tipo.Text = "LIBRA";
+                            //tbs a libra
+                            break;
+                        case "Alguashte":
+                            //hacer cambios pertinentes de tbs a libra
+                            Tipo.Text = "LIBRAS";
+                            break;
+
+                        case "Chile liquido":
+                            //hacer cambios pertinentes de tbs a Galon
+                            Tipo.Text = "GALON";
+                            break;
+                        case "Tequila":
+                            Tipo.Text = "GRAMOS";
+                            break;
+                        case "Cerveza":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Salsa inglesa":
+                            Tipo.Text = "LIBRA";
+                            //de tbsp a libra
+                            break;
+                        case "Jugo de tomate":
+                            Tipo.Text = "TAZA";
+                            break;
+                        case "Soda mineral de limón":
+                            Tipo.Text = "UNIDAD";
+                            break;
+                        case "Ron claro":
+                            Tipo.Text = "TAZA";
+                            break;
+                        case "Maizena":
+                            Tipo.Text = "LIBRA";
+                            //de tbsp a libra
+                            break;
+                        default:
+                            // Código para manejar otros casos no especificados
+                            break;
+                    }
+
+                    break;
+                default: break;
+            }
         }
 
         private void AddIngredients_Load(object sender, EventArgs e)
@@ -76,9 +256,9 @@ namespace La_Lupita_Kika.Views.Ingredients
 
 
             // Ajustar el ancho de las columnas
-            Products_dataGridView.Columns["Nombre"].Width = 271;
-            Products_dataGridView.Columns["Cidigo"].Width = 127;
-            Products_dataGridView.Columns["Diferencia"].Width = 127;
+            Products_dataGridView.Columns["Nombre"].Width = 251;
+            Products_dataGridView.Columns["Cidigo"].Width = 117;
+            Products_dataGridView.Columns["Diferencia"].Width = 157;
             Products_dataGridView.Columns["Tipo"].Width = 127;
             Products_dataGridView.Columns["Sucursal"].Width = 120;
 
@@ -97,9 +277,57 @@ namespace La_Lupita_Kika.Views.Ingredients
                 return;
             }
             Ingredient = ingredients_cbb.SelectedItem.ToString();
-            Number = int.Parse(Number_textbox.Texts);
+            Number = float.Parse(Number_textbox.Texts);
             subsidiary = Subsidiary_cbb.SelectedItem.ToString();
             subsidiaryint = subsidiaryrepo.FindIdByName(subsidiary);
+            type = Tipo.Text;
+
+
+            switch (Ingredient)
+            {
+
+                case "Alguashte":
+                    Number = Number / 0.0326f;
+                    break;
+
+                case "Chile liquido":
+                    Number = Number / 0.003906f;
+                    break;
+
+                case "Arrayán":
+                    Number = Number * 6f;
+                    break;
+
+                case "Servilleta":
+                    Number = Number * 40f;
+                    break;
+                case "Vainilla":
+                    Number = Number / 0.0326f;
+                    break;
+                case "Escencia de coco":
+                    Number = Number / 0.0326f;
+                    break;
+                case "Sal":
+                    Number = Number / 0.0326f;
+                    break;
+                case "Salsa inglesa":
+                    Number = Number / 0.0326f;
+                    break;
+                case "Maizena":
+                    Number = Number / 0.0326f;
+                    break;
+                case "Acido cítrico":
+                    Number = Number / 0.0022f;
+                    break;
+                case "Estabilizador paleta de agua":
+                    Number = Number / 0.0022f;
+                    break;
+                default: break;
+            }
+
+            //
+
+            //
 
             Models.Ingredients addingredient = ingredientsrepo.FindByNameAndSubsidiary(Ingredient, subsidiaryint);
 
@@ -115,17 +343,85 @@ namespace La_Lupita_Kika.Views.Ingredients
             else
             {
                 // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-
-                Models.Products productpalette = new Models.Products(addingredient.Name, Number, addingredient.Price, "Paletas", addingredient.Code, addingredient.Unit, Number, addingredient.Subsidiary_ID, addingredient.Type);
+                Models.Products productpalette = new Models.Products(addingredient.Name, (addingredient.Unit + Number), addingredient.Price, "Paletas", addingredient.Code, addingredient.Unit, Number, addingredient.Subsidiary_ID, addingredient.Type);
                 productosList.Add(productpalette);
             }
 
             Products_dataGridView.Rows.Clear();
+
+
+            string typeingredient = "none";
+            float cuantitydbchange, Numberaddchange = 0;
             foreach (var palettec in productosList)
             {
+                typeingredient = palettec.catego;
+                cuantitydbchange = palettec.Cuantitydb;
+                Numberaddchange = palettec.Numberadd;
+                switch (palettec.Nombre)
+                {
+
+                    case "Alguashte":
+                        cuantitydbchange = cuantitydbchange * 0.0326f;
+                        Numberaddchange = Numberaddchange * 0.0326f;
+                        typeingredient = "LIBRA";
+                        break;
+
+                    case "Chile liquido":
+                        typeingredient = "GALON";
+                        cuantitydbchange = cuantitydbchange * 0.003906f;
+                        Numberaddchange = Numberaddchange * 0.003906f;
+                        break;
+
+                    case "Arrayán":
+                        typeingredient = "LIBRA";
+                        cuantitydbchange = cuantitydbchange / 6f;
+                        Numberaddchange = Numberaddchange / 6f;
+                        break;
+
+                    case "Servilleta":
+                        typeingredient = "PAQUETES";
+                        cuantitydbchange = cuantitydbchange / 40f;
+                        Numberaddchange = Numberaddchange / 40f;
+                        break;
+                    default: break;
+                }
+
+                switch (typeingredient)
+                {
+
+                    case "TBSP":
+                        cuantitydbchange = cuantitydbchange * 0.0326f;
+                        Numberaddchange = Numberaddchange * 0.0326f;
+                        typeingredient = "LIBRA";
+                        break;
+
+                    case "TBS":
+                        cuantitydbchange = cuantitydbchange * 0.0326f;
+                        Numberaddchange = Numberaddchange * 0.0326f;
+                        typeingredient = "LIBRA";
+                        break;
+
+                    /*case "GRAMOS":
+                        cuantitydbchange = cuantitydbchange * 0.0022f;
+                        Numberaddchange = Numberaddchange * 0.0022f;
+                        typeingredient = "LIBRA";
+                        break;*/
+
+                    default: break;
+                }
+
+                // Redondear el número a dos decimales
+                float roundedNumberdb = (float)Math.Round(cuantitydbchange, 2);
+
+                // Si el número redondeado es 0.00, mostrar un decimal más
+                if (roundedNumberdb == 0.00f)
+                {
+                    roundedNumberdb = (float)Math.Round(cuantitydbchange, 4);
+                }
+
                 // Crear un nuevo String[] con los valores de cada elemento en la lista
                 String[] row2 = { palettec.Nombre, palettec.Codebar,
-                            $"{palettec.Cuantitydb} -> {palettec.Cuantitydb + palettec.Numberadd}", $"{palettec.catego}",$"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}"  };
+                            $"{roundedNumberdb} -> {roundedNumberdb + Numberaddchange}", $"{typeingredient}",$"{subsidiaryrepo.FindNameById(palettec.Subsidiary_id)}"  };
 
                 // Agregar el nuevo String[] a Products_dataGridView.Rows
                 Products_dataGridView.Rows.Add(row2);
@@ -259,6 +555,11 @@ namespace La_Lupita_Kika.Views.Ingredients
                     break;
                 default: break;
             }
+        }
+
+        private void Products_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

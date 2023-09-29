@@ -92,7 +92,7 @@ namespace La_Lupita_Kika.UserRepository
             return candies;
         }
 
-        public void UpdateCuantityByCodebarPlus(string codebar, int cuantity, int subsidiaryId)
+        public void UpdateCuantityByCodebarPlus(string codebar, float cuantity, int subsidiaryId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {

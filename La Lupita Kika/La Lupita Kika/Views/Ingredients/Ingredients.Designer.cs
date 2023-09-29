@@ -39,6 +39,7 @@
             Find = new Components.RJTextBox();
             Subsidiary_cbb = new Components.RJComboBox();
             Add_Products = new Components.RJButton();
+            rjButton2 = new Components.RJButton();
             ((System.ComponentModel.ISupportInitialize)Ingredients_dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -155,6 +156,7 @@
             Find.TextAlign = ContentAlignment.MiddleLeft;
             Find.Texts = "";
             Find.UnderlinedStyle = false;
+            Find.KeyPress += Find_KeyPress;
             // 
             // Subsidiary_cbb
             // 
@@ -197,12 +199,32 @@
             Add_Products.UseVisualStyleBackColor = false;
             Add_Products.Click += rjButton2_Click;
             // 
+            // rjButton2
+            // 
+            rjButton2.BackColor = Color.White;
+            rjButton2.BackgroundColor = Color.White;
+            rjButton2.BorderColor = Color.FromArgb(255, 54, 112);
+            rjButton2.BorderRadius = 20;
+            rjButton2.BorderSize = 2;
+            rjButton2.FlatAppearance.BorderSize = 0;
+            rjButton2.FlatStyle = FlatStyle.Flat;
+            rjButton2.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            rjButton2.ForeColor = Color.Black;
+            rjButton2.Image = Properties.Resources.menos__1_;
+            rjButton2.Location = new Point(12, 520);
+            rjButton2.Name = "rjButton2";
+            rjButton2.Size = new Size(76, 43);
+            rjButton2.TabIndex = 35;
+            rjButton2.TextColor = Color.Black;
+            rjButton2.UseVisualStyleBackColor = false;
+            // 
             // Ingredients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1152, 575);
+            Controls.Add(rjButton2);
             Controls.Add(Add_Products);
             Controls.Add(button2);
             Controls.Add(Find);
@@ -222,15 +244,22 @@
         #endregion
         private DataGridView Ingredients_dataGridView;
         private Button button1;
+#pragma warning disable CS0169 // El campo 'Ingredients.rjButton1' nunca se usa
         private Components.RJButton rjButton1;
+#pragma warning restore CS0169 // El campo 'Ingredients.rjButton1' nunca se usa
         private Components.RJButton Add_button;
         private Button button2;
+#pragma warning disable CS0169 // El campo 'Ingredients.rjTextBox1' nunca se usa
         private Components.RJTextBox rjTextBox1;
+#pragma warning restore CS0169 // El campo 'Ingredients.rjTextBox1' nunca se usa
+#pragma warning disable CS0169 // El campo 'Ingredients.rjComboBox2' nunca se usa
         private Components.RJComboBox rjComboBox2;
+#pragma warning restore CS0169 // El campo 'Ingredients.rjComboBox2' nunca se usa
         private Components.RJComboBox rjComboBox1;
         private Components.RJTextBox Find;
         private Components.RJComboBox subsidiary_cbb;
         private Components.RJComboBox Subsidiary_cbb;
         private Components.RJButton Add_Products;
+        private Components.RJButton rjButton2;
     }
 }

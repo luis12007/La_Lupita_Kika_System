@@ -4689,11 +4689,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+      "projectUniqueName": "C:\\Users\\luish\\OneDrive\\Documentos\\my software\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
       "projectName": "La Lupita Kika",
-      "projectPath": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+      "projectPath": "C:\\Users\\luish\\OneDrive\\Documentos\\my software\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
       "packagesPath": "C:\\Users\\luish\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\obj\\publish\\win-x86\\",
+      "outputPath": "C:\\Users\\luish\\OneDrive\\Documentos\\my software\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\obj\\publish\\win-x86\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4762,10 +4762,6 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-            "version": "[6.0.15, 6.0.15]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
             "version": "[6.0.15, 6.0.15]"
           },
           {

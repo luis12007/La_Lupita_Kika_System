@@ -44,6 +44,7 @@
             product_label = new Label();
             Category_cbb = new Components.RJComboBox();
             label2 = new Label();
+            Tipo = new Label();
             ((System.ComponentModel.ISupportInitialize)Products_dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -220,6 +221,7 @@
             Products_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             Products_dataGridView.Size = new Size(775, 597);
             Products_dataGridView.TabIndex = 33;
+            Products_dataGridView.CellContentClick += Products_dataGridView_CellContentClick;
             Products_dataGridView.CellDoubleClick += Products_dataGridView_CellDoubleClick;
             // 
             // Number_label
@@ -273,12 +275,23 @@
             label2.TabIndex = 45;
             label2.Text = "Nombre";
             // 
+            // Tipo
+            // 
+            Tipo.AutoSize = true;
+            Tipo.Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            Tipo.Location = new Point(98, 294);
+            Tipo.Name = "Tipo";
+            Tipo.Size = new Size(90, 29);
+            Tipo.TabIndex = 46;
+            Tipo.Text = "Medida";
+            // 
             // AddIngredients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1132, 718);
+            Controls.Add(Tipo);
             Controls.Add(label2);
             Controls.Add(Category_cbb);
             Controls.Add(Subsidiary_cbb);
@@ -315,5 +328,6 @@
         private Label product_label;
         private Components.RJComboBox Category_cbb;
         private Label label2;
+        private Label Tipo;
     }
 }

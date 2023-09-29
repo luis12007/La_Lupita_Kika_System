@@ -9,7 +9,7 @@ namespace La_Lupita_Kika.Models
     public class Products
     {
         public string Nombre { get; set; }
-        public int Cantidad { get; set; }
+        public float Cantidad { get; set; }
         public float Valor { get; set; }
 
         public string Tipo { get; set; }
@@ -31,7 +31,7 @@ namespace La_Lupita_Kika.Models
         }
 
         // Constructor con parámetros
-        public Products(string name, int cuantity, float valor, string tipo, string codebar)
+        public Products(string name, float cuantity, float valor, string tipo, string codebar)
         {
             Nombre = name;
             Cantidad = cuantity;
@@ -40,7 +40,7 @@ namespace La_Lupita_Kika.Models
             Codebar = codebar;
         }
 
-        public Products(string name, int cuantity, float valor, string tipo, string codebar,float cuantitydb, float numberadd)
+        public Products(string name, float cuantity, float valor, string tipo, string codebar,float cuantitydb, float numberadd)
         {
             Nombre = name;
             Cantidad = cuantity;
@@ -51,7 +51,7 @@ namespace La_Lupita_Kika.Models
             Numberadd = numberadd;
         }
 
-        public Products(string name, int cuantity, float valor, string tipo, string codebar, float cuantitydb, float numberadd, int subsidiary_id)
+        public Products(string name, float cuantity, float valor, string tipo, string codebar, float cuantitydb, float numberadd, int subsidiary_id)
         {
             Nombre = name;
             Cantidad = cuantity;
@@ -63,7 +63,7 @@ namespace La_Lupita_Kika.Models
             Subsidiary_id = subsidiary_id;
         }
 
-        public Products(string name, int cuantity, float valor, string tipo, string codebar, float cuantitydb, float numberadd, int subsidiary_id, string catego)
+        public Products(string name, float cuantity, float valor, string tipo, string codebar, float cuantitydb, float numberadd, int subsidiary_id, string catego)
         {
             Nombre = name;
             Cantidad = cuantity;

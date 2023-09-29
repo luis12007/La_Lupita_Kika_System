@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I+4/IK6NvJ6SLGfIrqw344tRNyqYNFaHr9BE1HP629D3yFTFurh+oHRwGVNYltxhbPjiHgDKw4Sit//ty6+tkQ==",
+  "dgSpecHash": "REJs5VaCMAYSKahVLB7jD5xCNyAzW+1DS3I1DHim00gmf1U9oHOT2b+/9LW9aF7tSIPnHOmudvUh0kPio1xVpg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+  "projectFilePath": "C:\\Users\\luish\\OneDrive\\Documentos\\my software\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luish\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

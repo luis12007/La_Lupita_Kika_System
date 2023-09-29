@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fGbdIy3QySc5zOg5FJQXKZbfQhqfy+EeyWLJbDSz6oy9aaDI2ZS7XG4ABHCQsydgg/pirgcaC1nvOGoDkvy1xQ==",
+  "dgSpecHash": "Q6+qcdBBRAyNNdtfZpeFkH9/H6VOuK3OnmHKJO99kKh7ZGUNa9oG0a9/VZyZX6f6CGoLqI7B6Lx/wm7c+qDviw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+  "projectFilePath": "C:\\Users\\luish\\OneDrive\\Documentos\\my software\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luish\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
@@ -79,8 +79,7 @@
     "C:\\Users\\luish\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\6.0.15\\microsoft.netcore.app.runtime.win-x86.6.0.15.nupkg.sha512",
     "C:\\Users\\luish\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\6.0.15\\microsoft.windowsdesktop.app.runtime.win-x86.6.0.15.nupkg.sha512",
-    "C:\\Users\\luish\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x86.6.0.15.nupkg.sha512",
-    "C:\\Users\\luish\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.15\\microsoft.netcore.app.crossgen2.win-x64.6.0.15.nupkg.sha512"
+    "C:\\Users\\luish\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\6.0.15\\microsoft.aspnetcore.app.runtime.win-x86.6.0.15.nupkg.sha512"
   ],
   "logs": []
 }

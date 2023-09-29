@@ -66,7 +66,7 @@ namespace La_Lupita_Kika.Views
             registrosEncontrados.Clear();
             registrosEncontrados = RegisterRepository.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryNumber);
 
-           
+
             if (registrosEncontrados.IsNullOrEmpty())
             {
                 return;
@@ -101,7 +101,7 @@ namespace La_Lupita_Kika.Views
 
 
             registrosEncontrados = RegisterRepository.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryNumber);
-            
+
             if (registrosEncontrados.IsNullOrEmpty())
             {
                 MessageBox.Show("No registros encontrados para este rango.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -186,6 +186,7 @@ namespace La_Lupita_Kika.Views
 
             Sum_cbb.DataSource = nombresProductosUnicos;
 
+            totalSum = (float)Math.Round(totalSum, 2);
             // Actualizar el texto del Total_label con la suma total calculada
             Total_label.Text = $"Total: {totalSum}$";
             Sum_label.Text = $"Recuento: 0";
@@ -282,7 +283,8 @@ namespace La_Lupita_Kika.Views
 
         private void Subsidiary_cbb_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (Subsidiary_cbb.SelectedItem.ToString()) {
+            switch (Subsidiary_cbb.SelectedItem.ToString())
+            {
                 case "Sonsonate":
                     subsidiaryNumber = 1;
                     break;
@@ -296,7 +298,8 @@ namespace La_Lupita_Kika.Views
                     break;
 
                 default
-                    : break;
+                    :
+                    break;
             }
         }
     }

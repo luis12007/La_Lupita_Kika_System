@@ -29,11 +29,16 @@ namespace La_Lupita_Kika.Views
         private RegisterXSalesRepository registerxsalesrepo;
         private SalesRepository salesrepo;
         private OtherRepository otherrepo;
+
         private List<Models.Products> productosList = new List<Models.Products>(); // Lista de productos
+        private List<Object> allObjects = new List<Object>();
+
+        private bool shiftKeyPressed = false;
 
         private int thisregis;
         private float totalfrice = 0;
         private int subsidiary;
+        private int cantidad = 1;
 
         public Facturation(String connectionString, int thisregis, int subsidiary)
         {
@@ -79,32 +84,43 @@ namespace La_Lupita_Kika.Views
 
         private void Facturation_Load(object sender, EventArgs e)
         {
+            allObjects = new List<object>();
+
+            allObjects.AddRange(mangoneadasrepo.FindBySubsidiaryId(subsidiary));
+            allObjects.AddRange(palettesrepo.FindProductsBySubsidiaryId(subsidiary));
+            allObjects.AddRange(snowicerepo.FindBySubsidiaryId(subsidiary));
+            allObjects.AddRange(candysrepo.FindAllBySubsidiaryId(subsidiary));
+            allObjects.AddRange(otherrepo.FindAllBySubsidiaryId(subsidiary));
+
             Barcode_textBox.Focus();
         }
 
         private void Add_button_Click_1(object sender, EventArgs e)
         {
-            string Codebar = Barcode_textBox.Texts;
+            string Codebar = Barcode_textBox.Texts.ToUpper();
 
-            List<Func<string, object>> repositories = new List<Func<string, object>>
-                {
-                 mangoneadasrepo.FindByCodebar,
-                palettesrepo.FindByCodebar,
-                snowicerepo.FindByCodebar,
-                candysrepo.FindByCodebar,
-                otherrepo.FindByCodebar
-                };
-
-            object foundObject = null;
-
-            foreach (var repository in repositories)
+            // buscar segun codebar
+            var foundObject = allObjects.FirstOrDefault(obj =>
             {
-                foundObject = repository(Codebar);
-                if (foundObject != null)
-                {
-                    // Se encontró el objeto con el código de barras en este repositorio
-                    break;
-                }
+                if (obj is Mangoneadas mangoneadas)
+                    return mangoneadas.Codebar == Codebar;
+                if (obj is Models.Palettes palette)
+                    return palette.Codebar == Codebar;
+                if (obj is SnowIce snowice)
+                    return snowice.Codebar == Codebar;
+                if (obj is Candy candy)
+                    return candy.Codebar == Codebar;
+                if (obj is Other other)
+                    return other.Codebar == Codebar;
+                return false;
+            });
+
+            if (foundObject == null)
+            {
+                MessageBox.Show("producto no econtrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Barcode_textBox.Texts = "";
+                Barcode_textBox.Focus();
+                return;
             }
 
             switch (foundObject)
@@ -117,12 +133,12 @@ namespace La_Lupita_Kika.Views
                     if (existingProductMango != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
-                        existingProductMango.Cantidad += 1;
+                        existingProductMango.Cantidad += cantidad;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(mangoneadas.Name, 1, mangoneadas.Price, "Mangoneada", mangoneadas.Codebar);
+                        Models.Products productpalette = new Models.Products(mangoneadas.Name, cantidad, mangoneadas.Price, "Mangoneada", mangoneadas.Codebar);
                         productosList.Add(productpalette);
                     }
 
@@ -136,7 +152,6 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    mangoneadasrepo.UpdateCuantityByCodebarMinus(mangoneadas.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
                     totalfrice = (float)Math.Round(totalfrice, 2);
 
@@ -151,12 +166,12 @@ namespace La_Lupita_Kika.Views
                     if (existingProduct != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
-                        existingProduct.Cantidad += 1;
+                        existingProduct.Cantidad += cantidad;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(palette.Name, 1, palette.Price, "palette", palette.Codebar);
+                        Models.Products productpalette = new Models.Products(palette.Name, cantidad, palette.Price, "palette", palette.Codebar);
                         productosList.Add(productpalette);
                     }
 
@@ -170,7 +185,6 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    palettesrepo.UpdateCuantityByCodebarmin(palette.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
                     totalfrice = (float)Math.Round(totalfrice, 2);
 
@@ -185,12 +199,12 @@ namespace La_Lupita_Kika.Views
                     if (existingProductSnowice != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
-                        existingProductSnowice.Cantidad += 1;
+                        existingProductSnowice.Cantidad += cantidad;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(snowice.Name, 1, snowice.Price, "snowice", snowice.Codebar);
+                        Models.Products productpalette = new Models.Products(snowice.Name, cantidad, snowice.Price, "snowice", snowice.Codebar);
                         productosList.Add(productpalette);
                     }
 
@@ -204,7 +218,6 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    snowicerepo.IncrementCuantityByCodebarmin(snowice.Codebar, 1);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
                     totalfrice = (float)Math.Round(totalfrice, 2);
 
@@ -219,12 +232,26 @@ namespace La_Lupita_Kika.Views
                     if (existingProductCandy != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
-                        existingProductCandy.Cantidad += 1;
+                        existingProductCandy.Cantidad += cantidad;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(candy.Name, 1, candy.Price, "candy", candy.Codebar);
+                        Models.Products productpalette = new Models.Products(candy.Name, cantidad, candy.Price, "candy", candy.Codebar);
+                        if (productpalette.Nombre == "JOLLY")
+                        {
+                            bool go = true;
+                            for (int i = 1; i <= productpalette.Cantidad; i++) // Cambia el límite del ciclo según tus necesidades
+                            {
+                                if (i % 3 == 0 && go == true)
+                                {
+                                    go = false;
+                                    MessageBox.Show("a ver");
+                                    productpalette.Valor -= 0.0166666667f;
+                                    productpalette.Valor = (float)Math.Round(productpalette.Valor, 2);
+                                }
+                            }
+                        }
                         productosList.Add(productpalette);
                     }
 
@@ -238,7 +265,6 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    candysrepo.UpdateCuantityByCodebarMinus(candy.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
                     totalfrice = (float)Math.Round(totalfrice, 2);
                     Total.Text = $"Total: {totalfrice}$";
@@ -252,12 +278,12 @@ namespace La_Lupita_Kika.Views
                     if (existingProductOther != null)
                     {
                         // Si existe un objeto igual, actualizar la cantidad a 2
-                        existingProductOther.Cantidad += 1;
+                        existingProductOther.Cantidad += cantidad;
                     }
                     else
                     {
                         // Si no existe un objeto igual, agregar el nuevo objeto a la lista
-                        Models.Products productpalette = new Models.Products(other.Name, 1, other.Price, "other", other.Codebar);
+                        Models.Products productpalette = new Models.Products(other.Name, cantidad, other.Price, "other", other.Codebar);
                         productosList.Add(productpalette);
                     }
 
@@ -271,7 +297,6 @@ namespace La_Lupita_Kika.Views
                         Products_dataGridView.Rows.Add(row2);
                         Products_dataGridView.ClearSelection();
                     }
-                    otherrepo.UpdateCuantityByCodebarMinus(other.Codebar, 1, subsidiary);
                     totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
                     totalfrice = (float)Math.Round(totalfrice, 2);
                     Total.Text = $"Total: {totalfrice}$";
@@ -284,9 +309,10 @@ namespace La_Lupita_Kika.Views
                     totalfrice = (float)Math.Round(totalfrice, 2);
                     Total.Text = $"Total: {totalfrice}$";
                     MessageBox.Show("producto no econtrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Barcode_textBox.Texts = "";
                     break;
             }
-
+            cantidad = 1;
             Barcode_textBox.Texts = "";
             Barcode_textBox.Focus();
         }
@@ -333,58 +359,20 @@ namespace La_Lupita_Kika.Views
                 MessageBox.Show("Sin productos para procesar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            
-
-            // Supongamos que tienes una instancia del repositorio SalesRepository llamada salesrepo
-            foreach (var producto in productosList)
-            {
-                int registers = thisregis;
-                // Obtener los datos de cada producto en la lista
-                string nombre = producto.Nombre;
-                int cantidad = producto.Cantidad;
-                float precio = producto.Valor;
-
-
-                // Llamar al método Add del repositorio SalesRepository para guardar los datos en la base de datos
-                Sales sales = new Sales(nombre, cantidad, precio);
-                salesrepo.Add(sales);
-
-                float totalfrices = 0;
-                Total.Text = $"Total: {totalfrices}$";
-                List<Sales> salesList = salesrepo.GetAll();
-                Sales foundSales = salesList.Find(sales => sales.Name.Equals(nombre) && sales.Lot.Equals(cantidad));
-
-                // Obtener el ID del objeto Sales encontrado
-                int foundId = foundSales != null ? foundSales.Id : -1;
-
-                if (foundId != -1)
-                {
-                    Registerxsales register = new Registerxsales(registers, foundId);
-                    registerxsalesrepo.Add(register);
-                }
-
-
-            }
-
-            //ingredients
-            CalculateIngredients();
-
+            float totalfrices = 0;
+            Total.Text = $"Total: {totalfrices}$";
             float totalfrice = productosList.Sum(producto => producto.Valor * producto.Cantidad);
 
 
             Products_dataGridView.Rows.Clear();
-
-            MessageBox.Show("El Monto total es: " + $"{totalfrice}$", "Monto", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Hide();
             // Abrir el nuevo formulario de facturación
-            Staff.Mount formFacturation = new Staff.Mount(connectionString, totalfrice, productosList, thisregis);
+            Staff.Mount formFacturation = new Staff.Mount(connectionString, totalfrice, productosList, thisregis, subsidiary);
             formFacturation.ShowDialog();
+
+            this.Show();
             productosList.Clear();
 
-
-            // Mostrar nuevamente el formulario actual cuando se cierre el formulario de facturación
-            this.Show();
         }
 
         private void rjButton1_Click(object sender, EventArgs e)
@@ -393,7 +381,7 @@ namespace La_Lupita_Kika.Views
             this.Hide();
 
             // Abrir el nuevo formulario de facturación
-            Staff.CashOutdit formFacturation = new Staff.CashOutdit(connectionString, thisregis);
+            Staff.CashOutdit formFacturation = new Staff.CashOutdit(connectionString, thisregis, subsidiary );
             formFacturation.ShowDialog();
 
             // Mostrar nuevamente el formulario actual cuando se cierre el formulario de facturación
@@ -410,31 +398,7 @@ namespace La_Lupita_Kika.Views
                 Models.Products productoEncontrado = productosList.FirstOrDefault(p => p.Nombre == nombreProducto);
 
                 //reagregar
-                switch (productoEncontrado.Tipo)
-                {
-                    case "candy":
-                        candysrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
-                        break;
-
-                    case "other":
-                        otherrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
-                        break;
-
-                    case "Mangoneada":
-                        mangoneadasrepo.UpdateCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
-                        break;
-
-                    case "palette":
-                        palettesrepo.UpdateCuantityByCodebarAndSubsidiary(productoEncontrado.Codebar, 1, subsidiary);
-                        break;
-
-                    case "snowice":
-                        snowicerepo.IncrementCuantityByCodebarPlus(productoEncontrado.Codebar, 1, subsidiary);
-                        break;
-
-                    default:
-                        break;
-                }
+                
                 //---------------------------------------------------------------
 
                 productosList.RemoveAll(p => p.Nombre == nombreProducto);
@@ -449,116 +413,66 @@ namespace La_Lupita_Kika.Views
             }
         }
 
-        private void Barcode_textBox_KeyPress(object sender, KeyPressEventArgs e)
+        private async void Barcode_textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == '+')
+            {
+                shiftKeyPressed = true;
+                await Task.Delay(10); // 500 milisegundos (0.5 segundos)
+                Barcode_textBox.Texts = "";
+            }
+
+            if (shiftKeyPressed && Char.IsDigit(e.KeyChar) && e.KeyChar >= '1' && e.KeyChar <= '9')
+            {
+                cantidad = int.Parse(e.KeyChar.ToString());
+                shiftKeyPressed = false;
+                await Task.Delay(10); // 500 milisegundos (0.5 segundos)
+                Barcode_textBox.Texts = "";
+            }
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 // Llamar al evento Login_button_Click
                 Add_button.PerformClick();
             }
+
+            if (e.KeyChar == (char)Keys.Space)
+            {
+                // Llamar al evento Login_button_Click
+                Process_button.PerformClick();
+            }
         }
 
-        private void CalculateIngredients()
+        private void Add_button_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // recorriendo para ingredientes
-            foreach (var producto in productosList)
+
+            if (e.KeyChar == (char)Keys.Space)
             {
-                switch (producto.Codebar)
-                {
-                    case "M03":
-                        MessageBox.Show("hola");
-                        break;
-                    case "M04":
-                        break;
-                    case "M05":
-                        break;
-                    case "M06":
-                        break;
-                    case "M07":
-                        break;
-                    case "M08":
-                        break;
-                    case "M09":
-                        break;
-                    case "M10":
-                        break;
-                    case "M11":
-                        break;
-                    case "M01":
-                        break;
-                    case "M02":
-                        MessageBox.Show("Producto de tipo M");
-                        break;
-
-                    case "C01":
-                        break;
-                    case "C02":
-                        break;
-                    case "C03":
-                        break;
-                    case "C04":
-                        break;
-                    case "C05":
-                        break;
-                    case "C06":
-                        break;
-                    case "C07":
-                        break;
-                    case "C08":
-                        break;
-                    case "C09":
-
-                        Console.WriteLine("Producto de tipo C");
-                        break;
-
-                    case "P01":
-                        break;
-                    case "P02":
-                        break;
-                    case "P03":
-                        break;
-
-                    case "P04":
-                        break;
-                    case "P05":
-                        break;
-                    case "P06":
-                        break;
-                    case "P07":
-                        break;
-                    case "P08":
-                        break;
-                    case "P09":
-                        break;
-                    case "P10":
-                        Console.WriteLine("Producto de tipo P");
-                        break;
-
-                    case "F01":
-                        break;
-                    case "F02":
-                        break;
-                    case "F03":
-                        break;
-                        Console.WriteLine("Producto de tipo F");
-                        break;
-
-                    case "L01":
-                        break;
-                    case "L02":
-                        break;
-                    case "L03":
-                        break;
-                    case "L04":
-                        Console.WriteLine("Producto de tipo L");
-                        break;
-
-                    default:
-                        Console.WriteLine("Tipo de producto no reconocido");
-                        break;
-                }
-
+                // Llamar al evento Login_button_Click
+                Process_button.PerformClick();
             }
+
+
+        }
+
+
+
+        private void Facturation_KeyPress(object sender, KeyPressEventArgs e)
+        {
+        }
+
+        private void Barcode_textBox__TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Barcode_textBox_KeyUp(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void Barcode_textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

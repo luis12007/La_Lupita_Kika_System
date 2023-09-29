@@ -125,7 +125,7 @@ namespace La_Lupita_Kika.UserRepository
     }
 }
 
-        public void IncrementCuantityByCodebarPlus(string codebar, int cuantity, int subsidiaryId)
+        public void IncrementCuantityByCodebarPlus(string codebar, float cuantity, int subsidiaryId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {

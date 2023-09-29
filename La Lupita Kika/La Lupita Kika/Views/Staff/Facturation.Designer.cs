@@ -75,7 +75,10 @@
             Barcode_textBox.TextAlign = ContentAlignment.MiddleLeft;
             Barcode_textBox.Texts = "";
             Barcode_textBox.UnderlinedStyle = true;
+            Barcode_textBox._TextChanged += Barcode_textBox__TextChanged;
+            Barcode_textBox.KeyDown += Barcode_textBox_KeyDown;
             Barcode_textBox.KeyPress += Barcode_textBox_KeyPress;
+            Barcode_textBox.KeyUp += Barcode_textBox_KeyUp;
             // 
             // Add_button
             // 
@@ -96,6 +99,7 @@
             Add_button.TextColor = Color.Black;
             Add_button.UseVisualStyleBackColor = false;
             Add_button.Click += Add_button_Click_1;
+            Add_button.KeyPress += Add_button_KeyPress;
             // 
             // Process_button
             // 
@@ -215,6 +219,7 @@
             Text = "Productos";
             Load += Facturation_Load;
             Shown += Facturation_Shown;
+            KeyPress += Facturation_KeyPress;
             ((System.ComponentModel.ISupportInitialize)Products_dataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();

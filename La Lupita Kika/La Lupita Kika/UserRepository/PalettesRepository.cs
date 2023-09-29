@@ -98,7 +98,7 @@ namespace La_Lupita_Kika.UserRepository
         }
 
 
-        public void UpdateCuantityByCodebarAndSubsidiary(string codebar, int cuantityplus, int subsidiaryId)
+        public void UpdateCuantityByCodebarAndSubsidiary(string codebar, float cuantityplus, int subsidiaryId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {

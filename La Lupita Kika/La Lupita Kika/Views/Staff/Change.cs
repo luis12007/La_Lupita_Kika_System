@@ -260,39 +260,12 @@ namespace La_Lupita_Kika.Views.Staff
 
 
             //-----------------------------------------------------
-            Change_texbox.Texts = money.ToString();
-            Register regis = registerrepo.GetById(thisregis);
-            User myuser = userrepo.GetUserById(regis.User_id);
-            CashierName = myuser.Name;
-            // this.Hide();
-            int ticketNumber = ticketrepo.GetAll().Count;
-            DateTime currentDate = DateTime.Now;
-            //generando ticket
-
-            ticket.Image = PictureBoxLogo.Image;
-            ticket.Title = "La LupitaKika Sonsonate";
-            ticket.Address = "";
-            ticket.DateTicket = currentDate.Date;
-            ticket.TimeTicket = currentDate.TimeOfDay;
-            ticket.CashierName = myuser.User_id.ToString();
-            foreach (Models.Products producto in productosList)
-            {
-                ticket.ProductsLists.Add(producto);
-            }
-            ticket.Subtotal = mounts;
-            ticket.Cancelled = cancelled;
-            ticket.Change = money;
-            ticket.FarewellMessage = "VIVA LA VIDA";
-            ticket.Number = ticketNumber + 1;
-            ticket.Items = productosList.Count;
-
-            ticketrepo.Add(ticket);
+            
         }
 
         private void rjButton1_Click(object sender, EventArgs e)
         {
 
-            ticket.imprimir(ticket);
 
 
             this.Close();

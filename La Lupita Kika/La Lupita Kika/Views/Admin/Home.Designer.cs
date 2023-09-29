@@ -35,7 +35,7 @@
             Gains_button = new Components.RJButton();
             Alert_Button = new Components.RJButton();
             Exit_button = new Components.RJButton();
-            rjButton8 = new Components.RJButton();
+            ringBell_btn = new Components.RJButton();
             Add_button = new Button();
             SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             Palletes_button.Location = new Point(12, 12);
             Palletes_button.Name = "Palletes_button";
             Palletes_button.Padding = new Padding(0, 20, 0, 20);
-            Palletes_button.Size = new Size(308, 206);
+            Palletes_button.Size = new Size(308, 238);
             Palletes_button.TabIndex = 7;
             Palletes_button.Text = "Inventario";
             Palletes_button.TextAlign = ContentAlignment.BottomCenter;
@@ -79,7 +79,7 @@
             Ingredients_button.Location = new Point(341, 12);
             Ingredients_button.Name = "Ingredients_button";
             Ingredients_button.Padding = new Padding(0, 20, 0, 20);
-            Ingredients_button.Size = new Size(308, 206);
+            Ingredients_button.Size = new Size(308, 238);
             Ingredients_button.TabIndex = 8;
             Ingredients_button.Text = "Ingredientes";
             Ingredients_button.TextAlign = ContentAlignment.BottomCenter;
@@ -100,10 +100,10 @@
             Users_button.ForeColor = Color.Black;
             Users_button.Image = Properties.Resources.user;
             Users_button.ImageAlign = ContentAlignment.TopCenter;
-            Users_button.Location = new Point(12, 235);
+            Users_button.Location = new Point(9, 271);
             Users_button.Name = "Users_button";
             Users_button.Padding = new Padding(0, 20, 0, 20);
-            Users_button.Size = new Size(308, 206);
+            Users_button.Size = new Size(308, 238);
             Users_button.TabIndex = 9;
             Users_button.Text = "Usuarios";
             Users_button.TextAlign = ContentAlignment.BottomCenter;
@@ -124,10 +124,10 @@
             Gains_button.ForeColor = Color.Black;
             Gains_button.Image = Properties.Resources.ganador;
             Gains_button.ImageAlign = ContentAlignment.TopCenter;
-            Gains_button.Location = new Point(341, 234);
+            Gains_button.Location = new Point(341, 271);
             Gains_button.Name = "Gains_button";
             Gains_button.Padding = new Padding(0, 20, 0, 20);
-            Gains_button.Size = new Size(308, 206);
+            Gains_button.Size = new Size(308, 238);
             Gains_button.TabIndex = 10;
             Gains_button.Text = "Ventas";
             Gains_button.TextAlign = ContentAlignment.BottomCenter;
@@ -148,7 +148,7 @@
             Alert_Button.FlatStyle = FlatStyle.Flat;
             Alert_Button.ForeColor = Color.White;
             Alert_Button.Image = Properties.Resources.alerta;
-            Alert_Button.Location = new Point(295, 491);
+            Alert_Button.Location = new Point(295, 523);
             Alert_Button.Name = "Alert_Button";
             Alert_Button.Size = new Size(75, 74);
             Alert_Button.TabIndex = 12;
@@ -169,7 +169,7 @@
             Exit_button.FlatStyle = FlatStyle.Flat;
             Exit_button.ForeColor = Color.White;
             Exit_button.Image = Properties.Resources.cerrar_sesion__1_;
-            Exit_button.Location = new Point(578, 481);
+            Exit_button.Location = new Point(576, 517);
             Exit_button.Name = "Exit_button";
             Exit_button.Size = new Size(77, 80);
             Exit_button.TabIndex = 13;
@@ -177,25 +177,26 @@
             Exit_button.UseVisualStyleBackColor = false;
             Exit_button.Click += Exit_button_Click;
             // 
-            // rjButton8
+            // ringBell_btn
             // 
-            rjButton8.BackColor = Color.White;
-            rjButton8.BackgroundColor = Color.White;
-            rjButton8.BorderColor = Color.PaleVioletRed;
-            rjButton8.BorderRadius = 0;
-            rjButton8.BorderSize = 0;
-            rjButton8.FlatAppearance.BorderSize = 0;
-            rjButton8.FlatAppearance.MouseDownBackColor = Color.White;
-            rjButton8.FlatAppearance.MouseOverBackColor = Color.White;
-            rjButton8.FlatStyle = FlatStyle.Flat;
-            rjButton8.ForeColor = Color.White;
-            rjButton8.Image = Properties.Resources.notificacion;
-            rjButton8.Location = new Point(341, 481);
-            rjButton8.Name = "rjButton8";
-            rjButton8.Size = new Size(29, 29);
-            rjButton8.TabIndex = 14;
-            rjButton8.TextColor = Color.White;
-            rjButton8.UseVisualStyleBackColor = false;
+            ringBell_btn.BackColor = Color.White;
+            ringBell_btn.BackgroundColor = Color.White;
+            ringBell_btn.BorderColor = Color.PaleVioletRed;
+            ringBell_btn.BorderRadius = 0;
+            ringBell_btn.BorderSize = 0;
+            ringBell_btn.FlatAppearance.BorderSize = 0;
+            ringBell_btn.FlatAppearance.MouseDownBackColor = Color.White;
+            ringBell_btn.FlatAppearance.MouseOverBackColor = Color.White;
+            ringBell_btn.FlatStyle = FlatStyle.Flat;
+            ringBell_btn.ForeColor = Color.White;
+            ringBell_btn.Image = Properties.Resources.notificacion;
+            ringBell_btn.Location = new Point(341, 517);
+            ringBell_btn.Name = "ringBell_btn";
+            ringBell_btn.Size = new Size(29, 29);
+            ringBell_btn.TabIndex = 14;
+            ringBell_btn.TextColor = Color.White;
+            ringBell_btn.UseVisualStyleBackColor = false;
+            ringBell_btn.Click += ringBell_btn_Click_1;
             // 
             // Add_button
             // 
@@ -204,7 +205,7 @@
             Add_button.FlatStyle = FlatStyle.Flat;
             Add_button.ForeColor = Color.White;
             Add_button.Image = Properties.Resources.carrito_de_compras__1_;
-            Add_button.Location = new Point(9, 491);
+            Add_button.Location = new Point(9, 537);
             Add_button.Margin = new Padding(0);
             Add_button.Name = "Add_button";
             Add_button.Size = new Size(77, 60);
@@ -218,9 +219,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(667, 568);
+            ClientSize = new Size(665, 607);
             Controls.Add(Add_button);
-            Controls.Add(rjButton8);
+            Controls.Add(ringBell_btn);
             Controls.Add(Exit_button);
             Controls.Add(Alert_Button);
             Controls.Add(Gains_button);
@@ -242,7 +243,7 @@
         private Components.RJButton Gains_button;
         private Components.RJButton Alert_Button;
         private Components.RJButton Exit_button;
-        private Components.RJButton rjButton8;
+        private Components.RJButton ringBell_btn;
         private Button Add_button;
     }
 }

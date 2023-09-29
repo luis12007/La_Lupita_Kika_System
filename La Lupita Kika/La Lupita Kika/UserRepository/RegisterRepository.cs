@@ -161,6 +161,23 @@ namespace La_Lupita_Kika.UserRepository
                 command.ExecuteNonQuery();
             }
         }
+        public DateTime GetInhourById(int registerId)
+        {
+            DateTime inhour = DateTime.MinValue;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT inhour FROM register WHERE register_id = @RegisterId";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@RegisterId", registerId);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    inhour = Convert.ToDateTime(result);
+                }
+            }
+            return inhour;
+        }
 
         public List<SalesWithRegisterData> GetSalesWithRegisterDataByDateRange(DateTime startDate, DateTime endDate, int subsidiaryId)
         {

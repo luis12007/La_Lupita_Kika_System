@@ -32,6 +32,8 @@
             label = new Label();
             textBox = new Components.RJTextBox();
             button = new Components.RJButton();
+            PictureBoxLogo = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).BeginInit();
             SuspendLayout();
             // 
             // label
@@ -80,16 +82,27 @@
             button.BorderSize = 2;
             button.FlatAppearance.BorderSize = 0;
             button.FlatStyle = FlatStyle.Flat;
-            button.Font = new Font("Bahnschrift SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button.Font = new Font("Bahnschrift SemiBold", 15F, FontStyle.Bold, GraphicsUnit.Point);
             button.ForeColor = Color.Black;
             button.Location = new Point(103, 127);
             button.Name = "button";
             button.Size = new Size(188, 50);
             button.TabIndex = 4;
-            button.Text = "Aceptar";
+            button.Text = "Finalizar";
             button.TextColor = Color.Black;
             button.UseVisualStyleBackColor = false;
             button.Click += button_Click;
+            // 
+            // PictureBoxLogo
+            // 
+            PictureBoxLogo.Image = Properties.Resources.LOGO_2_LA_LUPITAKIKA__1_;
+            PictureBoxLogo.Location = new Point(12, 130);
+            PictureBoxLogo.Name = "PictureBoxLogo";
+            PictureBoxLogo.Size = new Size(84, 68);
+            PictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxLogo.TabIndex = 5;
+            PictureBoxLogo.TabStop = false;
+            PictureBoxLogo.Visible = false;
             // 
             // Mount
             // 
@@ -97,6 +110,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(395, 210);
+            Controls.Add(PictureBoxLogo);
             Controls.Add(button);
             Controls.Add(textBox);
             Controls.Add(label);
@@ -105,6 +119,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pago";
             Load += Mount_Load;
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +129,6 @@
         private Label label;
         private Components.RJTextBox textBox;
         private Components.RJButton button;
+        private PictureBox PictureBoxLogo;
     }
 }

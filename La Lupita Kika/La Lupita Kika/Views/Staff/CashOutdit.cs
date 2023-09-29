@@ -22,35 +22,37 @@ namespace La_Lupita_Kika.Views.Staff
         private SalesRepository salesrepo;
         private RegisterRepository regisrepo;
         private float daygains;
-        public CashOutdit(string connectionString, int thisregis)
+        private int subsidiaryid;
+
+
+        private List<SalesWithRegisterData> registrosEncontrados = new List<SalesWithRegisterData>();
+        public CashOutdit(string connectionString, int thisregis, int subsidiary)
         {
             this.connectionString = connectionString;
             this.thisregis = thisregis;
             this.registerrepo = new RegisterXSalesRepository(connectionString);
             this.salesrepo = new SalesRepository(connectionString);
             this.regisrepo = new RegisterRepository(connectionString);
+            this.subsidiaryid = subsidiary;
             InitializeComponent();
         }
 
         private void CashOutdit_Load(object sender, EventArgs e)
         {
-            List<Registerxsales> fullList = registerrepo.GetAllByRegisterId(thisregis);
-            // Obtener la lista de IDs de ventas asociadas al registro
-            List<int> salesIds = fullList.Select(r => r.Sales_id).ToList();
+            registrosEncontrados.Clear();
 
-            // Llamar al método GetAllByIds con la lista de IDs de ventas
-            List<Sales> salesList = salesrepo.GetAllByIds(salesIds);
-
+            DateTime startDate = regisrepo.GetInhourById(thisregis);
+            DateTime endDate = DateTime.Now;
+            registrosEncontrados = regisrepo.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryid);
             float totalSum = 0.0f; // Variable para guardar la suma total
 
-            // Recorrer la lista de Sales y sumar el resultado de multiplicar lot con total para cada objeto
-            foreach (var sale in salesList)
+            foreach (var sale in registrosEncontrados)
             {
                 float saleTotal = sale.Lot * sale.Total;
                 totalSum += saleTotal;
             }
 
-
+            totalSum = (float)Math.Round(totalSum, 2);
             day_textbox.Texts = totalSum.ToString();
             daygains = totalSum;
         }

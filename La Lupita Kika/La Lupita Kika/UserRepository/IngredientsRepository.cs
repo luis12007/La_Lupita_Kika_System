@@ -32,6 +32,48 @@ namespace La_Lupita_Kika.UserRepository
             }
         }
 
+        public (bool success, float newValue, string returnType) SubtractFromUnitByNameAndSubsidiary(string ingredientName, int subsidiaryId, float amountToSubtract)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "UPDATE ingredients SET unit = unit - @AmountToSubtract WHERE name = @Name AND Subsidiary_ID = @SubsidiaryID";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@AmountToSubtract", amountToSubtract);
+                command.Parameters.AddWithValue("@Name", ingredientName);
+                command.Parameters.AddWithValue("@SubsidiaryID", subsidiaryId);
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    // Retrieve the new value and type from the database
+                    query = "SELECT unit, type FROM ingredients WHERE name = @Name AND Subsidiary_ID = @SubsidiaryID";
+                    command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Name", ingredientName);
+                    command.Parameters.AddWithValue("@SubsidiaryID", subsidiaryId);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            float newValue = reader.GetFloat(0);
+                            string returnType = reader.GetString(1);
+
+                            if (newValue >= 0)
+                            {
+                                return (true, newValue, returnType);
+                            }
+                            else
+                            {
+                                return (false, Math.Abs(newValue), returnType);
+                            }
+                        }
+                    }
+                }
+                return (false, 0, ""); // In case of any issues
+            }
+        }
+
+
 
         public List<Ingredients> FindByNameContaining(string partialName)
         {

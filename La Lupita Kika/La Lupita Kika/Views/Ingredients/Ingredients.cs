@@ -19,8 +19,8 @@ namespace La_Lupita_Kika.Views.Ingredients
         private IngredientsRepository IngredientsRepository;
         private List<Models.Ingredients> IngredientsList = new List<Models.Ingredients>();
 
-        private string subsidiary = "Sonsonate";
-        private int subsidiarynumber = 1;
+        private string subsidiary = "Juayua";
+        private int subsidiarynumber = 2;
         public Ingredients(string connectionString)
         {
             this.ConnectionString = connectionString;
@@ -68,10 +68,91 @@ namespace La_Lupita_Kika.Views.Ingredients
 
             Ingredients_dataGridView.Rows.Clear();
 
+            string subsidiary = "juayua";
+            float number = 0;
+            string type;
             foreach (var palettec in IngredientsList)
             {
-                String[] row2 = { $"{palettec.Name}", $"{palettec.Price}", $"{palettec.Code}", $"{palettec.Unit}", $"{palettec.Type}", $"{palettec.Subsidiary_ID}", $"{palettec.Category}" };
+                if (palettec.Subsidiary_ID == 2)
+                {
+                    subsidiary = "Juayua";
+                }
+                else if (palettec.Subsidiary_ID == 1)
+                {
+                    subsidiary = "Sonsonate";
+                }
+
+                number = palettec.Unit;
+                type = palettec.Type;
+
+                if (palettec.Name == "Alguashte")
+                {
+                    number = number * 0.0326f;
+                    type = "LIBRAS";
+                }
+                else if (palettec.Name == "Chile liquido")
+                {
+                    number = number * 0.003906f;
+                    type = "GALON";
+                }
+                else if (palettec.Name == "Arrayán")
+                {
+                    number = number / 6f;
+                    type = "LIBRAS";
+                }
+                else if (palettec.Name == "Servilleta")
+                {
+                    type = "PAQUETES";
+                    number = number / 40f;
+                }
+
+                switch (type)
+                {
+
+                    case "TBSP":
+                        number = number * 0.0326f;
+                        type = "LIBRA";
+                        break;
+
+                    case "TBS":
+                        number = number * 0.0326f;
+                        type = "LIBRA";
+                        break;
+
+                    /*case "GRAMOS":
+                        number = number * 0.0022f;
+                        type = "LIBRA";
+                        break;*/
+
+                    default: break;
+                }
+
+                // Redondear el número a dos decimales
+                float roundedNumber = (float)Math.Round(number, 2);
+
+                // Si el número redondeado es 0.00, mostrar un decimal más
+                if (roundedNumber == 0.00f)
+                {
+                    roundedNumber = (float)Math.Round(number, 4);
+                }
+
+                String[] row2 = { $"{palettec.Name}", $"{palettec.Price}", $"{palettec.Code}", $"{roundedNumber}", $"{type}", $"{subsidiary}", $"{palettec.Category}" };
                 Ingredients_dataGridView.Rows.Add(row2);
+
+
+                foreach (DataGridViewRow row in Ingredients_dataGridView.Rows)
+                {
+                    if (row.Cells[3].Value != null)
+                    {
+                        float roundedNumbers = float.Parse(row.Cells[3].Value.ToString());
+
+                        if (roundedNumbers < 0)
+                        {
+                            row.Cells[Ingredients_dataGridView.Columns[3].Index].Style.ForeColor = Color.Red;
+                        }
+                    }
+                }
+
                 Ingredients_dataGridView.ClearSelection();
 
             }
@@ -91,8 +172,10 @@ namespace La_Lupita_Kika.Views.Ingredients
             }
             subsidiaryNames.Add("Todos");
 
+
             // Asignar la lista como fuente de datos del ComboBox
             Subsidiary_cbb.DataSource = subsidiaryNames;
+            Subsidiary_cbb.SelectedIndex = 1;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -128,10 +211,92 @@ namespace La_Lupita_Kika.Views.Ingredients
                     Ingredients_dataGridView.Rows.Clear();
 
 
+                    string subsidiary = "juayua";
+                    float number = 0;
+                    string type;
                     foreach (var palettec in IngredientsList)
                     {
-                        String[] row2 = { $"{palettec.Name}", $"{palettec.Price}", $"{palettec.Code}", $"{palettec.Unit}", $"{palettec.Type}", $"{palettec.Subsidiary_ID}" };
+                        if (palettec.Subsidiary_ID == 2)
+                        {
+                            subsidiary = "Juayua";
+                        }
+                        else if (palettec.Subsidiary_ID == 1)
+                        {
+                            subsidiary = "Sonsonate";
+                        }
+
+                        number = palettec.Unit;
+                        type = palettec.Type;
+
+                        if (palettec.Name == "Alguashte")
+                        {
+                            number = number * 0.0326f;
+                            type = "LIBRAS";
+                        }
+                        else if (palettec.Name == "Chile liquido")
+                        {
+                            number = number * 0.003906f;
+                            type = "GALON";
+                        }
+                        else if (palettec.Name == "Arrayán")
+                        {
+                            number = number / 6f;
+                            type = "LIBRAS";
+                        }
+                        else if (palettec.Name == "Servilleta")
+                        {
+                            type = "PAQUETES";
+                            number = number / 40f;
+                        }
+
+                        switch (type)
+                        {
+
+                            case "TBSP":
+                                number = number * 0.0326f;
+                                type = "LIBRA";
+                                break;
+
+                            case "TBS":
+                                number = number * 0.0326f;
+                                type = "LIBRA";
+                                break;
+
+                            /*case "GRAMOS":
+                                number = number * 0.0022f;
+                                type = "LIBRA";
+                                break;*/
+
+                            default: break;
+                        }
+
+                        // Redondear el número a dos decimales
+                        float roundedNumber = (float)Math.Round(number, 2);
+
+                        // Si el número redondeado es 0.00, mostrar un decimal más
+                        if (roundedNumber == 0.00f)
+                        {
+                            roundedNumber = (float)Math.Round(number, 4);
+                        }
+
+
+                        String[] row2 = { $"{palettec.Name}", $"{palettec.Price}", $"{palettec.Code}", $"{roundedNumber}", $"{type}", $"{palettec.Subsidiary_ID}", $"{palettec.Category}" };
                         Ingredients_dataGridView.Rows.Add(row2);
+
+
+                        foreach (DataGridViewRow row in Ingredients_dataGridView.Rows)
+                        {
+                            if (row.Cells[3].Value != null)
+                            {
+                                float roundedNumbers = float.Parse(row.Cells[3].Value.ToString());
+
+                                if (roundedNumbers < 0)
+                                {
+                                    row.Cells[Ingredients_dataGridView.Columns[3].Index].Style.ForeColor = Color.Red;
+                                }
+                            }
+                        }
+
                         Ingredients_dataGridView.ClearSelection();
 
                     }
@@ -190,9 +355,14 @@ namespace La_Lupita_Kika.Views.Ingredients
                     float unit = float.Parse(row.Cells["Cantidad"].Value.ToString());
                     string type = row.Cells["Tipo"].Value.ToString();
                     string Category = row.Cells["Categoria"].Value.ToString();
-                    int subsidiaryId = Convert.ToInt32(row.Cells["Sucursal"].Value);
+                    string subsidiary = (row.Cells["Sucursal"].Value.ToString());
+                    int subsidiaryInt = 1;
+                    if (subsidiary == "Juayua")
+                    {
+                        subsidiaryInt = 2;
+                    }
 
-                    Models.Ingredients ingredient = new Models.Ingredients(0, name, code, price, unit, type, subsidiaryId, Category);
+                    Models.Ingredients ingredient = new Models.Ingredients(name, code, price, unit, type, subsidiaryInt, Category);
                     ingredientsList.Add(ingredient);
                 }
             }
@@ -207,7 +377,17 @@ namespace La_Lupita_Kika.Views.Ingredients
             AddIngredients addIngredients = new AddIngredients(ConnectionString);
             addIngredients.ShowDialog();
 
+            RefreshDGV();
             this.Show();
+        }
+
+        private void Find_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Llamar al evento Login_button_Click
+                button2.PerformClick();
+            }
         }
     }
 }

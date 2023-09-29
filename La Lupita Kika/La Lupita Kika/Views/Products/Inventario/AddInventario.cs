@@ -190,7 +190,11 @@ namespace La_Lupita_Kika.Views.Products.Inventario
 
 
             name = Name_textbox.Texts;
-            category = Category_cbb.SelectedItem.ToString();
+            if (Category_cbb.SelectedItem != null)
+            {
+                category = Category_cbb.SelectedItem.ToString();
+            }
+            
             price = float.Parse(Price_textbox.Texts);
             number = float.Parse(Number_textbox.Texts);
             codebar = Codebar_textbox.Texts;
