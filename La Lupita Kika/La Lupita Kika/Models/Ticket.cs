@@ -79,7 +79,7 @@ namespace La_Lupita_Kika.Models
             int numerio = 3;
 #pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
 #pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
-            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+            doc.PrinterSettings.PrinterName = "POS-58";
             doc.PrintPage += new PrintPageEventHandler(imprimeticket);
             vista.Document = doc;
             //vista.Show();

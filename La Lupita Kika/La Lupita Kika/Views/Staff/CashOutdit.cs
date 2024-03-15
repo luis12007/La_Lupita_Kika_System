@@ -26,13 +26,16 @@ namespace La_Lupita_Kika.Views.Staff
 
 
         private List<SalesWithRegisterData> registrosEncontrados = new List<SalesWithRegisterData>();
-        public CashOutdit(string connectionString, int thisregis, int subsidiary)
+        private List<Models.Products> ProductosListCashOut = new List<Models.Products>(); // Lista de productos corte
+
+        public CashOutdit(string connectionString, int thisregis, int subsidiary, List<Models.Products> productosListCashOut)
         {
             this.connectionString = connectionString;
             this.thisregis = thisregis;
             this.registerrepo = new RegisterXSalesRepository(connectionString);
             this.salesrepo = new SalesRepository(connectionString);
             this.regisrepo = new RegisterRepository(connectionString);
+            this.ProductosListCashOut = productosListCashOut;
             this.subsidiaryid = subsidiary;
             InitializeComponent();
         }
@@ -41,14 +44,14 @@ namespace La_Lupita_Kika.Views.Staff
         {
             registrosEncontrados.Clear();
 
-            DateTime startDate = regisrepo.GetInhourById(thisregis);
+            /*DateTime startDate = regisrepo.GetInhourById(thisregis);
             DateTime endDate = DateTime.Now;
-            registrosEncontrados = regisrepo.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryid);
+            registrosEncontrados = regisrepo.GetSalesWithRegisterDataByDateRange(startDate, endDate, subsidiaryid);*/
             float totalSum = 0.0f; // Variable para guardar la suma total
 
-            foreach (var sale in registrosEncontrados)
+            foreach (var sale in ProductosListCashOut)
             {
-                float saleTotal = sale.Lot * sale.Total;
+                float saleTotal = sale.Cantidad * sale.Valor;
                 totalSum += saleTotal;
             }
 
@@ -104,6 +107,40 @@ namespace La_Lupita_Kika.Views.Staff
             regisrepo.UpdateOuthourById(thisregis, outhour);
             regisrepo.UpdateDayGainsById(thisregis, daygains);
 
+            //-------------------------------------------------------------------------
+            foreach (var producto in ProductosListCashOut)
+                {
+                    
+
+
+                    int registers = thisregis;
+                    // Obtener los datos de cada producto en la lista
+                    string nombre = producto.Nombre;
+                    float cantidad = producto.Cantidad;
+                    float precio = producto.Valor;
+
+
+                    // Llamar al método Add del repositorio SalesRepository para guardar los datos en la base de datos
+                    Sales sales = new Sales(nombre, cantidad, precio);
+                    salesrepo.Add(sales);
+
+
+                    List<Sales> salesList = salesrepo.GetAll();
+                    Sales foundSales = salesList.Find(sales => sales.Name.Equals(nombre) && sales.Lot.Equals(cantidad));
+
+                    // Obtener el ID del objeto Sales encontrado
+                    int foundId = foundSales != null ? foundSales.Id : -1;
+
+                    if (foundId != -1)
+                    {
+                        Registerxsales register = new Registerxsales(registers, foundId);
+                        registerrepo.Add(register);
+                    }
+
+
+                }
+
+            //-------------------------------------------------------------------------
             this.DialogResult = DialogResult.OK;
             Application.Exit();
         }

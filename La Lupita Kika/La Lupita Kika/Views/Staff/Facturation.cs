@@ -31,6 +31,7 @@ namespace La_Lupita_Kika.Views
         private OtherRepository otherrepo;
 
         private List<Models.Products> productosList = new List<Models.Products>(); // Lista de productos
+        private List<Models.Products> productosListCashOut = new List<Models.Products>(); // Lista de productos corte
         private List<Object> allObjects = new List<Object>();
 
         private bool shiftKeyPressed = false;
@@ -331,9 +332,9 @@ namespace La_Lupita_Kika.Views
             Products_dataGridView.Columns[2].Name = "Valor";
 
             // Ajustar el ancho de las columnas
-            Products_dataGridView.Columns["Nombre"].Width = 287;     // Establecer el ancho de la columna "Nombre" en 287 píxeles
-            Products_dataGridView.Columns["Cantidad"].Width = 100;   // Establecer el ancho de la columna "Cantidad" en 100 píxeles
-            Products_dataGridView.Columns["Valor"].Width = 100;      // Establecer el ancho de la columna "Valor" en 100 píxeles
+            Products_dataGridView.Columns["Nombre"].Width = 457;     // Establecer el ancho de la columna "Nombre" en 287 píxeles
+            Products_dataGridView.Columns["Cantidad"].Width = 150;   // Establecer el ancho de la columna "Cantidad" en 100 píxeles
+            Products_dataGridView.Columns["Valor"].Width = 150;      // Establecer el ancho de la columna "Valor" en 100 píxeles
 
         }
 
@@ -366,11 +367,17 @@ namespace La_Lupita_Kika.Views
 
             Products_dataGridView.Rows.Clear();
             this.Hide();
+
             // Abrir el nuevo formulario de facturación
             Staff.Mount formFacturation = new Staff.Mount(connectionString, totalfrice, productosList, thisregis, subsidiary);
             formFacturation.ShowDialog();
 
             this.Show();
+            foreach (Models.Products product in productosList)
+            {
+                productosListCashOut.Add(product);
+            }
+
             productosList.Clear();
 
         }
@@ -381,7 +388,7 @@ namespace La_Lupita_Kika.Views
             this.Hide();
 
             // Abrir el nuevo formulario de facturación
-            Staff.CashOutdit formFacturation = new Staff.CashOutdit(connectionString, thisregis, subsidiary );
+            Staff.CashOutdit formFacturation = new Staff.CashOutdit(connectionString, thisregis, subsidiary, productosListCashOut);
             formFacturation.ShowDialog();
 
             // Mostrar nuevamente el formulario actual cuando se cierre el formulario de facturación
@@ -398,7 +405,7 @@ namespace La_Lupita_Kika.Views
                 Models.Products productoEncontrado = productosList.FirstOrDefault(p => p.Nombre == nombreProducto);
 
                 //reagregar
-                
+
                 //---------------------------------------------------------------
 
                 productosList.RemoveAll(p => p.Nombre == nombreProducto);

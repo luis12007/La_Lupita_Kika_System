@@ -45,10 +45,10 @@
             // Barcode_label
             // 
             Barcode_label.AutoSize = true;
-            Barcode_label.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Barcode_label.Font = new Font("Bahnschrift", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Barcode_label.Location = new Point(12, 19);
             Barcode_label.Name = "Barcode_label";
-            Barcode_label.Size = new Size(312, 41);
+            Barcode_label.Size = new Size(404, 53);
             Barcode_label.TabIndex = 0;
             Barcode_label.Text = "Codigo de producto";
             // 
@@ -59,9 +59,9 @@
             Barcode_textBox.BorderFocusColor = Color.FromArgb(224, 224, 224);
             Barcode_textBox.BorderRadius = 10;
             Barcode_textBox.BorderSize = 2;
-            Barcode_textBox.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            Barcode_textBox.Font = new Font("Bahnschrift", 36F, FontStyle.Regular, GraphicsUnit.Point);
             Barcode_textBox.ForeColor = Color.FromArgb(64, 64, 64);
-            Barcode_textBox.Location = new Point(13, 71);
+            Barcode_textBox.Location = new Point(13, 85);
             Barcode_textBox.Margin = new Padding(4);
             Barcode_textBox.Multiline = false;
             Barcode_textBox.Name = "Barcode_textBox";
@@ -70,7 +70,7 @@
             Barcode_textBox.PlaceholderColor = Color.DarkGray;
             Barcode_textBox.PlaceholderText = "";
             Barcode_textBox.ReadOnly = false;
-            Barcode_textBox.Size = new Size(351, 56);
+            Barcode_textBox.Size = new Size(413, 87);
             Barcode_textBox.TabIndex = 8;
             Barcode_textBox.TextAlign = ContentAlignment.MiddleLeft;
             Barcode_textBox.Texts = "";
@@ -91,9 +91,9 @@
             Add_button.FlatStyle = FlatStyle.Flat;
             Add_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Add_button.ForeColor = Color.Black;
-            Add_button.Location = new Point(13, 167);
+            Add_button.Location = new Point(12, 195);
             Add_button.Name = "Add_button";
-            Add_button.Size = new Size(351, 152);
+            Add_button.Size = new Size(414, 155);
             Add_button.TabIndex = 10;
             Add_button.Text = "Agregar";
             Add_button.TextColor = Color.Black;
@@ -112,9 +112,9 @@
             Process_button.FlatStyle = FlatStyle.Flat;
             Process_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             Process_button.ForeColor = Color.Black;
-            Process_button.Location = new Point(13, 408);
+            Process_button.Location = new Point(13, 545);
             Process_button.Name = "Process_button";
-            Process_button.Size = new Size(351, 91);
+            Process_button.Size = new Size(433, 119);
             Process_button.TabIndex = 11;
             Process_button.Text = "Procesar";
             Process_button.TextColor = Color.Black;
@@ -133,9 +133,9 @@
             rjButton1.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             rjButton1.ForeColor = Color.Black;
             rjButton1.Image = (Image)resources.GetObject("rjButton1.Image");
-            rjButton1.Location = new Point(827, 480);
+            rjButton1.Location = new Point(1164, 612);
             rjButton1.Name = "rjButton1";
-            rjButton1.Size = new Size(65, 44);
+            rjButton1.Size = new Size(73, 52);
             rjButton1.TabIndex = 12;
             rjButton1.TextColor = Color.Black;
             rjButton1.UseVisualStyleBackColor = false;
@@ -168,7 +168,7 @@
             Products_dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             Products_dataGridView.EnableHeadersVisualStyles = false;
             Products_dataGridView.GridColor = Color.Black;
-            Products_dataGridView.Location = new Point(402, 19);
+            Products_dataGridView.Location = new Point(471, 23);
             Products_dataGridView.Name = "Products_dataGridView";
             Products_dataGridView.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -183,7 +183,7 @@
             Products_dataGridView.RowHeadersWidth = 51;
             Products_dataGridView.RowTemplate.Height = 29;
             Products_dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Products_dataGridView.Size = new Size(490, 455);
+            Products_dataGridView.Size = new Size(760, 580);
             Products_dataGridView.TabIndex = 13;
             Products_dataGridView.CellClick += Products_dataGridView_CellClick;
             Products_dataGridView.CellContentClick += Products_dataGridView_CellContentClick_1;
@@ -193,10 +193,10 @@
             // Total
             // 
             Total.AutoSize = true;
-            Total.Font = new Font("Bahnschrift", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            Total.Location = new Point(144, 378);
+            Total.Font = new Font("Bahnschrift", 28.2F, FontStyle.Regular, GraphicsUnit.Point);
+            Total.Location = new Point(132, 466);
             Total.Name = "Total";
-            Total.Size = new Size(95, 27);
+            Total.Size = new Size(201, 57);
             Total.TabIndex = 14;
             Total.Text = "Total: 0$";
             // 
@@ -205,7 +205,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(904, 536);
+            ClientSize = new Size(1243, 676);
             Controls.Add(Total);
             Controls.Add(Products_dataGridView);
             Controls.Add(rjButton1);

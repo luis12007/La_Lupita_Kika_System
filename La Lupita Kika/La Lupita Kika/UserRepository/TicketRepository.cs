@@ -37,6 +37,19 @@ namespace La_Lupita_Kika.UserRepository
                 command.ExecuteNonQuery();
             }
         }
+        public int GetCount()
+        {
+            int count = 0;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM ticket";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                connection.Open();
+                count = Convert.ToInt32(command.ExecuteScalar());
+            }
+            return count;
+        }
+
 
         public List<Ticket> GetAll()
         {

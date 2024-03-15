@@ -90,11 +90,12 @@ namespace La_Lupita_Kika.Views.Staff
 
                 //
                 //Change_texbox.Texts = money.ToString();
-                Register regis = registerrepo.GetById(thisregis);
-                User myuser = userrepo.GetUserById(regis.User_id);
-                CashierName = myuser.Name;
+                //TODO:Comentado por error
+                //Register regis = registerrepo.GetById(thisregis);
+                //User myuser = userrepo.GetUserById(regis.User_id);
+                //CashierName = myuser.Name;
                 // this.Hide();
-                int ticketNumber = ticketrepo.GetAll().Count;
+                int ticketNumber = ticketrepo.GetCount();
                 DateTime currentDate = DateTime.Now;
 
                 //generando ticket//
@@ -104,7 +105,7 @@ namespace La_Lupita_Kika.Views.Staff
                 ticket.Address = "";
                 ticket.DateTicket = currentDate.Date;
                 ticket.TimeTicket = currentDate.TimeOfDay;
-                ticket.CashierName = myuser.User_id.ToString();
+                ticket.CashierName = "Cajero";
                 foreach (Models.Products producto in productosList)
                 {
                     ticket.ProductsLists.Add(producto);
@@ -123,7 +124,8 @@ namespace La_Lupita_Kika.Views.Staff
 
 
                 // Supongamos que tienes una instancia del repositorio SalesRepository llamada salesrepo
-                foreach (var producto in productosList)
+                // TODO: Comentado por errores 
+                /*foreach (var producto in productosList)
                 {
                     switch (producto.Tipo)
                     {
@@ -178,6 +180,7 @@ namespace La_Lupita_Kika.Views.Staff
 
 
                 }
+            */
 
 
 
