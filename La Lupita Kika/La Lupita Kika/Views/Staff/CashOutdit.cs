@@ -121,8 +121,6 @@ namespace La_Lupita_Kika.Views.Staff
             //-------------------------------------------------------------------------
             foreach (var producto in ProductosListCashOut)
             {
-                MessageBox.Show($"Nombre: {producto.Nombre}\nCantidad: {producto.Cantidad}\nPrecio: {producto.Valor} tipo: {producto.Tipo} Codebar: {producto.Codebar} {subsidiaryid}", "Información del Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
 
                 switch (producto.Tipo)
                 {
