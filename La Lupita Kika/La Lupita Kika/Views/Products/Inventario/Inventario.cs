@@ -390,7 +390,7 @@ namespace La_Lupita_Kika.Views.Products.Palettes
                     productosList.Add(producto);
                 }
             }
-            MessageBox.Show("aver");
+            MessageBox.Show("archivo guardado en documentos con el nombre de (productos)");
 
             // Obtener la ruta de la carpeta "Documentos" del usuario
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

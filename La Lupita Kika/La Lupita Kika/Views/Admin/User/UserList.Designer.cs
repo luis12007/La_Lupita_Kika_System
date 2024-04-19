@@ -35,7 +35,6 @@
             Exit_button = new Button();
             Userlist_dataGridView = new DataGridView();
             Add_button = new Components.RJButton();
-            Delete_button = new Components.RJButton();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)Userlist_dataGridView).BeginInit();
             SuspendLayout();
@@ -122,26 +121,6 @@
             Add_button.UseVisualStyleBackColor = false;
             Add_button.Click += Add_button_Click;
             // 
-            // Delete_button
-            // 
-            Delete_button.BackColor = Color.White;
-            Delete_button.BackgroundColor = Color.White;
-            Delete_button.BorderColor = Color.FromArgb(255, 54, 112);
-            Delete_button.BorderRadius = 20;
-            Delete_button.BorderSize = 2;
-            Delete_button.FlatAppearance.BorderSize = 0;
-            Delete_button.FlatStyle = FlatStyle.Flat;
-            Delete_button.Font = new Font("Bahnschrift", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            Delete_button.ForeColor = Color.Black;
-            Delete_button.Location = new Point(720, 427);
-            Delete_button.Name = "Delete_button";
-            Delete_button.Size = new Size(250, 118);
-            Delete_button.TabIndex = 21;
-            Delete_button.Text = "Eliminar";
-            Delete_button.TextColor = Color.Black;
-            Delete_button.UseVisualStyleBackColor = false;
-            Delete_button.Click += Delete_button_Click;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -159,7 +138,6 @@
             BackColor = Color.White;
             ClientSize = new Size(983, 557);
             Controls.Add(label1);
-            Controls.Add(Delete_button);
             Controls.Add(Add_button);
             Controls.Add(Userlist_dataGridView);
             Controls.Add(Exit_button);

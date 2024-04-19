@@ -99,7 +99,7 @@ namespace La_Lupita_Kika.Views
                 Username = username,
                 Mail = mail,
                 Rol_id = RolRepository.FindIdByName(roleName),
-                Subsidiary_ID = SubsidiaryRepository.FindIdByName(roleName)
+                Subsidiary_ID = SubsidiaryRepository.FindIdByName(place)
             };
 
             // Agregar el usuario utilizando el repositorio

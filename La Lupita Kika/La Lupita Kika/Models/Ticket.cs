@@ -72,19 +72,42 @@ namespace La_Lupita_Kika.Models
             Number = number;
             Items = items;
         }
+
+        static bool ImpresoraExiste(string nombreImpresora)
+        {
+            foreach (string impresora in PrinterSettings.InstalledPrinters)
+            {
+                if (impresora == nombreImpresora)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void imprimir(Ticket p)
         {
-#pragma warning disable CS0219 // La variable está asignada pero nunca se usa su valor
-#pragma warning disable CS0219 // La variable está asignada pero nunca se usa su valor
+
             int numerio = 3;
-#pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
-#pragma warning restore CS0219 // La variable está asignada pero nunca se usa su valor
-            doc.PrinterSettings.PrinterName = "POS-58";
-            doc.PrintPage += new PrintPageEventHandler(imprimeticket);
-            vista.Document = doc;
-            //vista.Show();
-            doc.Print();
+
+            if (ImpresoraExiste("POS-58"))
+            {
+                doc.PrinterSettings.PrinterName = "POS-58";
+                doc.PrintPage += new PrintPageEventHandler(imprimeticket);
+                vista.Document = doc;
+                //vista.Show();
+                doc.Print();
+            }
+            else
+            {
+                // La impresora no existe, no hacer nada o mostrar un mensaje de error
+                Console.WriteLine("La impresora 'POS-58' no está disponible.");
+            }
         }
+
+
+        
+
 
         public void imprimeticket(object sender, PrintPageEventArgs e) {
 

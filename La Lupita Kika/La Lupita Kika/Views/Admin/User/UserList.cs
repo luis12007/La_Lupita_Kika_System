@@ -45,7 +45,7 @@ namespace La_Lupita_Kika.Views.Admin.User
 
 
             // Ajustar el ancho de las columnas
-            Userlist_dataGridView.Columns["Cajero"].Width = 80 ;
+            Userlist_dataGridView.Columns["Cajero"].Width = 80;
             Userlist_dataGridView.Columns["Nombre"].Width = 220;
             Userlist_dataGridView.Columns["Contraseña"].Width = 130;
             Userlist_dataGridView.Columns["Correo"].Width = 220;

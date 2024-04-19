@@ -23,6 +23,12 @@ namespace La_Lupita_Kika.Views.Staff
         private RegisterRepository regisrepo;
         private float daygains;
         private int subsidiaryid;
+        private CandyRepository candysrepo;
+        private OtherRepository otherrepo;
+        private PalettesRepository palettesrepo;
+        private SnowIceRepository snowicerepo;
+        private MangoneadasRepository mangoneadasrepo;
+        private RegisterXSalesRepository registerXSalesrepo;
 
 
         private List<SalesWithRegisterData> registrosEncontrados = new List<SalesWithRegisterData>();
@@ -36,6 +42,11 @@ namespace La_Lupita_Kika.Views.Staff
             this.salesrepo = new SalesRepository(connectionString);
             this.regisrepo = new RegisterRepository(connectionString);
             this.ProductosListCashOut = productosListCashOut;
+            this.candysrepo = new CandyRepository(connectionString);
+            this.otherrepo = new OtherRepository(connectionString);
+            this.palettesrepo = new PalettesRepository(connectionString);
+            this.snowicerepo = new SnowIceRepository(connectionString);
+            this.mangoneadasrepo = new MangoneadasRepository(connectionString);
             this.subsidiaryid = subsidiary;
             InitializeComponent();
         }
@@ -109,8 +120,36 @@ namespace La_Lupita_Kika.Views.Staff
 
             //-------------------------------------------------------------------------
             foreach (var producto in ProductosListCashOut)
+            {
+                MessageBox.Show($"Nombre: {producto.Nombre}\nCantidad: {producto.Cantidad}\nPrecio: {producto.Valor} tipo: {producto.Tipo} Codebar: {producto.Codebar} {subsidiaryid}", "Información del Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                switch (producto.Tipo)
                 {
-                    
+                    case "candy":
+                        candysrepo.UpdateCuantityByCodebarMinus(producto.Codebar, (int)producto.Cantidad, subsidiaryid);
+                        break;
+
+                    case "other":
+                        otherrepo.UpdateCuantityByCodebarMinus(producto.Codebar, (int)producto.Cantidad, subsidiaryid);
+                        break;
+
+                    case "Mangoneada":
+                        mangoneadasrepo.UpdateCuantityByCodebarMinus(producto.Codebar, (int)producto.Cantidad, subsidiaryid);
+                        break;
+
+                    case "palette":
+                        palettesrepo.UpdateCuantityByCodebarmin(producto.Codebar, (int)producto.Cantidad, subsidiaryid);
+                        break;
+
+                    case "snowice":
+                        snowicerepo.IncrementCuantityByCodebarMinus(producto.Codebar, (int)producto.Cantidad, subsidiaryid);
+                        break;
+
+                    default:
+                        break;
+                }
+
 
 
                     int registers = thisregis;
