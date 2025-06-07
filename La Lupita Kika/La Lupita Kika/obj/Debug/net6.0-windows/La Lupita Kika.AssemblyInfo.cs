@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("La Lupita Kika")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87a0427d5f7f0f228702fc5f17ab591e3f2f83be")]
 [assembly: System.Reflection.AssemblyProductAttribute("La Lupita Kika")]
 [assembly: System.Reflection.AssemblyTitleAttribute("La Lupita Kika")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

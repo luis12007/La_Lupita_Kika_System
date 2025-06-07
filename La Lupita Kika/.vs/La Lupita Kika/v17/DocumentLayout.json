@@ -1,0 +1,89 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|c:\\users\\luish\\source\\repos\\luis12007\\la_lupita_kika_system\\la lupita kika\\la lupita kika\\views\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|solutionrelative:la lupita kika\\views\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|c:\\users\\luish\\source\\repos\\luis12007\\la_lupita_kika_system\\la lupita kika\\la lupita kika\\userrepository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|solutionrelative:la lupita kika\\userrepository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|c:\\users\\luish\\source\\repos\\luis12007\\la_lupita_kika_system\\la lupita kika\\la lupita kika\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|solutionrelative:la lupita kika\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|c:\\users\\luish\\source\\repos\\luis12007\\la_lupita_kika_system\\la lupita kika\\la lupita kika\\userrepository\\candyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F81D32DB-63D2-4BAF-A8D9-A2B63FE1A9C0}|La Lupita Kika\\La Lupita Kika.csproj|solutionrelative:la lupita kika\\userrepository\\candyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\UserRepository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "La Lupita Kika\\UserRepository\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\UserRepository\\UserRepository.cs",
+              "RelativeToolTip": "La Lupita Kika\\UserRepository\\UserRepository.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAmwCEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T22:21:53.437Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cs",
+              "DocumentMoniker": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\Views\\Login.cs",
+              "RelativeDocumentMoniker": "La Lupita Kika\\Views\\Login.cs",
+              "ToolTip": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\Views\\Login.cs",
+              "RelativeToolTip": "La Lupita Kika\\Views\\Login.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAIwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T22:19:50.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CandyRepository.cs",
+              "DocumentMoniker": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\UserRepository\\CandyRepository.cs",
+              "RelativeDocumentMoniker": "La Lupita Kika\\UserRepository\\CandyRepository.cs",
+              "ToolTip": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\UserRepository\\CandyRepository.cs",
+              "RelativeToolTip": "La Lupita Kika\\UserRepository\\CandyRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-07T22:03:16.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\Program.cs",
+              "RelativeDocumentMoniker": "La Lupita Kika\\Program.cs",
+              "ToolTip": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\Program.cs",
+              "RelativeToolTip": "La Lupita Kika\\Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAADwvx0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-08-14T19:13:58.193Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

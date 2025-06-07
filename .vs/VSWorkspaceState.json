@@ -2,12 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\La Lupita Kika",
-    "\\La Lupita Kika\\La Lupita Kika",
-    "\\La Lupita Kika\\La Lupita Kika\\Views",
-    "\\La Lupita Kika\\La Lupita Kika\\Views\\Products",
-    "\\La Lupita Kika\\La Lupita Kika\\Views\\Products\\Inventario",
-    "\\La Lupita Kika\\La Lupita Kika\\Views\\Staff"
+    "\\La Lupita Kika\\La Lupita Kika\\bin",
+    "\\La Lupita Kika\\La Lupita Kika\\Models"
   ],
-  "SelectedNode": "\\La Lupita Kika\\La Lupita Kika\\Views\\Staff\\Facturation.cs",
+  "SelectedNode": "\\La Lupita Kika\\La Lupita Kika.sln",
   "PreviewInSolutionExplorer": false
 }

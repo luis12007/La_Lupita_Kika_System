@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj": {}
+    "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj": {
+    "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+        "projectUniqueName": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
         "projectName": "La Lupita Kika",
-        "projectPath": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
+        "projectPath": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\La Lupita Kika.csproj",
         "packagesPath": "C:\\Users\\luish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luish\\Source\\Repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\obj\\",
+        "outputPath": "C:\\Users\\luish\\source\\repos\\luis12007\\La_Lupita_Kika_System\\La Lupita Kika\\La Lupita Kika\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -39,7 +39,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net6.0-windows7.0": {
@@ -51,7 +57,7 @@
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[5.1.1, )"
+              "version": "[6.0.2, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -85,7 +91,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -91,6 +91,7 @@ namespace La_Lupita_Kika.UserRepository
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+
                 string query = "SELECT user_id, name, password, username, mail, rol_id, subsidiary_ID FROM user WHERE username = @Username";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Username", username);

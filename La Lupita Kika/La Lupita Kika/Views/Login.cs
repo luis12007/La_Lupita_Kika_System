@@ -56,6 +56,7 @@ namespace La_Lupita_Kika
         {
             String username = Username_textBox.Texts;
             String Password = Pass_textBox.Texts;
+            
             if (username == "" && Password == "")
             {
                 MessageBox.Show("Usuario o contraseña vacios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
